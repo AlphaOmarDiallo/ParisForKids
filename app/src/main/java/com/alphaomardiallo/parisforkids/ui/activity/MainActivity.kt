@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids
+package com.alphaomardiallo.parisforkids.ui.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
