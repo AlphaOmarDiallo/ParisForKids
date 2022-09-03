@@ -134,6 +134,11 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1"
 
+    //RETROFIT - API CLIENT
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.9.0'
+
     //OKHTTP
     implementation'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
