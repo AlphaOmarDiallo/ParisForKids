@@ -2,7 +2,6 @@ package com.alphaomardiallo.parisforkids.di
 
 
 import com.alphaomardiallo.parisforkids.data.remote.RetrofitQueFaireAParis
-import com.alphaomardiallo.parisforkids.domain.Constant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,7 +28,7 @@ class ApiModule {
     @Provides
     fun provideApiQueFaireAParis(): RetrofitQueFaireAParis {
         return Retrofit.Builder()
-            .baseUrl(Constant.BASE_URL_QFAP_API)
+            .baseUrl("https://opendata.paris.fr/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

@@ -20,13 +20,17 @@ class MainViewModel @Inject constructor(
     private val queFaireAParisRepository: QueFaireAParisRepository
 ) : ViewModel() {
 
+    init {
+        getListEventsAndActivities()
+    }
+
     /**
      * QFAP repository
      */
     private var _eventsAndActivities = mutableStateListOf<RecordsItem?>()
     val eventsAndActivities: List<RecordsItem?> = _eventsAndActivities
 
-    fun getListEventsAndActivities() {
+    private fun getListEventsAndActivities() {
         viewModelScope.launch {
             try {
                 val response = queFaireAParisRepository.getListEventsAndActivities()
