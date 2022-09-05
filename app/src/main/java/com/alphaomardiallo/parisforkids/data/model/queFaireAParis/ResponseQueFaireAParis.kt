@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.data.model
+package com.alphaomardiallo.parisforkids.data.model.queFaireAParis
 
 data class ResponseQueFaireAParis(
 	val nhits: Int? = null,
