@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.viewmodel
+package com.alphaomardiallo.parisforkids.ui.activity.main
 
 import android.content.ContentValues.TAG
 import android.util.Log

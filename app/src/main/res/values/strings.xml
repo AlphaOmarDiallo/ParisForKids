@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ParisForKids</string>
+
+    //
+    <string name="bottom_navigation_content_description_list_all_activities">Icon representing a list</string>
+    <string name="bottom_navigation_label_list_all_activities">List</string>
+    <string name="bottom_navigation_content_description_map_activities">Icon Map</string>
+    <string name="bottom_navigation_label_map_activities">Map</string>
+    <string name="bottom_navigation_content_description_favorite_activities">Icon Heart</string>
+    <string name="bottom_navigation_label_favorite_activities">Favorite</string>
 </resources>
