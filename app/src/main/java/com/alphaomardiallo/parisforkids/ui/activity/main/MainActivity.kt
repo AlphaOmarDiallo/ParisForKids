@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -40,7 +41,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    Layout(navController = navController, startDestination = "ListActivities")
                 }
             }
         }
@@ -48,8 +49,25 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
+fun Greeting(name: String, modifier: Modifier) {
     Text(text = "Hello $name!")
+}
+
+@Composable
+fun Layout(
+    navController: NavHostController,
+    startDestination: String
+) {
+    Scaffold(
+        topBar = {
+            TopBar(text = stringResource(id = R.string.app_name_formatted))
+        },
+        bottomBar = {
+            BottomNav()
+        }
+    ) {
+        Greeting(name = "android", Modifier.padding(it))
+    }
 }
 
 @Composable
@@ -59,7 +77,7 @@ fun TopBar(modifier: Modifier = Modifier, text: String) {
         backgroundColor = MaterialTheme.colors.primary,
         navigationIcon = {
             IconButton(
-                onClick = {/*TODO*/},
+                onClick = {/*TODO*/ },
                 content = {
                     Icon(
                         imageVector = Icons.Filled.Menu,
