@@ -6,16 +6,19 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.ui.theme.ParisForKidsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +31,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
             val list = viewModel.eventsAndActivities
             Log.i(TAG, "onCreate: $list")
             ParisForKidsTheme {
@@ -49,9 +53,51 @@ fun Greeting(name: String) {
 }
 
 @Composable
+fun TopBar(modifier: Modifier = Modifier, text: String) {
+    TopAppBar(
+        modifier = modifier,
+        backgroundColor = MaterialTheme.colors.primary,
+        navigationIcon = {
+            IconButton(
+                onClick = {/*TODO*/},
+                content = {
+                    Icon(
+                        imageVector = Icons.Filled.Menu,
+                        contentDescription = stringResource(id = R.string.top_app_bar_icon_content_description)
+                    )
+                }
+            )
+        },
+        title = {
+            Row(
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                Text(text = text)
+            }
+        }
+
+    )
+}
+
+@Composable
+fun NavigationHost(
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
+    startDestination: String = ""
+) {
+    NavHost(
+        modifier = modifier,
+        navController = navController,
+        startDestination = startDestination
+    ) {
+
+    }
+}
+
+@Composable
 fun BottomNav(modifier: Modifier = Modifier) {
     BottomAppBar(
-        backgroundColor = MaterialTheme.colors.background,
+        backgroundColor = MaterialTheme.colors.primary,
         modifier = modifier
     ) {
         BottomNavigationItem(
@@ -82,13 +128,26 @@ fun BottomNav(modifier: Modifier = Modifier) {
         )
         BottomNavigationItem(
             icon = {
-                   Icon(
-                       imageVector = Icons.Filled.Favorite,
-                       contentDescription = stringResource(id = R.string.bottom_navigation_content_description_favorite_activities)
-                   )
+                Icon(
+                    imageVector = Icons.Filled.Search,
+                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_search_activities)
+                )
             },
             label = {
-                    Text(stringResource(id = R.string.bottom_navigation_label_favorite_activities))
+                Text(text = stringResource(id = R.string.bottom_navigation_label_search_activities))
+            },
+            selected = true,
+            onClick = { /*TODO*/ }
+        )
+        BottomNavigationItem(
+            icon = {
+                Icon(
+                    imageVector = Icons.Filled.Favorite,
+                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_favorite_activities)
+                )
+            },
+            label = {
+                Text(stringResource(id = R.string.bottom_navigation_label_favorite_activities))
             },
             selected = true,
             onClick = { /*TODO*/ }
@@ -108,6 +167,6 @@ fun BottomNavPreview() {
 @Composable
 fun DefaultPreview() {
     ParisForKidsTheme {
-        Greeting("Android")
+        TopBar(text = stringResource(id = R.string.app_name_formatted))
     }
 }
