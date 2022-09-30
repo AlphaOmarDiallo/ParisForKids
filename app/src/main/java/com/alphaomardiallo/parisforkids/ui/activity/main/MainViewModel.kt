@@ -8,6 +8,7 @@ import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.RecordsItem
+import com.alphaomardiallo.parisforkids.data.repository.parisWeather.ParisWeatherRepository
 import com.alphaomardiallo.parisforkids.data.repository.queFaireAParis.QueFaireAParisRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,15 +18,17 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val queFaireAParisRepository: QueFaireAParisRepository
+    private val queFaireAParisRepository: QueFaireAParisRepository,
+    private val parisWeatherRepository: ParisWeatherRepository
 ) : ViewModel() {
 
     init {
         getListEventsAndActivities()
+        getParisWeather()
     }
 
     /**
-     * QFAP repository
+     * Que Faire A Paris repository
      */
     private var _eventsAndActivities = mutableStateListOf<RecordsItem?>()
     val eventsAndActivities: List<RecordsItem?> = _eventsAndActivities
@@ -61,5 +64,34 @@ class MainViewModel @Inject constructor(
         _eventsAndActivities = (list)
     }
 
+    /**
+     * Paris Weather repository
+     */
 
+    private fun getParisWeather(){
+        viewModelScope.launch {
+            try {
+                val response = parisWeatherRepository.getParisWeather()
+
+                if (!response.isSuccessful) {
+                    Log.w(
+                        TAG,
+                        "getParisWeather: no response from que faire a paris API",
+                        null
+                    )
+                    return@launch
+                }
+
+                if (response.body()?.currentWeather != null) {
+                    Log.i(TAG, "getParisWeather: ${response.body()!!.daily?.temperature2mMax.toString()}")
+                } else {
+                    Log.w(TAG, "getParisWeather: events and activity list in null", null)
+                }
+            } catch (exception: IOException) {
+                Log.e(TAG, "getParisWeather: IOException = ${exception.message}", null)
+            } catch (exception: HttpException) {
+                Log.e(TAG, "getParisWeather: HttpException = ${exception.message}", null)
+            }
+        }
+    }
 }

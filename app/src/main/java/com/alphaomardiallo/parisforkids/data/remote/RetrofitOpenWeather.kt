@@ -1,5 +1,6 @@
 package com.alphaomardiallo.parisforkids.data.remote
 
+import com.alphaomardiallo.parisforkids.data.model.weather.CurrentWeather
 import com.alphaomardiallo.parisforkids.data.model.weather.Weather
 import retrofit2.Response
 import retrofit2.http.GET
@@ -11,6 +12,9 @@ interface RetrofitOpenWeather {
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
         @Query("daily") daily: String,
+        @Query("daily") daily1: String,
+        @Query("daily") daily2: String,
+        @Query("current_weather") currentWeather: Boolean,
         @Query("timezone") timezone: String
     ): Response<Weather>
 }
