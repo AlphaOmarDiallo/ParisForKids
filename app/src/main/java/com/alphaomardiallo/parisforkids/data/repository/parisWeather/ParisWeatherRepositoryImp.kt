@@ -18,6 +18,14 @@ class ParisWeatherRepositoryImp @Inject constructor(
     private val timezone = "auto"
 
     override suspend fun getParisWeather(): Response<Weather> {
-        return retrofitOpenWeather.getParisWeather(parisLat, parisLong, daily, daily2, daily3, currentWeather, timezone)
+        return retrofitOpenWeather.getParisWeather(
+            parisLat,
+            parisLong,
+            daily,
+            daily2,
+            daily3,
+            currentWeather,
+            timezone
+        )
     }
 }

@@ -16,6 +16,6 @@ class ParisWeatherModule {
     @Singleton
     @Provides
     fun provideParisWeatherRepository(retrofitOpenWeather: RetrofitOpenWeather): ParisWeatherRepository =
-        ParisWeatherRepositoryImp(retrofitOpenWeather )
+        ParisWeatherRepositoryImp(retrofitOpenWeather)
 
 }

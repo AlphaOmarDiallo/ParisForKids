@@ -68,7 +68,7 @@ class MainViewModel @Inject constructor(
      * Paris Weather repository
      */
 
-    private fun getParisWeather(){
+    private fun getParisWeather() {
         viewModelScope.launch {
             try {
                 val response = parisWeatherRepository.getParisWeather()
@@ -83,7 +83,10 @@ class MainViewModel @Inject constructor(
                 }
 
                 if (response.body()?.currentWeather != null) {
-                    Log.i(TAG, "getParisWeather: ${response.body()!!.daily?.temperature2mMax.toString()}")
+                    Log.i(
+                        TAG,
+                        "getParisWeather: ${response.body()!!.daily?.temperature2mMax.toString()}"
+                    )
                 } else {
                     Log.w(TAG, "getParisWeather: events and activity list in null", null)
                 }
