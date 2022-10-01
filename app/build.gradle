@@ -169,8 +169,6 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
-    // optional - Paging 3 Integration
-    implementation "androidx.room:room-paging:2.5.0-alpha03"
 
     //COIL
     implementation "io.coil-kt:coil:2.1.0"

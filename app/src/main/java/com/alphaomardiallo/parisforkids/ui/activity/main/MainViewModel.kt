@@ -49,6 +49,7 @@ class MainViewModel @Inject constructor(
 
                 if (response.body()?.records != null) {
                     updateEventsAndActivities(response.body()!!.records!!.toMutableStateList())
+                    Log.e(TAG, "getListEventsAndActivities: ${response.body()!!.records?.size}" )
                 } else {
                     Log.w(TAG, "getListEventsAndActivities: events and activity list in null", null)
                 }

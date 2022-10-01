@@ -13,10 +13,10 @@ class QueFaireAParisRepositoryImp @Inject constructor(
         return retrofitQueFaireAParis.queFaireAParisEventsAndActivity(
             "que-faire-a-paris-",
             "",
-            999,
+            9999,
             "date_start",
             "date_end",
-            "tags",
+            "enfant",
             "address_name",
             "address_zipcode",
             "address_city",
