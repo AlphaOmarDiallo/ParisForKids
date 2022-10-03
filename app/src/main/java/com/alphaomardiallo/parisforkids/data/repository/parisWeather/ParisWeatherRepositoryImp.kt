@@ -1,6 +1,6 @@
 package com.alphaomardiallo.parisforkids.data.repository.parisWeather
 
-import com.alphaomardiallo.parisforkids.data.model.weather.Weather
+import com.alphaomardiallo.parisforkids.data.model.weather.ResponseWeather
 import com.alphaomardiallo.parisforkids.data.remote.RetrofitOpenWeather
 import retrofit2.Response
 import javax.inject.Inject
@@ -17,7 +17,7 @@ class ParisWeatherRepositoryImp @Inject constructor(
     private val currentWeather = true
     private val timezone = "auto"
 
-    override suspend fun getParisWeather(): Response<Weather> {
+    override suspend fun getParisWeather(): Response<ResponseWeather> {
         return retrofitOpenWeather.getParisWeather(
             parisLat,
             parisLong,

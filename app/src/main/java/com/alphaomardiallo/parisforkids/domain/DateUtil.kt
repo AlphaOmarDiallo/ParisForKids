@@ -3,10 +3,10 @@ package com.alphaomardiallo.parisforkids.domain
 import java.text.SimpleDateFormat
 import java.util.*
 
-object DateUtil{
+object DateUtil {
     private val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE)
 
-    fun createDate() : String {
+    fun createDate(): String {
         val currentDate = sdf.format(Date())
         return currentDate.toString()
     }

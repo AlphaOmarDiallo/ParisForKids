@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.Events
-import com.alphaomardiallo.parisforkids.data.repository.eventsAndActivities.EventsAndActivitiesRepository
+import com.alphaomardiallo.parisforkids.data.repository.events.EventsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListActivitiesViewModel @Inject constructor(
-    private val eventsAndActivitiesRepository: EventsAndActivitiesRepository
+    private val eventsRepository: EventsRepository
 ) : ViewModel() {
 
     /**
@@ -22,10 +22,10 @@ class ListActivitiesViewModel @Inject constructor(
     private var _events = MutableLiveData<Events>()
     val events: LiveData<Events> = _events
 
-    private fun getListEventsAndActivities() {
+    private fun getListEvents() {
         viewModelScope.launch {
             _events.value =
-                eventsAndActivitiesRepository.getEventsAndActivities().first()[0]
+                eventsRepository.getEvents().first()[0]
         }
     }
 }

@@ -4,14 +4,14 @@ import androidx.room.TypeConverter
 import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.ResponseQueFaireAParis
 import com.google.gson.Gson
 
-class ConverterEventsAndActivities {
+class ConverterEvents {
     @TypeConverter
-    fun eventsAndActivitiesFromString(value: String?): ResponseQueFaireAParis? {
+    fun eventsFromString(value: String?): ResponseQueFaireAParis? {
         return Gson().fromJson(value, ResponseQueFaireAParis::class.java)
     }
 
     @TypeConverter
-    fun placeListFromListToString(responseQueFaireAParis: ResponseQueFaireAParis): String? {
+    fun stringFromEvents(responseQueFaireAParis: ResponseQueFaireAParis): String? {
         val gson = Gson()
         return gson.toJson(responseQueFaireAParis)
     }

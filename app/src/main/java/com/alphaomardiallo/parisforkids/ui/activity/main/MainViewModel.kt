@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.Events
 import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.ResponseQueFaireAParis
-import com.alphaomardiallo.parisforkids.data.repository.eventsAndActivities.EventsAndActivitiesRepository
+import com.alphaomardiallo.parisforkids.data.repository.events.EventsRepository
 import com.alphaomardiallo.parisforkids.data.repository.parisWeather.ParisWeatherRepository
 import com.alphaomardiallo.parisforkids.data.repository.queFaireAParis.QueFaireAParisRepository
 import com.alphaomardiallo.parisforkids.domain.DateUtil
@@ -21,7 +21,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val queFaireAParisRepository: QueFaireAParisRepository,
     private val parisWeatherRepository: ParisWeatherRepository,
-    private val eventsAndActivitiesRepository: EventsAndActivitiesRepository
+    private val eventsRepository: EventsRepository
 ) : ViewModel() {
 
     init {
@@ -37,7 +37,7 @@ class MainViewModel @Inject constructor(
      */
     private fun checkIfListEventsWasUpdatedToday() {
         viewModelScope.launch {
-            val date1 = eventsAndActivitiesRepository.getEventsAndActivities().first()[0].date
+            val date1 = eventsRepository.getEvents().first()[0].date
             val date2 = DateUtil.createDate()
             if (!DateUtil.isItSameDay(date1, date2)) fetchListEventsAndActivities()
         }
@@ -50,15 +50,15 @@ class MainViewModel @Inject constructor(
     private fun insertOrUpdateListEventsInDataBase(responseQueFaireAParis: ResponseQueFaireAParis) {
         viewModelScope.launch {
 
-            if (eventsAndActivitiesRepository.getEventsAndActivities().first().isEmpty()) {
+            if (eventsRepository.getEvents().first().isEmpty()) {
                 val newEvents = Events(
                     0,
                     DateUtil.createDate(),
                     responseQueFaireAParis
                 )
-                eventsAndActivitiesRepository.insertEventsAndActivities(newEvents)
+                eventsRepository.insertEvents(newEvents)
             } else {
-                val oldEvents = eventsAndActivitiesRepository.getEventsAndActivities().first()[0]
+                val oldEvents = eventsRepository.getEvents().first()[0]
                 oldEvents.date = DateUtil.createDate()
                 oldEvents.data = responseQueFaireAParis
             }
@@ -100,7 +100,6 @@ class MainViewModel @Inject constructor(
     }
 
 
-
     // Paris Weather repository
 
     /**
@@ -108,7 +107,7 @@ class MainViewModel @Inject constructor(
      */
 
 
-    private fun checkIfWeatherWasUpdatedToday(){
+    private fun checkIfWeatherWasUpdatedToday() {
         //TODO
     }
 
