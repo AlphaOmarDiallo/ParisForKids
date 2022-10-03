@@ -33,8 +33,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-            val list = viewModel.eventsAndActivities
-            Log.i(TAG, "onCreate: $list")
             ParisForKidsTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(

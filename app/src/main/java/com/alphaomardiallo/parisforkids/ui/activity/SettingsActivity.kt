@@ -10,7 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.alphaomardiallo.parisforkids.ui.activity.ui.theme.ParisForKidsTheme
+import com.alphaomardiallo.parisforkids.ui.theme.ParisForKidsTheme
+
 
 class SettingsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

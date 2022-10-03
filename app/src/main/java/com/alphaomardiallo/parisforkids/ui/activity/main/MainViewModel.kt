@@ -4,7 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.EventsAndActivities
+import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.Events
 import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.ResponseQueFaireAParis
 import com.alphaomardiallo.parisforkids.data.repository.eventsAndActivities.EventsAndActivitiesRepository
 import com.alphaomardiallo.parisforkids.data.repository.parisWeather.ParisWeatherRepository
@@ -26,7 +26,7 @@ class MainViewModel @Inject constructor(
 
     init {
         checkIfListEventsWasUpdatedToday()
-        getParisWeather()
+        checkIfWeatherWasUpdatedToday()
     }
 
     //Events and activities repository
@@ -51,7 +51,7 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
 
             if (eventsAndActivitiesRepository.getEventsAndActivities().first().isEmpty()) {
-                val newEvents = EventsAndActivities(
+                val newEvents = Events(
                     0,
                     DateUtil.createDate(),
                     responseQueFaireAParis
@@ -103,6 +103,18 @@ class MainViewModel @Inject constructor(
 
     // Paris Weather repository
 
+    /**
+     * Checking if the weather was updated on the same day, otherwise update it with an API call
+     */
+
+
+    private fun checkIfWeatherWasUpdatedToday(){
+        //TODO
+    }
+
+    /**
+     * If the weather need and update, it is either updated or created on first use
+     */
     private fun getParisWeather() {
         viewModelScope.launch {
             try {
@@ -118,10 +130,7 @@ class MainViewModel @Inject constructor(
                 }
 
                 if (response.body()?.currentWeather != null) {
-                    Log.i(
-                        TAG,
-                        "getParisWeather: ${response.body()!!.daily?.temperature2mMax.toString()}"
-                    )
+                    //TODO update weather in database
                 } else {
                     Log.w(TAG, "getParisWeather: events and activity list in null", null)
                 }
