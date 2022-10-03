@@ -9,8 +9,8 @@ import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.EventsAndActiv
 
 @Database(entities = [EventsAndActivities::class], version = 1, exportSchema = true)
 @TypeConverters(ConverterListString::class, ConverterEventsAndActivities::class)
-abstract class LocalDatabase: RoomDatabase() {
+abstract class LocalDatabase : RoomDatabase() {
 
-abstract fun eventsAndActivitiesDAO(): EventsAndActivitiesDAO
+    abstract fun eventsAndActivitiesDAO(): EventsAndActivitiesDAO
 
 }

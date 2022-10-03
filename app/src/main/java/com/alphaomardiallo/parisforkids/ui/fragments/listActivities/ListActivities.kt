@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.ui.fragments
+package com.alphaomardiallo.parisforkids.ui.fragments.listActivities
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.alphaomardiallo.parisforkids.ui.activity.ui.theme.ParisForKidsTheme
+import com.alphaomardiallo.parisforkids.ui.theme.ParisForKidsTheme
 
 class ListActivities : Fragment() {
 

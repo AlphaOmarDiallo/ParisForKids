@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/listActivities"
-        android:name="com.alphaomardiallo.parisforkids.ui.fragments.ListActivities"
+        android:name="com.alphaomardiallo.parisforkids.ui.fragments.listActivities.ListActivities"
         android:label="ListActivities" />
 </navigation>
