@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0f2aa0cc92feee9934d32995f5f40812",
+    "identityHash": "b5217b519f366e7ec065e97b251dd0ef",
     "entities": [
       {
         "tableName": "EventsAndActivities_table",
@@ -38,7 +38,7 @@
       },
       {
         "tableName": "weather_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`weather_id` INTEGER NOT NULL, `weather_data` TEXT NOT NULL, PRIMARY KEY(`weather_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`weather_id` INTEGER NOT NULL, `weather_data` TEXT NOT NULL, `weather_date` TEXT NOT NULL, PRIMARY KEY(`weather_id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -49,6 +49,12 @@
           {
             "fieldPath": "data",
             "columnName": "weather_data",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "weather_date",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -66,7 +72,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0f2aa0cc92feee9934d32995f5f40812')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b5217b519f366e7ec065e97b251dd0ef')"
     ]
   }
 }

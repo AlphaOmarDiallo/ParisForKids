@@ -10,5 +10,7 @@ data class Weather(
     @ColumnInfo(name = "weather_id")
     val id: Long,
     @ColumnInfo(name = "weather_data")
-    var data: ResponseWeather
+    var data: ResponseWeather,
+    @ColumnInfo(name = "weather_date")
+    var date: String
 )
