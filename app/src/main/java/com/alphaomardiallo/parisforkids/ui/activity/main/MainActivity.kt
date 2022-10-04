@@ -31,6 +31,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
+            viewModel.checkIfListEventsWasUpdatedToday()
+            viewModel.checkIfWeatherWasUpdatedToday()
             ParisForKidsTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -43,6 +45,14 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+private fun getData() {
+
+}
+
+/**
+ * Composables
+ */
 
 @Composable
 fun Greeting(name: String, modifier: Modifier) {

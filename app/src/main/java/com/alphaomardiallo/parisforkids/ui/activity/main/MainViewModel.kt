@@ -29,8 +29,8 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        checkIfListEventsWasUpdatedToday()
-        checkIfWeatherWasUpdatedToday()
+        //checkIfListEventsWasUpdatedToday()
+        //checkIfWeatherWasUpdatedToday()
     }
 
     //Events repository
@@ -38,8 +38,9 @@ class MainViewModel @Inject constructor(
      * If list was updated on the same day, no API call to refresh the list. Otherwise, yes.
      * The goal is to reduce the number of API calls
      */
-    private fun checkIfListEventsWasUpdatedToday() {
+    fun checkIfListEventsWasUpdatedToday() {
         viewModelScope.launch {
+            Log.i(TAG, "checkIfListEventsWasUpdatedToday: here")
             if (eventsRepository.getEvents().first().isEmpty()) {
                 fetchListEventsAndActivities()
             } else {
@@ -56,6 +57,7 @@ class MainViewModel @Inject constructor(
      */
     private fun insertOrUpdateListEventsInDataBase(responseQueFaireAParis: ResponseQueFaireAParis) {
         viewModelScope.launch {
+            Log.i(TAG, "insertOrUpdateListEventsInDataBase: here")
             if (eventsRepository.getEvents().first().isEmpty()) {
                 val newEvents = Events(
                     0,
@@ -78,6 +80,7 @@ class MainViewModel @Inject constructor(
      */
     private fun fetchListEventsAndActivities() {
         viewModelScope.launch {
+            Log.i(TAG, "fetchListEventsAndActivities: here")
             try {
                 val response = queFaireAParisRepository.getListEventsAndActivities()
 
@@ -139,7 +142,7 @@ class MainViewModel @Inject constructor(
     /**
      * Checking if the weather was updated on the same day, otherwise update it with an API call
      */
-    private fun checkIfWeatherWasUpdatedToday() {
+    fun checkIfWeatherWasUpdatedToday() {
         viewModelScope.launch {
             if (weatherRepository.getWeather().first().isEmpty()) {
                 fetchParisWeather()
