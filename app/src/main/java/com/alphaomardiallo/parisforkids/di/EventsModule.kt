@@ -1,6 +1,6 @@
 package com.alphaomardiallo.parisforkids.di
 
-import com.alphaomardiallo.parisforkids.data.local.EventsAndActivitiesDAO
+import com.alphaomardiallo.parisforkids.data.local.EventsDAO
 import com.alphaomardiallo.parisforkids.data.repository.events.EventsRepository
 import com.alphaomardiallo.parisforkids.data.repository.events.EventsRepositoryImp
 import dagger.Module
@@ -11,10 +11,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class EventsAndActivitiesModule {
+class EventsModule {
 
     @Singleton
     @Provides
-    fun provideEventsAndActivitiesRepository(eventsAndActivitiesDAO: EventsAndActivitiesDAO): EventsRepository =
-        EventsRepositoryImp(eventsAndActivitiesDAO)
+    fun provideEventsRepository(eventsDAO: EventsDAO): EventsRepository =
+        EventsRepositoryImp(eventsDAO)
 }

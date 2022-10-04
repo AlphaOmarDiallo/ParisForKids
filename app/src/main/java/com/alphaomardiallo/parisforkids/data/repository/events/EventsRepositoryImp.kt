@@ -1,26 +1,26 @@
 package com.alphaomardiallo.parisforkids.data.repository.events
 
-import com.alphaomardiallo.parisforkids.data.local.EventsAndActivitiesDAO
+import com.alphaomardiallo.parisforkids.data.local.EventsDAO
 import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.Events
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class EventsRepositoryImp @Inject constructor(
-    private val eventsAndActivitiesDAO: EventsAndActivitiesDAO
+    private val eventsDAO: EventsDAO
 ) : EventsRepository {
     override suspend fun insertEvents(events: Events) {
-        eventsAndActivitiesDAO.insertEventsAndActivities(events)
+        eventsDAO.insertEvents(events)
     }
 
     override suspend fun updateEvents(events: Events) {
-        eventsAndActivitiesDAO.updateEventsAndActivities(events)
+        eventsDAO.updateEvents(events)
     }
 
     override suspend fun deleteEvents(events: Events) {
-        eventsAndActivitiesDAO.deleteEventsAndActivities(events)
+        eventsDAO.deleteEventsAndActivities(events)
     }
 
     override fun getEvents(): Flow<List<Events>> {
-        return eventsAndActivitiesDAO.getEventsAndActivities()
+        return eventsDAO.getEvents()
     }
 }

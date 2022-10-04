@@ -5,17 +5,17 @@ import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.Events
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface EventsAndActivitiesDAO {
+interface EventsDAO {
 
     @Insert
-    suspend fun insertEventsAndActivities(events: Events)
+    suspend fun insertEvents(events: Events)
 
     @Update
-    suspend fun updateEventsAndActivities(events: Events)
+    suspend fun updateEvents(events: Events)
 
     @Delete
     suspend fun deleteEventsAndActivities(events: Events)
 
     @Query("SELECT * FROM EventsAndActivities_table")
-    fun getEventsAndActivities(): Flow<List<Events>>
+    fun getEvents(): Flow<List<Events>>
 }

@@ -30,7 +30,6 @@ class MainViewModel @Inject constructor(
     }
 
     //Events and activities repository
-
     /**
      * If list was updated on the same day, no API call to refresh the list. Otherwise, yes.
      * The goal is to reduce the number of API calls
@@ -101,12 +100,9 @@ class MainViewModel @Inject constructor(
 
 
     // Paris Weather repository
-
     /**
      * Checking if the weather was updated on the same day, otherwise update it with an API call
      */
-
-
     private fun checkIfWeatherWasUpdatedToday() {
         //TODO
     }

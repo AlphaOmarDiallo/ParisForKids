@@ -27,4 +27,8 @@ class LocalDatabaseModule {
     @Singleton
     @Provides
     fun provideEventsAndActivitiesDao(database: LocalDatabase) = database.eventsAndActivitiesDAO()
+
+    @Singleton
+    @Provides
+    fun provideWeatherDao(database: LocalDatabase) = database.weatherDao()
 }
