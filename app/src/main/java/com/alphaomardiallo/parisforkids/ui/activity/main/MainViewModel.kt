@@ -28,11 +28,6 @@ class MainViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository
 ) : ViewModel() {
 
-    init {
-        //checkIfListEventsWasUpdatedToday()
-        //checkIfWeatherWasUpdatedToday()
-    }
-
     //Events repository
     /**
      * If list was updated on the same day, no API call to refresh the list. Otherwise, yes.
