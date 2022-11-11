@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.Events
 import com.alphaomardiallo.parisforkids.data.repository.events.EventsRepository
+import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.Events
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch

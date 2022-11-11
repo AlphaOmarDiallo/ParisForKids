@@ -1,7 +1,7 @@
 package com.alphaomardiallo.parisforkids.data.repository.queFaireAParis
 
-import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.ResponseQueFaireAParis
 import com.alphaomardiallo.parisforkids.data.remote.RetrofitQueFaireAParis
+import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.ResponseQueFaireAParis
 import retrofit2.Response
 import javax.inject.Inject
 
