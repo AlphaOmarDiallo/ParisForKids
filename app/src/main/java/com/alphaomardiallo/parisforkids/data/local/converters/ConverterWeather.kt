@@ -1,7 +1,7 @@
 package com.alphaomardiallo.parisforkids.data.local.converters
 
 import androidx.room.TypeConverter
-import com.alphaomardiallo.parisforkids.data.model.weather.ResponseWeather
+import com.alphaomardiallo.parisforkids.domain.model.weather.ResponseWeather
 import com.google.gson.Gson
 
 class ConverterWeather {

@@ -6,8 +6,8 @@ import androidx.room.TypeConverters
 import com.alphaomardiallo.parisforkids.data.local.converters.ConverterEvents
 import com.alphaomardiallo.parisforkids.data.local.converters.ConverterListString
 import com.alphaomardiallo.parisforkids.data.local.converters.ConverterWeather
-import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.Events
-import com.alphaomardiallo.parisforkids.data.model.weather.Weather
+import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.Events
+import com.alphaomardiallo.parisforkids.domain.model.weather.Weather
 
 @Database(entities = [Events::class, Weather::class], version = 1, exportSchema = true)
 @TypeConverters(

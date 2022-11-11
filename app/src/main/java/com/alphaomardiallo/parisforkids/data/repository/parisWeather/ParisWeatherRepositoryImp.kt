@@ -1,6 +1,6 @@
 package com.alphaomardiallo.parisforkids.data.repository.parisWeather
 
-import com.alphaomardiallo.parisforkids.data.model.weather.ResponseWeather
+import com.alphaomardiallo.parisforkids.domain.model.weather.ResponseWeather
 import com.alphaomardiallo.parisforkids.data.remote.RetrofitOpenWeather
 import retrofit2.Response
 import javax.inject.Inject

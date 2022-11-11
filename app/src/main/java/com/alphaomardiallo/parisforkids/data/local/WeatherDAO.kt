@@ -1,7 +1,7 @@
 package com.alphaomardiallo.parisforkids.data.local
 
 import androidx.room.*
-import com.alphaomardiallo.parisforkids.data.model.weather.Weather
+import com.alphaomardiallo.parisforkids.domain.model.weather.Weather
 import kotlinx.coroutines.flow.Flow
 
 @Dao

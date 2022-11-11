@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.data.model.sanisette
+package com.alphaomardiallo.parisforkids.domain.model.sanisette
 
 data class Parameters(
     val dataset: String,

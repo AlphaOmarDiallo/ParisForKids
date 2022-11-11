@@ -1,7 +1,7 @@
 package com.alphaomardiallo.parisforkids.data.local
 
 import androidx.room.*
-import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.Events
+import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.Events
 import kotlinx.coroutines.flow.Flow
 
 @Dao

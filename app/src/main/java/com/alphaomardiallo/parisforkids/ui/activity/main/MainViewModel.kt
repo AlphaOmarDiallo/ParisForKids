@@ -4,10 +4,10 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.Events
-import com.alphaomardiallo.parisforkids.data.model.queFaireAParis.ResponseQueFaireAParis
-import com.alphaomardiallo.parisforkids.data.model.weather.ResponseWeather
-import com.alphaomardiallo.parisforkids.data.model.weather.Weather
+import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.Events
+import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.ResponseQueFaireAParis
+import com.alphaomardiallo.parisforkids.domain.model.weather.ResponseWeather
+import com.alphaomardiallo.parisforkids.domain.model.weather.Weather
 import com.alphaomardiallo.parisforkids.data.repository.events.EventsRepository
 import com.alphaomardiallo.parisforkids.data.repository.parisWeather.ParisWeatherRepository
 import com.alphaomardiallo.parisforkids.data.repository.queFaireAParis.QueFaireAParisRepository

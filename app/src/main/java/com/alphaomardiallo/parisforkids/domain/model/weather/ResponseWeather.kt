@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.data.model.weather
+package com.alphaomardiallo.parisforkids.domain.model.weather
 
 import com.google.gson.annotations.SerializedName
 

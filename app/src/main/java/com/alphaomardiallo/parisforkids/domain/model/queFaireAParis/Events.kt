@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.data.model.queFaireAParis
+package com.alphaomardiallo.parisforkids.domain.model.queFaireAParis
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

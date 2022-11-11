@@ -1,8 +1,8 @@
 package com.alphaomardiallo.parisforkids.data.remote
 
-import com.alphaomardiallo.parisforkids.data.model.weather.ResponseWeather
-import retrofit2.Response
+import com.alphaomardiallo.parisforkids.domain.model.weather.ResponseWeather
 import retrofit2.http.GET
+import retrofit2.Response
 import retrofit2.http.Query
 
 interface RetrofitOpenWeather {
