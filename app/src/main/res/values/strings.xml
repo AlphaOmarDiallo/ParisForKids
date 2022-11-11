@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ParisForKids</string>
 
-    // Main activity
+    <!-- Main activity -->
     <string name="app_name_formatted"> Paris for Kids</string>
     <string name="top_app_bar_icon_content_description">Icon representing a menu</string>
     <string name="bottom_navigation_content_description_list_all_activities">Icon representing a list</string>
@@ -13,5 +13,11 @@
     <string name="bottom_navigation_content_description_search_activities">Icon representing a magnifier</string>
     <string name="bottom_navigation_label_search_activities">Search</string>
     <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Connectivity util -->
+    <string name="connectivity_available">You are connected to internet</string>
+    <string name="connectivity_unavailable">Your internet connection in unavailable</string>
+    <string name="connectivity_losing">You are losing you internet connection</string>
+    <string name="connectivity_lost">You are not connected to internet</string>
 
 </resources>

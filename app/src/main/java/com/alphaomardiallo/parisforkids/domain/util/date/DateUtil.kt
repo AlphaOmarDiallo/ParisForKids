@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.domain.util
+package com.alphaomardiallo.parisforkids.domain.util.date
 
 import java.text.SimpleDateFormat
 import java.util.*

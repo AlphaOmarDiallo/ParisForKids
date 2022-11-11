@@ -8,7 +8,7 @@ import com.alphaomardiallo.parisforkids.data.repository.events.EventsRepository
 import com.alphaomardiallo.parisforkids.data.repository.parisWeather.ParisWeatherRepository
 import com.alphaomardiallo.parisforkids.data.repository.queFaireAParis.QueFaireAParisRepository
 import com.alphaomardiallo.parisforkids.data.repository.weather.WeatherRepository
-import com.alphaomardiallo.parisforkids.domain.util.DateUtil
+import com.alphaomardiallo.parisforkids.domain.util.date.DateUtil
 import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.Events
 import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.ResponseQueFaireAParis
 import com.alphaomardiallo.parisforkids.domain.model.weather.ResponseWeather
