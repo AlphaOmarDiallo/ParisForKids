@@ -8,7 +8,7 @@ import com.alphaomardiallo.parisforkids.data.repository.events.EventsRepository
 import com.alphaomardiallo.parisforkids.data.repository.parisWeather.ParisWeatherRepository
 import com.alphaomardiallo.parisforkids.data.repository.queFaireAParis.QueFaireAParisRepository
 import com.alphaomardiallo.parisforkids.data.repository.weather.WeatherRepository
-import com.alphaomardiallo.parisforkids.domain.util.date.DateUtil
+import com.alphaomardiallo.parisforkids.domain.util.date.DateUtilImp
 import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.Events
 import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.ResponseQueFaireAParis
 import com.alphaomardiallo.parisforkids.domain.model.weather.ResponseWeather
@@ -25,7 +25,8 @@ class MainViewModel @Inject constructor(
     private val queFaireAParisRepository: QueFaireAParisRepository,
     private val parisWeatherRepository: ParisWeatherRepository,
     private val eventsRepository: EventsRepository,
-    private val weatherRepository: WeatherRepository
+    private val weatherRepository: WeatherRepository,
+    private val dateUtilImp: DateUtilImp
 ) : ViewModel() {
 
     //Events repository
@@ -40,8 +41,8 @@ class MainViewModel @Inject constructor(
                 fetchListEventsAndActivities()
             } else {
                 val date1 = eventsRepository.getEvents().first()[0].date
-                val date2 = DateUtil.createDate()
-                if (!DateUtil.isItSameDay(date1, date2)) fetchListEventsAndActivities()
+                val date2 = dateUtilImp.createDate()
+                if (!dateUtilImp.isItSameDay(date1, date2)) fetchListEventsAndActivities()
             }
         }
     }
@@ -56,13 +57,13 @@ class MainViewModel @Inject constructor(
             if (eventsRepository.getEvents().first().isEmpty()) {
                 val newEvents = Events(
                     0,
-                    DateUtil.createDate(),
+                    dateUtilImp.createDate(),
                     responseQueFaireAParis
                 )
                 eventsRepository.insertEvents(newEvents)
             } else {
                 val oldEvents = eventsRepository.getEvents().first()[0]
-                oldEvents.date = DateUtil.createDate()
+                oldEvents.date = dateUtilImp.createDate()
                 oldEvents.data = responseQueFaireAParis
             }
         }
@@ -143,8 +144,8 @@ class MainViewModel @Inject constructor(
                 fetchParisWeather()
             } else {
                 val date1 = weatherRepository.getWeather().first()[0].date
-                val date2 = DateUtil.createDate()
-                if (!DateUtil.isItSameDay(date1, date2)) fetchParisWeather()
+                val date2 = dateUtilImp.createDate()
+                if (!dateUtilImp.isItSameDay(date1, date2)) fetchParisWeather()
             }
         }
     }
@@ -159,12 +160,12 @@ class MainViewModel @Inject constructor(
                 val newWeather = Weather(
                     0,
                     responseWeather,
-                    DateUtil.createDate()
+                    dateUtilImp.createDate()
                 )
                 weatherRepository.insertWeather(newWeather)
             } else {
                 val oldWeather = weatherRepository.getWeather().first()[0]
-                oldWeather.date = DateUtil.createDate()
+                oldWeather.date = dateUtilImp.createDate()
                 oldWeather.data = responseWeather
             }
         }
