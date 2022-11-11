@@ -1,0 +1,78 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "b5217b519f366e7ec065e97b251dd0ef",
+    "entities": [
+      {
+        "tableName": "EventsAndActivities_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`events_and_activities_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `events_and_activities_creation_date` TEXT NOT NULL, `events_and_response_data` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "events_and_activities_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "events_and_activities_creation_date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "data",
+            "columnName": "events_and_response_data",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "events_and_activities_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "weather_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`weather_id` INTEGER NOT NULL, `weather_data` TEXT NOT NULL, `weather_date` TEXT NOT NULL, PRIMARY KEY(`weather_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "weather_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "data",
+            "columnName": "weather_data",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "weather_date",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "weather_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b5217b519f366e7ec065e97b251dd0ef')"
+    ]
+  }
+}
