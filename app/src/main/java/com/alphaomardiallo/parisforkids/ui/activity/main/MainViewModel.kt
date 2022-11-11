@@ -13,7 +13,10 @@ import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.Events
 import com.alphaomardiallo.parisforkids.domain.model.queFaireAParis.ResponseQueFaireAParis
 import com.alphaomardiallo.parisforkids.domain.model.weather.ResponseWeather
 import com.alphaomardiallo.parisforkids.domain.model.weather.Weather
+import com.alphaomardiallo.parisforkids.domain.util.connectivity.Connectivity
+import com.alphaomardiallo.parisforkids.domain.util.connectivity.ConnectivityImp
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -26,7 +29,8 @@ class MainViewModel @Inject constructor(
     private val parisWeatherRepository: ParisWeatherRepository,
     private val eventsRepository: EventsRepository,
     private val weatherRepository: WeatherRepository,
-    private val dateUtilImp: DateUtilImp
+    private val dateUtil: DateUtilImp,
+    private val connectivity: ConnectivityImp
 ) : ViewModel() {
 
     //Events repository
@@ -41,8 +45,8 @@ class MainViewModel @Inject constructor(
                 fetchListEventsAndActivities()
             } else {
                 val date1 = eventsRepository.getEvents().first()[0].date
-                val date2 = dateUtilImp.createDate()
-                if (!dateUtilImp.isItSameDay(date1, date2)) fetchListEventsAndActivities()
+                val date2 = dateUtil.createDate()
+                if (!dateUtil.isItSameDay(date1, date2)) fetchListEventsAndActivities()
             }
         }
     }
@@ -57,13 +61,13 @@ class MainViewModel @Inject constructor(
             if (eventsRepository.getEvents().first().isEmpty()) {
                 val newEvents = Events(
                     0,
-                    dateUtilImp.createDate(),
+                    dateUtil.createDate(),
                     responseQueFaireAParis
                 )
                 eventsRepository.insertEvents(newEvents)
             } else {
                 val oldEvents = eventsRepository.getEvents().first()[0]
-                oldEvents.date = dateUtilImp.createDate()
+                oldEvents.date = dateUtil.createDate()
                 oldEvents.data = responseQueFaireAParis
             }
         }
@@ -144,8 +148,8 @@ class MainViewModel @Inject constructor(
                 fetchParisWeather()
             } else {
                 val date1 = weatherRepository.getWeather().first()[0].date
-                val date2 = dateUtilImp.createDate()
-                if (!dateUtilImp.isItSameDay(date1, date2)) fetchParisWeather()
+                val date2 = dateUtil.createDate()
+                if (!dateUtil.isItSameDay(date1, date2)) fetchParisWeather()
             }
         }
     }
@@ -160,14 +164,54 @@ class MainViewModel @Inject constructor(
                 val newWeather = Weather(
                     0,
                     responseWeather,
-                    dateUtilImp.createDate()
+                    dateUtil.createDate()
                 )
                 weatherRepository.insertWeather(newWeather)
             } else {
                 val oldWeather = weatherRepository.getWeather().first()[0]
-                oldWeather.date = dateUtilImp.createDate()
+                oldWeather.date = dateUtil.createDate()
                 oldWeather.data = responseWeather
             }
         }
     }
+
+    //ConnectivityUtil
+    /**
+     * Start monitoring the internet connection in order to massage the use of data
+     */
+    fun monitorNetworkStatus() {
+        viewModelScope.launch {
+            connectivity.observeConnectivity().collect {
+                updateConnectivityStatus(it)
+            }
+        }
+    }
+
+    /**
+     * Updates the connection status provided by the CallBack Flow in ConnectivityImp
+     */
+    private fun updateConnectivityStatus(status: Connectivity.Status){
+        when (status) {
+            Connectivity.Status.Available -> {
+                Log.i(TAG, "updateConnectivityStatus: $status")
+            }
+
+            Connectivity.Status.Losing -> {
+                Log.i(TAG, "updateConnectivityStatus: $status")
+            }
+
+            Connectivity.Status.Lost -> {
+                Log.i(TAG, "updateConnectivityStatus: $status")
+            }
+
+            Connectivity.Status.Unavailable -> {
+                Log.i(TAG, "updateConnectivityStatus: $status")
+            }
+
+        }
+    }
+
+    /**
+     * Get the message related to the state of the connection
+     */
 }

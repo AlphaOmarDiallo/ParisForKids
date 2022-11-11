@@ -1,6 +1,8 @@
 package com.alphaomardiallo.parisforkids.ui.activity.main
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -13,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
@@ -33,6 +36,8 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             viewModel.checkIfListEventsWasUpdatedToday()
             viewModel.checkIfWeatherWasUpdatedToday()
+            viewModel.monitorNetworkStatus()
+
             ParisForKidsTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -98,9 +103,29 @@ fun TopBar(modifier: Modifier = Modifier, text: String) {
             ) {
                 Text(text = text)
             }
+        },
+        actions = {
+            TopAppBarActionButton(
+                imageVector = Icons.Filled.Wifi,
+                description = stringResource(id = R.string.top_app_bar_icon_wifi_content_description)
+            ) {
+                Log.i(TAG, "TopBar: was clicked")
+            }
         }
-
     )
+}
+
+@Composable
+fun TopAppBarActionButton(
+    imageVector: ImageVector,
+    description: String,
+    onClick: () -> Unit
+) {
+    IconButton(onClick = {
+        onClick()
+    }) {
+        Icon(imageVector = imageVector, contentDescription = description)
+    }
 }
 
 @Composable

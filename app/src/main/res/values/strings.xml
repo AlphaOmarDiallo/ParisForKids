@@ -12,6 +12,7 @@
     <string name="bottom_navigation_label_favorite_activities">Favorite</string>
     <string name="bottom_navigation_content_description_search_activities">Icon representing a magnifier</string>
     <string name="bottom_navigation_label_search_activities">Search</string>
+    <string name="top_app_bar_icon_wifi_content_description">Icon representing wifi signal</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Connectivity util -->
