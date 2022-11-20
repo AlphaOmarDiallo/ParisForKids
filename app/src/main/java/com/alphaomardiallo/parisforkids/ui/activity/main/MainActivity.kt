@@ -52,7 +52,6 @@ class MainActivity : ComponentActivity() {
 }
 
 private fun getData() {
-
 }
 
 /**
