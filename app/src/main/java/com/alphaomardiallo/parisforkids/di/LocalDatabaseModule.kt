@@ -2,7 +2,7 @@ package com.alphaomardiallo.parisforkids.di
 
 import android.content.Context
 import androidx.room.Room
-import com.alphaomardiallo.parisforkids.data.local.LocalDatabase
+import com.alphaomardiallo.parisforkids.common.data.local.LocalDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

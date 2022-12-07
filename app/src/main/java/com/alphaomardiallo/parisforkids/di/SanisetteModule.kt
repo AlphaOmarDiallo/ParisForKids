@@ -1,8 +1,8 @@
 package com.alphaomardiallo.parisforkids.di
 
-import com.alphaomardiallo.parisforkids.data.remote.RetrofitSanisette
-import com.alphaomardiallo.parisforkids.data.repository.sanisette.SanisetteRepository
-import com.alphaomardiallo.parisforkids.data.repository.sanisette.SanisetteRepositoryImp
+import com.alphaomardiallo.parisforkids.common.data.remote.RetrofitSanisette
+import com.alphaomardiallo.parisforkids.common.data.repository.sanisette.SanisetteRepository
+import com.alphaomardiallo.parisforkids.common.data.repository.sanisette.SanisetteRepositoryImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

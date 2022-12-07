@@ -1,6 +1,6 @@
 package com.alphaomardiallo.parisforkids.di
 
-import com.alphaomardiallo.parisforkids.data.remote.RetrofitOpenWeather
+import com.alphaomardiallo.parisforkids.common.data.remote.RetrofitOpenWeather
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

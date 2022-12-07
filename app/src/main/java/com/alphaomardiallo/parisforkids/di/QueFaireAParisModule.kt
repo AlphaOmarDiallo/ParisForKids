@@ -1,8 +1,8 @@
 package com.alphaomardiallo.parisforkids.di
 
-import com.alphaomardiallo.parisforkids.data.remote.RetrofitQueFaireAParis
-import com.alphaomardiallo.parisforkids.data.repository.queFaireAParis.QueFaireAParisRepository
-import com.alphaomardiallo.parisforkids.data.repository.queFaireAParis.QueFaireAParisRepositoryImp
+import com.alphaomardiallo.parisforkids.common.data.remote.RetrofitQueFaireAParis
+import com.alphaomardiallo.parisforkids.common.data.repository.queFaireAParis.QueFaireAParisRepository
+import com.alphaomardiallo.parisforkids.common.data.repository.queFaireAParis.QueFaireAParisRepositoryImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

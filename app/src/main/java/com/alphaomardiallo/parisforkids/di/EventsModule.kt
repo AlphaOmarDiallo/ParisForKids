@@ -1,8 +1,8 @@
 package com.alphaomardiallo.parisforkids.di
 
-import com.alphaomardiallo.parisforkids.data.local.EventsDAO
-import com.alphaomardiallo.parisforkids.data.repository.events.EventsRepository
-import com.alphaomardiallo.parisforkids.data.repository.events.EventsRepositoryImp
+import com.alphaomardiallo.parisforkids.common.data.local.EventsDAO
+import com.alphaomardiallo.parisforkids.common.data.repository.events.EventsRepository
+import com.alphaomardiallo.parisforkids.common.data.repository.events.EventsRepositoryImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

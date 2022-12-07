@@ -1,8 +1,8 @@
 package com.alphaomardiallo.parisforkids.di
 
 
-import com.alphaomardiallo.parisforkids.data.remote.RetrofitQueFaireAParis
-import com.alphaomardiallo.parisforkids.data.remote.RetrofitSanisette
+import com.alphaomardiallo.parisforkids.common.data.remote.RetrofitQueFaireAParis
+import com.alphaomardiallo.parisforkids.common.data.remote.RetrofitSanisette
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
