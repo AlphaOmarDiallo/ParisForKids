@@ -11,7 +11,11 @@ interface EventsRepository {
 
     suspend fun deleteEvents(events: Events)
 
-    fun getEventsCount(): Flow<Int>
+    fun getEventsCount(): Int
 
     fun getEvents(): Flow<List<Events>>
+
+    fun isEventExist(id : String) : Boolean
+
+    fun loadSingleEvent(id: String): Events
 }

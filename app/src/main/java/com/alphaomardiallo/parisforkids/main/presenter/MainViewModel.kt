@@ -4,14 +4,18 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alphaomardiallo.parisforkids.common.data.repository.events.EventsRepository
 import com.alphaomardiallo.parisforkids.common.data.repository.parisWeather.ParisWeatherRepository
 import com.alphaomardiallo.parisforkids.common.data.repository.queFaireAParis.QueFaireAParisRepository
 import com.alphaomardiallo.parisforkids.common.data.repository.weather.WeatherRepository
 import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Events
+import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.RecordsItem
 import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.ResponseQueFaireAParis
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.ResponseWeather
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.Weather
+import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetEventsUseCase
+import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.InsertEventUseCase
+import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.IsEventExistUseCase
+import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.UpdateEventUseCase
 import com.alphaomardiallo.parisforkids.common.domain.util.connectivity.Connectivity
 import com.alphaomardiallo.parisforkids.common.domain.util.connectivity.ConnectivityImp
 import com.alphaomardiallo.parisforkids.common.domain.util.date.DateUtilImp
@@ -26,8 +30,13 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val queFaireAParisRepository: QueFaireAParisRepository,
     private val parisWeatherRepository: ParisWeatherRepository,
-    private val eventsRepository: EventsRepository,
     private val weatherRepository: WeatherRepository,
+
+    private val insertEventUseCase: InsertEventUseCase,
+    private val updateEventUseCase: UpdateEventUseCase,
+    private val isEventExistUseCase: IsEventExistUseCase,
+    private val getEventsUseCase: GetEventsUseCase,
+
     private val dateUtil: DateUtilImp,
     private val connectivity: ConnectivityImp
 ) : ViewModel() {
@@ -39,11 +48,10 @@ class MainViewModel @Inject constructor(
      */
     fun checkIfListEventsWasUpdatedToday() {
         viewModelScope.launch {
-            Log.i(TAG, "checkIfListEventsWasUpdatedToday: here")
-            if (eventsRepository.getEvents().first().isEmpty()) {
+            if (getEventsUseCase.getAllEvents().first().isEmpty()) {
                 fetchListEventsAndActivities()
             } else {
-                val date1 = eventsRepository.getEvents().first()[0].date
+                val date1 = getEventsUseCase.getAllEvents().first()[0].date
                 val date2 = dateUtil.createDate()
                 if (!dateUtil.isItSameDay(date1, date2)) fetchListEventsAndActivities()
             }
@@ -57,24 +65,49 @@ class MainViewModel @Inject constructor(
     private fun insertOrUpdateListEventsInDataBase(responseQueFaireAParis: ResponseQueFaireAParis) {
         viewModelScope.launch {
             Log.i(TAG, "insertOrUpdateListEventsInDataBase: here")
-            if (eventsRepository.getEvents().first().isEmpty()) {
-
+            if (getEventsUseCase.getAllEvents().first().isEmpty()) {
                 responseQueFaireAParis.let { response ->
                     response.records?.map { recordItem ->
-                        eventsRepository.insertEvents(
-                            Events(
-                                id = 0,
-                                date = dateUtil.createDate(),
-                                data = recordItem!!
-                            )
-                        )
+                        recordItem.let {
+                            insertEvent(it!!)
+                        }
                     }
                 }
 
             } else {
-                Log.e(TAG, "insertOrUpdateListEventsInDataBase: oups", null)
+                responseQueFaireAParis.let { response ->
+                    response.records?.map { recordItem ->
+                        recordItem.let {
+                            if (isEventExistUseCase.eventExist(it!!.recordid!!)) {
+                                updateEvent(it)
+                            } else {
+                                insertEvent(it)
+                            }
+                        }
+                    }
+                }
             }
         }
+    }
+
+    private suspend fun insertEvent(recordItem: RecordsItem) {
+        insertEventUseCase.insertEvent(
+            Events(
+                id = recordItem.recordid!!,
+                date = dateUtil.createDate(),
+                data = recordItem
+            )
+        )
+    }
+
+    private suspend fun updateEvent(recordItem: RecordsItem?) {
+        updateEventUseCase.updateEvent(
+            Events(
+                id = recordItem!!.recordid!!,
+                date = dateUtil.createDate(),
+                data = recordItem
+            )
+        )
     }
 
     // Que Faire A Paris repository

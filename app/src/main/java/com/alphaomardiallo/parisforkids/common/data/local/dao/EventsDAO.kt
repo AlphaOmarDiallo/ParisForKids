@@ -16,9 +16,16 @@ interface EventsDAO {
     @Delete
     suspend fun deleteEventsAndActivities(events: Events)
 
-    @Query("SELECT COUNT (*) FROM EventsAndActivities_table")
-    fun getEventsCount(): Flow<Int>
-
     @Query("SELECT * FROM EventsAndActivities_table")
     fun getEvents(): Flow<List<Events>>
+
+    @Query("SELECT COUNT (*) FROM EventsAndActivities_table")
+    fun getEventsCount(): Int
+
+    @Query("SELECT EXISTS(SELECT * FROM EventsAndActivities_table WHERE events_and_activities_id = :id)")
+    fun isEventExist(id : String) : Boolean
+
+    @Query("SELECT * FROM EventsAndActivities_table WHERE events_and_activities_id=:id ")
+    fun loadSingleEvent(id: String): Events
+
 }
