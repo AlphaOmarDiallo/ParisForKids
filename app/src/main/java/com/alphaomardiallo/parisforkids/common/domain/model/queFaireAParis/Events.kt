@@ -12,5 +12,5 @@ data class Events(
     @ColumnInfo(name = "events_and_activities_creation_date")
     var date: String,
     @ColumnInfo(name = "events_and_response_data")
-    var data: ResponseQueFaireAParis
+    var data: RecordsItem
 )

@@ -1,8 +1,8 @@
 package com.alphaomardiallo.parisforkids.common.data.local.dao
 
 import androidx.room.*
-import com.alphaomardiallo.parisforkids.common.data.local.pagingSource.EventsPagingSource
 import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Events
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface EventsDAO {
@@ -16,9 +16,9 @@ interface EventsDAO {
     @Delete
     suspend fun deleteEventsAndActivities(events: Events)
 
-    @Query("SELECT COUNT(*) FROM EventsAndActivities_table")
-    fun getEventsCount(): Int
+    @Query("SELECT COUNT (*) FROM EventsAndActivities_table")
+    fun getEventsCount(): Flow<Int>
 
     @Query("SELECT * FROM EventsAndActivities_table")
-    fun getEvents(): EventsPagingSource
+    fun getEvents(): Flow<List<Events>>
 }
