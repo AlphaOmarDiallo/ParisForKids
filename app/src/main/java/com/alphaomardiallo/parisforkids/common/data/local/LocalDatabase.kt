@@ -6,6 +6,8 @@ import androidx.room.TypeConverters
 import com.alphaomardiallo.parisforkids.common.data.local.converters.ConverterEvents
 import com.alphaomardiallo.parisforkids.common.data.local.converters.ConverterListString
 import com.alphaomardiallo.parisforkids.common.data.local.converters.ConverterWeather
+import com.alphaomardiallo.parisforkids.common.data.local.dao.EventsDAO
+import com.alphaomardiallo.parisforkids.common.data.local.dao.WeatherDAO
 import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Events
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.Weather
 
