@@ -1,7 +1,7 @@
 package com.alphaomardiallo.parisforkids.common.data.repository.events
 
+import com.alphaomardiallo.parisforkids.common.data.local.pagingSource.EventsPagingSource
 import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Events
-import kotlinx.coroutines.flow.Flow
 
 interface EventsRepository {
 
@@ -11,5 +11,7 @@ interface EventsRepository {
 
     suspend fun deleteEvents(events: Events)
 
-    fun getEvents(): Flow<List<Events>>
+    fun getEventsCount(): Int
+
+    fun getEvents(): EventsPagingSource
 }

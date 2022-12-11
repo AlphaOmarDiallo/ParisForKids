@@ -1,6 +1,6 @@
 package com.alphaomardiallo.parisforkids.common.data.repository.weather
 
-import com.alphaomardiallo.parisforkids.common.data.local.WeatherDAO
+import com.alphaomardiallo.parisforkids.common.data.local.dao.WeatherDAO
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.Weather
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

@@ -185,4 +185,5 @@ dependencies {
     //PAGING 3
     implementation "androidx.paging:paging-runtime:$paging_version"
     implementation "androidx.paging:paging-compose:$pagingCompose_version"
+    testImplementation "androidx.paging:paging-common:$paging_version"
 }
