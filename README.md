@@ -35,6 +35,9 @@ https://play.google.com/store/apps/details?id=com.stdm.homefun.parissi&hl=en&gl=
 ## Ticketing system
 A Trello will be set up so anyone can pick up a task to do and work in full autonomy
 
+## Accessibilty
+[Guidelines](https://discordapp.com/channels/@me/985539937736745000/1051442508942557214)
+
 ## Design
 ... if anyone is up to it
 
