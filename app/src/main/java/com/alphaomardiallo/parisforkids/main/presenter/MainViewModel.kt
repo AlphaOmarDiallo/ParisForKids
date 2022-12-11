@@ -58,16 +58,21 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             Log.i(TAG, "insertOrUpdateListEventsInDataBase: here")
             if (eventsRepository.getEvents().first().isEmpty()) {
-                val newEvents = Events(
-                    0,
-                    dateUtil.createDate(),
-                    responseQueFaireAParis
-                )
-                eventsRepository.insertEvents(newEvents)
+
+                responseQueFaireAParis.let { response ->
+                    response.records?.map { recordItem ->
+                        eventsRepository.insertEvents(
+                            Events(
+                                id = 0,
+                                date = dateUtil.createDate(),
+                                data = recordItem!!
+                            )
+                        )
+                    }
+                }
+
             } else {
-                val oldEvents = eventsRepository.getEvents().first()[0]
-                oldEvents.date = dateUtil.createDate()
-                oldEvents.data = responseQueFaireAParis
+                Log.e(TAG, "insertOrUpdateListEventsInDataBase: oups", null)
             }
         }
     }

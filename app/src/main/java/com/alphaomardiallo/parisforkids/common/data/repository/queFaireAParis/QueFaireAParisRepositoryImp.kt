@@ -11,23 +11,25 @@ class QueFaireAParisRepositoryImp @Inject constructor(
 
     override suspend fun getListEventsAndActivities(): Response<ResponseQueFaireAParis> {
         return retrofitQueFaireAParis.queFaireAParisEventsAndActivity(
-            "que-faire-a-paris-",
-            "",
-            9999,
-            "date_start",
-            "date_end",
-            "enfant",
-            "address_name",
-            "address_zipcode",
-            "address_city",
-            "pmr",
-            "blind",
-            "deaf",
-            "transport",
-            "price_type",
-            "access_type",
-            "updated_at",
-            "programs"
+            dataSet = "que-faire-a-paris-",
+            quantities = "",
+            rows = 1000,
+            dateStart = "date_start",
+            dateEnd = "date_end",
+            tags = "enfant",
+            addressName = "address_name",
+            addressZipcode = "address_zipcode",
+            addressCity = "address_city",
+            pmr = "pmr",
+            blind = "blind",
+            deaf = "deaf",
+            transport = "transport",
+            priceType = "price_type",
+            accessType = "access_type",
+            updatedAt = "updated_at",
+            programs = "programs",
+            refineTags = "Enfants",
+            timezone = "Europe/Paris"
         )
     }
 

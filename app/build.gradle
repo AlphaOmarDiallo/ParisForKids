@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.dagger.hilt.android'
     id 'kotlin-kapt'
+    id 'kotlinx-serialization'
 }
 
 android {
@@ -174,6 +175,8 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
+    //Paging
+    implementation "androidx.room:room-paging:$room_version"
 
     //COIL
     implementation "io.coil-kt:coil:$coil_version"

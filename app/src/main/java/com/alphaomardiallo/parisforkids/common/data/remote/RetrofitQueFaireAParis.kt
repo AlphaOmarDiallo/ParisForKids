@@ -25,6 +25,8 @@ interface RetrofitQueFaireAParis {
         @Query("facet") accessType: String,
         @Query("facet") updatedAt: String,
         @Query("facet") programs: String,
+        @Query("refine.tags") refineTags: String,
+        @Query("timezone") timezone: String
     ): Response<ResponseQueFaireAParis>
 
 }
