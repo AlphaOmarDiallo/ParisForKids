@@ -23,7 +23,7 @@ interface EventsDAO {
     fun getEventsCount(): Int
 
     @Query("SELECT EXISTS(SELECT * FROM EventsAndActivities_table WHERE events_and_activities_id = :id)")
-    fun isEventExist(id : String) : Boolean
+    fun isEventExist(id: String): Boolean
 
     @Query("SELECT * FROM EventsAndActivities_table WHERE events_and_activities_id=:id ")
     fun loadSingleEvent(id: String): Events
