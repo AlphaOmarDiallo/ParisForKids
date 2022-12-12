@@ -66,11 +66,11 @@ fun BottomNav(modifier: Modifier = Modifier) {
             icon = {
                 Icon(
                     imageVector = Icons.Filled.Home,
-                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_list_all_activities)
+                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_home)
                 )
             },
             label = {
-                Text(stringResource(id = R.string.bottom_navigation_label_list_all_activities))
+                Text(stringResource(id = R.string.bottom_navigation_label_home))
             },
             selected = true,
             onClick = { /*TODO*/ }
@@ -79,11 +79,11 @@ fun BottomNav(modifier: Modifier = Modifier) {
             icon = {
                 Icon(
                     imageVector = Icons.Filled.Event,
-                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_map_activities)
+                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_event)
                 )
             },
             label = {
-                Text(text = stringResource(id = R.string.bottom_navigation_label_map_activities))
+                Text(text = stringResource(id = R.string.bottom_navigation_label_event))
             },
             selected = true,
             onClick = { /*TODO*/ }
@@ -114,19 +114,32 @@ fun BottomNav(modifier: Modifier = Modifier) {
             selected = true,
             onClick = { /*TODO*/ }
         )
+        BottomNavigationItem(
+            icon = {
+                Icon(
+                    imageVector = Icons.Filled.Settings,
+                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_settings_activities)
+                )
+            },
+            label = {
+                Text(stringResource(id = R.string.bottom_navigation_label_settings_activities))
+            },
+            selected = true,
+            onClick = { /*TODO*/ }
+        )
     }
 }
 
 @Composable
 fun MainContent(modifier: Modifier) {
-    Box() {
+    Box {
         Image(
             painter = painterResource(id = R.drawable.backgroundparis),
-            contentDescription = null,
+            contentDescription = stringResource(id = R.string.background_image_content_description),
             contentScale = ContentScale.FillBounds
         )
 
-        Column() {
+        Column {
             Greeting(name = "Alpha", modifier = modifier)
             Greeting(name = "Clément", modifier = modifier)
             Greeting(name = "Anne", modifier = modifier)
