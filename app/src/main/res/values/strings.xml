@@ -33,6 +33,13 @@
     <!-- Settings activity -->
     <string name="title_activity_settings">SettingsActivity</string>
 
+    <!-- Navigation -->
+    <string name="home_screen">Home Screen</string>
+    <string name="events_screen">Events Screen</string>
+    <string name="search_screen">Search Screen</string>
+    <string name="favorite_screen">Favorite Screen</string>
+    <string name="settings_screen">Settings Screen</string>
+
     <!-- Connectivity util -->
     <string name="connectivity_available">You are connected to internet</string>
     <string name="connectivity_unavailable">Your internet connection in unavailable</string>
