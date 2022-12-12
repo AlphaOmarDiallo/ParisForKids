@@ -105,13 +105,7 @@ fun NavigationHost(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun BottomNavPreview() {
-    ParisForKidsTheme {
-        BottomNav()
-    }
-}
+//Previews
 
 @Preview(showBackground = true)
 @Composable
@@ -126,5 +120,13 @@ fun DefaultPreview() {
 fun MainContentPreview() {
     ParisForKidsTheme {
         MainContent(modifier = Modifier)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BottomNavPreview() {
+    ParisForKidsTheme {
+        BottomNav()
     }
 }

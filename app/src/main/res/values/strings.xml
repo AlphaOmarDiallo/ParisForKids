@@ -1,18 +1,36 @@
 <resources>
     <string name="app_name">ParisForKids</string>
+    <string name="app_name_formatted"> Paris for Kids</string>
 
     <!-- Main activity -->
-    <string name="app_name_formatted"> Paris for Kids</string>
+    <string name="background_image_content_description">Vector image of Paris monuments designed by upklyak / Freepik</string>
+
     <string name="top_app_bar_icon_content_description">Icon representing a menu</string>
+
+    <string name="bottom_navigation_content_description_home">Icon representing a home</string>
+    <string name="bottom_navigation_label_home">Home</string>
+
+    <string name="bottom_navigation_content_description_event">Icon representing an event</string>
+    <string name="bottom_navigation_label_event">Events</string>
+
     <string name="bottom_navigation_content_description_list_all_activities">Icon representing a list</string>
     <string name="bottom_navigation_label_list_all_activities">List</string>
+
     <string name="bottom_navigation_content_description_map_activities">Icon representing a Map</string>
     <string name="bottom_navigation_label_map_activities">Map</string>
+
     <string name="bottom_navigation_content_description_favorite_activities">Icon representing a heart</string>
     <string name="bottom_navigation_label_favorite_activities">Favorite</string>
+
     <string name="bottom_navigation_content_description_search_activities">Icon representing a magnifier</string>
     <string name="bottom_navigation_label_search_activities">Search</string>
+
+    <string name="bottom_navigation_content_description_settings_activities">Icon representing a setting</string>
+    <string name="bottom_navigation_label_settings_activities">Settings</string>
+
     <string name="top_app_bar_icon_wifi_content_description">Icon representing wifi signal</string>
+
+    <!-- Settings activity -->
     <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Connectivity util -->
