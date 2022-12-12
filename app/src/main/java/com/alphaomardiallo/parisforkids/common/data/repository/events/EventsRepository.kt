@@ -15,7 +15,7 @@ interface EventsRepository {
 
     fun getEvents(): Flow<List<Events>>
 
-    fun isEventExist(id : String) : Boolean
+    fun isEventExist(id: String): Boolean
 
     fun loadSingleEvent(id: String): Events
 }
