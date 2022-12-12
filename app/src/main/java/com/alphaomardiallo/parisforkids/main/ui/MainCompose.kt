@@ -1,45 +1,39 @@
 package com.alphaomardiallo.parisforkids.main.ui
 
-import android.content.ContentValues
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.alphaomardiallo.parisforkids.R
+import com.alphaomardiallo.parisforkids.events.ui.EventsScreen
+import com.alphaomardiallo.parisforkids.favorite.ui.FavoriteScreen
+import com.alphaomardiallo.parisforkids.home.ui.HomeScreen
 import com.alphaomardiallo.parisforkids.main.domain.NavigationItem
-
-@Composable
-fun Greeting(name: String, modifier: Modifier) {
-    Text(text = "Hello $name!")
-}
+import com.alphaomardiallo.parisforkids.main.domain.TopAppBarActions
+import com.alphaomardiallo.parisforkids.search.ui.SearchScreen
+import com.alphaomardiallo.parisforkids.settings.ui.SettingsScreen
 
 @Composable
 fun TopBar(modifier: Modifier = Modifier, text: String) {
+    val actions = listOf(TopAppBarActions.Wifi)
     TopAppBar(
         modifier = modifier,
         backgroundColor = MaterialTheme.colors.primary,
-        navigationIcon = {
-            IconButton(
-                onClick = {/*TODO*/ },
-                content = {
-                    Icon(
-                        imageVector = Icons.Filled.Menu,
-                        contentDescription = stringResource(id = R.string.top_app_bar_icon_content_description)
-                    )
-                }
-            )
-        },
         title = {
             Row(
                 horizontalArrangement = Arrangement.SpaceAround
@@ -48,19 +42,34 @@ fun TopBar(modifier: Modifier = Modifier, text: String) {
             }
         },
         actions = {
-            TopAppBarActionButton(
-                imageVector = Icons.Filled.Wifi,
-                description = stringResource(id = R.string.top_app_bar_icon_wifi_content_description)
-            ) {
-                Log.i(ContentValues.TAG, "TopBar: was clicked")
+            actions.forEach { action ->
+                TopAppBarActionButton(
+                    imageVector = action.icon,
+                    description = stringResource(id = action.description)
+                ) {
+                    /*TODO*/
+                }
             }
         }
     )
 }
 
 @Composable
-fun BottomNavigationBar(modifier: Modifier = Modifier) {
-    val items = listOf(
+fun TopAppBarActionButton(
+    imageVector: ImageVector,
+    description: String,
+    onClick: () -> Unit
+) {
+    IconButton(onClick = {
+        onClick()
+    }) {
+        Icon(imageVector = imageVector, contentDescription = description)
+    }
+}
+
+@Composable
+fun BottomNavigationBar(modifier: Modifier = Modifier, navController: NavController) {
+    val navigationItems = listOf(
         NavigationItem.Home,
         NavigationItem.Events,
         NavigationItem.Search,
@@ -68,24 +77,43 @@ fun BottomNavigationBar(modifier: Modifier = Modifier) {
         NavigationItem.Settings
     )
     BottomAppBar(
+        modifier = modifier,
+        elevation = dimensionResource(id = R.dimen.elevation_app_bar),
         backgroundColor = MaterialTheme.colors.primaryVariant,
         contentColor = Color.White
     ) {
-        items.forEach { item ->
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
+
+        navigationItems.forEach { navItem ->
             BottomNavigationItem(
                 icon = {
                     Icon(
-                        imageVector = item.icon,
-                        contentDescription = stringResource(id = item.contentDescription)
+                        imageVector = navItem.icon,
+                        contentDescription = stringResource(id = navItem.contentDescription)
                     )
                 },
-                label = { Text(stringResource(id = item.title)) },
-                selectedContentColor = Color.Cyan,
-                unselectedContentColor = Color.White,
+                label = { Text(stringResource(id = navItem.title)) },
+                selectedContentColor = Color.White,
+                unselectedContentColor = Color.White.copy(0.4f),
                 alwaysShowLabel = true,
-                selected = false,
+                selected = currentRoute == navItem.route,
                 onClick = {
-                    /* Add code later */
+                    navController.navigate(navItem.route) {
+                        // Pop up to the start destination of the graph to
+                        // avoid building up a large stack of destinations
+                        // on the back stack as users select items
+                        navController.graph.startDestinationRoute?.let { route ->
+                            popUpTo(route) {
+                                saveState = true
+                            }
+                        }
+                        // Avoid multiple copies of the same destination when
+                        // re-selecting the same item
+                        launchSingleTop = true
+                        // Restore state when re-selecting a previously selected item
+                        restoreState = true
+                    }
                 }
             )
         }
@@ -93,19 +121,37 @@ fun BottomNavigationBar(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun MainContent(modifier: Modifier) {
+fun MainContent() {
     Box {
         Image(
             painter = painterResource(id = R.drawable.backgroundparis),
             contentDescription = stringResource(id = R.string.background_image_content_description),
             contentScale = ContentScale.FillBounds
         )
-
-        Column {
-            Greeting(name = "Alpha", modifier = modifier)
-            Greeting(name = "Clément", modifier = modifier)
-            Greeting(name = "Anne", modifier = modifier)
-        }
     }
 }
 
+@Composable
+fun Navigation(navController: NavHostController) {
+    NavHost(navController = navController, startDestination = NavigationItem.Home.route) {
+        composable(route = NavigationItem.Home.route) {
+            HomeScreen()
+        }
+
+        composable(route = NavigationItem.Events.route) {
+            EventsScreen()
+        }
+
+        composable(route = NavigationItem.Search.route) {
+            SearchScreen()
+        }
+
+        composable(route = NavigationItem.Favorite.route) {
+            FavoriteScreen()
+        }
+
+        composable(route = NavigationItem.Settings.route) {
+            SettingsScreen()
+        }
+    }
+}
