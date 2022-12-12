@@ -127,6 +127,6 @@ fun MainContentPreview() {
 @Composable
 fun BottomNavPreview() {
     ParisForKidsTheme {
-        BottomNav()
+        BottomNavigationBar()
     }
 }

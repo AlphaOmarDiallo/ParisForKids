@@ -12,10 +12,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.alphaomardiallo.parisforkids.R
+import com.alphaomardiallo.parisforkids.main.domain.NavigationItem
 
 @Composable
 fun Greeting(name: String, modifier: Modifier) {
@@ -57,76 +59,36 @@ fun TopBar(modifier: Modifier = Modifier, text: String) {
 }
 
 @Composable
-fun BottomNav(modifier: Modifier = Modifier) {
+fun BottomNavigationBar(modifier: Modifier = Modifier) {
+    val items = listOf(
+        NavigationItem.Home,
+        NavigationItem.Events,
+        NavigationItem.Search,
+        NavigationItem.Favorite,
+        NavigationItem.Settings
+    )
     BottomAppBar(
         backgroundColor = MaterialTheme.colors.primaryVariant,
-        modifier = modifier
+        contentColor = Color.White
     ) {
-        BottomNavigationItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Filled.Home,
-                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_home)
-                )
-            },
-            label = {
-                Text(stringResource(id = R.string.bottom_navigation_label_home))
-            },
-            selected = true,
-            onClick = { /*TODO*/ }
-        )
-        BottomNavigationItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Filled.Event,
-                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_event)
-                )
-            },
-            label = {
-                Text(text = stringResource(id = R.string.bottom_navigation_label_event))
-            },
-            selected = true,
-            onClick = { /*TODO*/ }
-        )
-        BottomNavigationItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Filled.Search,
-                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_search_activities)
-                )
-            },
-            label = {
-                Text(text = stringResource(id = R.string.bottom_navigation_label_search_activities))
-            },
-            selected = true,
-            onClick = { /*TODO*/ }
-        )
-        BottomNavigationItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Filled.Favorite,
-                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_favorite_activities)
-                )
-            },
-            label = {
-                Text(stringResource(id = R.string.bottom_navigation_label_favorite_activities))
-            },
-            selected = true,
-            onClick = { /*TODO*/ }
-        )
-        BottomNavigationItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Filled.Settings,
-                    contentDescription = stringResource(id = R.string.bottom_navigation_content_description_settings_activities)
-                )
-            },
-            label = {
-                Text(stringResource(id = R.string.bottom_navigation_label_settings_activities))
-            },
-            selected = true,
-            onClick = { /*TODO*/ }
-        )
+        items.forEach { item ->
+            BottomNavigationItem(
+                icon = {
+                    Icon(
+                        imageVector = item.icon,
+                        contentDescription = stringResource(id = item.contentDescription)
+                    )
+                },
+                label = { Text(stringResource(id = item.title)) },
+                selectedContentColor = Color.Cyan,
+                unselectedContentColor = Color.White,
+                alwaysShowLabel = true,
+                selected = false,
+                onClick = {
+                    /* Add code later */
+                }
+            )
+        }
     }
 }
 
