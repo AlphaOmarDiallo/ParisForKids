@@ -91,7 +91,7 @@ fun Layout(
 fun TopBar(modifier: Modifier = Modifier, text: String) {
     TopAppBar(
         modifier = modifier,
-        backgroundColor = MaterialTheme.colors.background,
+        backgroundColor = MaterialTheme.colors.primary ,
         navigationIcon = {
             IconButton(
                 onClick = {/*TODO*/ },
@@ -152,7 +152,7 @@ fun NavigationHost(
 @Composable
 fun BottomNav(modifier: Modifier = Modifier) {
     BottomAppBar(
-        backgroundColor = MaterialTheme.colors.background,
+        backgroundColor = MaterialTheme.colors.primaryVariant,
         modifier = modifier
     ) {
         BottomNavigationItem(
