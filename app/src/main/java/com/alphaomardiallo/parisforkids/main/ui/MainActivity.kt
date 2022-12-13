@@ -1,5 +1,6 @@
 package com.alphaomardiallo.parisforkids.main.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,10 +8,9 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
@@ -18,6 +18,7 @@ import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.main.presenter.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -53,10 +54,13 @@ class MainActivity : ComponentActivity() {
 
 // Composable
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun MainScreen() {
 
     val navController = rememberNavController()
+    val scaffoldState = rememberScaffoldState()
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
@@ -71,6 +75,20 @@ fun MainScreen() {
         ) {
             MainContent()
             Navigation(navController)
+            Button(onClick = {
+                coroutineScope.launch {
+                    val snackBarResult = scaffoldState.snackbarHostState.showSnackbar(
+                        message = "test",
+                        duration = SnackbarDuration.Short,
+                    )
+                    when (snackBarResult) {
+                        SnackbarResult.Dismissed -> TODO()
+                        SnackbarResult.ActionPerformed -> TODO()
+                    }
+                }
+            }) {
+
+            }
         }
     }
 }
