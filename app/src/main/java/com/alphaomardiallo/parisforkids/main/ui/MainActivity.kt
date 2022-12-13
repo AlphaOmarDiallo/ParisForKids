@@ -1,6 +1,5 @@
 package com.alphaomardiallo.parisforkids.main.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -54,7 +53,6 @@ class MainActivity : ComponentActivity() {
 
 // Composable
 
-@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun MainScreen() {
 
@@ -63,12 +61,14 @@ fun MainScreen() {
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        scaffoldState = scaffoldState,
         topBar = {
             TopBar(text = stringResource(id = R.string.app_name_formatted))
         },
         bottomBar = {
             BottomNavigationBar(navController = navController)
-        }
+        },
     ) { innerPadding ->
         Box(
             modifier = Modifier.padding(innerPadding)
@@ -78,8 +78,8 @@ fun MainScreen() {
             Button(onClick = {
                 coroutineScope.launch {
                     val snackBarResult = scaffoldState.snackbarHostState.showSnackbar(
-                        message = "test",
-                        duration = SnackbarDuration.Short,
+                        message = "This is your message",
+                        actionLabel = "Do something"
                     )
                     when (snackBarResult) {
                         SnackbarResult.Dismissed -> TODO()
@@ -87,7 +87,7 @@ fun MainScreen() {
                     }
                 }
             }) {
-
+                Text(text = "Click me!")
             }
         }
     }
