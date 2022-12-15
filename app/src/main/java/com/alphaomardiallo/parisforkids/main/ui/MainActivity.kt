@@ -1,6 +1,8 @@
 package com.alphaomardiallo.parisforkids.main.ui
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -17,7 +19,6 @@ import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.main.presenter.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -76,20 +77,25 @@ fun MainScreen() {
             MainContent()
             Navigation(navController)
             Button(onClick = {
-                coroutineScope.launch {
-                    val snackBarResult = scaffoldState.snackbarHostState.showSnackbar(
-                        message = "This is your message",
-                        actionLabel = "Do something"
-                    )
-                    when (snackBarResult) {
-                        SnackbarResult.Dismissed -> TODO()
-                        SnackbarResult.ActionPerformed -> TODO()
-                    }
-                }
+                handleSnackBarResult(createSnackBar(
+                    coroutineScope = coroutineScope,
+                    scaffoldState = scaffoldState,
+                    messageDisplayed = "This is a test",
+                    actionLabelDisplayed = "Click"
+                ))
             }) {
                 Text(text = "Click me!")
             }
         }
     }
 }
-//Previews
+
+private fun handleSnackBarResult(
+    snackBarResult: SnackbarResult?
+) {
+    when (snackBarResult) {
+        SnackbarResult.Dismissed -> Log.e(TAG, "handleSnackBarResult: ${snackBarResult.name}", null)
+        SnackbarResult.ActionPerformed -> Log.e(TAG, "handleSnackBarResult: ${snackBarResult.name}", null)
+        else -> {}
+    }
+}
