@@ -151,6 +151,13 @@ dependencies {
     testImplementation "com.squareup.okhttp3:mockwebserver:$mockwebserver_version"
     androidTestImplementation "com.squareup.okhttp3:mockwebserver:$mockwebserver_version"
 
+    //KTOR client side
+    implementation "io.ktor:ktor-client-core:$ktor_version"
+    implementation "io.ktor:ktor-client-android: $ktor_version"
+    implementation "io.ktor:ktor-client-serialization: $ktor_version"
+    implementation "io.ktor:ktor-client-logging: $ktor_version"
+    implementation 'ch.qos.logback-classic:1.2.3'
+
     //EASY PERMISSIONS - runtime permissions library
     implementation "com.vmadalin:easypermissions-ktx:$easypermission_version"
 
