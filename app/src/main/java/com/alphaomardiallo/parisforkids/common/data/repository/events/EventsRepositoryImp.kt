@@ -20,7 +20,7 @@ class EventsRepositoryImp @Inject constructor(
         eventsDAO.deleteEventsAndActivities(events)
     }
 
-    override fun getEventsCount(): Int {
+    override fun getEventsCount(): Flow<Int> {
         return eventsDAO.getEventsCount()
     }
 
@@ -28,11 +28,11 @@ class EventsRepositoryImp @Inject constructor(
         return eventsDAO.getEvents()
     }
 
-    override fun isEventExist(id: String): Boolean {
+    override fun isEventExist(id: String): Flow<Boolean> {
         return eventsDAO.isEventExist(id)
     }
 
-    override fun loadSingleEvent(id: String): Events {
+    override fun loadSingleEvent(id: String): Flow<Events> {
         return eventsDAO.loadSingleEvent(id)
     }
 

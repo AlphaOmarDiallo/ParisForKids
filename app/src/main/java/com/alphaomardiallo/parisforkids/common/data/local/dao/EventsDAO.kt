@@ -20,12 +20,12 @@ interface EventsDAO {
     fun getEvents(): Flow<List<Events>>
 
     @Query("SELECT COUNT (*) FROM EventsAndActivities_table")
-    fun getEventsCount(): Int
+    fun getEventsCount(): Flow<Int>
 
     @Query("SELECT EXISTS(SELECT * FROM EventsAndActivities_table WHERE events_and_activities_id = :id)")
-    fun isEventExist(id: String): Boolean
+    fun isEventExist(id: String): Flow<Boolean>
 
     @Query("SELECT * FROM EventsAndActivities_table WHERE events_and_activities_id=:id ")
-    fun loadSingleEvent(id: String): Events
+    fun loadSingleEvent(id: String): Flow<Events>
 
 }
