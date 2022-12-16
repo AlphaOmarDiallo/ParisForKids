@@ -78,7 +78,7 @@ class MainViewModel @Inject constructor(
                 responseQueFaireAParis.let { response ->
                     response.records?.map { recordItem ->
                         recordItem.let {
-                            if (isEventExistUseCase.eventExist(it!!.recordid!!)) {
+                            if (isEventExistUseCase.eventExist(it!!.recordid!!).first()) {
                                 updateEvent(it)
                             } else {
                                 insertEvent(it)
