@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "864578117578",
+    "project_id": "parisforkids-95749",
+    "storage_bucket": "parisforkids-95749.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864578117578:android:82d00de8c40532a4007933",
+        "android_client_info": {
+          "package_name": "com.alphaomardiallo.parisforkids"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864578117578-0rmrvlgpk7shq7k91soi1p4te0efkf3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7499eyYOtKbeyJdsjjJxgEXYixkGiFhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864578117578-0rmrvlgpk7shq7k91soi1p4te0efkf3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
