@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
 import com.alphaomardiallo.parisforkids.R
+import com.alphaomardiallo.parisforkids.common.domain.util.snackBar.createSnackBar
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.main.presenter.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -76,16 +77,6 @@ fun MainScreen() {
         ) {
             MainContent()
             Navigation(navController)
-            Button(onClick = {
-                handleSnackBarResult(createSnackBar(
-                    coroutineScope = coroutineScope,
-                    scaffoldState = scaffoldState,
-                    messageDisplayed = "This is a test",
-                    actionLabelDisplayed = "Click"
-                ))
-            }) {
-                Text(text = "Click me!")
-            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.main.ui
+package com.alphaomardiallo.parisforkids.common.domain.util.snackBar
 
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.SnackbarDuration

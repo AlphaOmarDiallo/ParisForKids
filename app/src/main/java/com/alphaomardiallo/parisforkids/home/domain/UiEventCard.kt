@@ -2,11 +2,13 @@ package com.alphaomardiallo.parisforkids.home.domain
 
 data class UiEventCard(
     val id: String,
-    val priceType: String,
-    val coverImage: String,
-    val zipcode: String,
-    val leadText: String,
-    val title: String,
-    val audience: String,
-    val dateDescription: String
+    var priceType: String,
+    var coverImage: String,
+    var coverCredit: String,
+    var zipcode: String,
+    var leadText: String,
+    var title: String,
+    var audience: String,
+    var dateDescription: String,
+    var tags: List<String>
 )
