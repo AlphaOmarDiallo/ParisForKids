@@ -1,23 +1,23 @@
 package com.alphaomardiallo.parisforkids.common.data.local.dao
 
 import androidx.room.*
-import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Events
+import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Event
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface EventsDAO {
 
     @Insert
-    suspend fun insertEvents(events: Events)
+    suspend fun insertEvents(events: Event)
 
     @Update
-    suspend fun updateEvents(events: Events)
+    suspend fun updateEvents(events: Event)
 
     @Delete
-    suspend fun deleteEventsAndActivities(events: Events)
+    suspend fun deleteEventsAndActivities(events: Event)
 
     @Query("SELECT * FROM EventsAndActivities_table")
-    fun getEvents(): Flow<List<Events>>
+    fun getEvents(): Flow<List<Event>>
 
     @Query("SELECT COUNT (*) FROM EventsAndActivities_table")
     fun getEventsCount(): Flow<Int>
@@ -26,6 +26,6 @@ interface EventsDAO {
     fun isEventExist(id: String): Flow<Boolean>
 
     @Query("SELECT * FROM EventsAndActivities_table WHERE events_and_activities_id=:id ")
-    fun loadSingleEvent(id: String): Flow<Events>
+    fun loadSingleEvent(id: String): Flow<Event>
 
 }

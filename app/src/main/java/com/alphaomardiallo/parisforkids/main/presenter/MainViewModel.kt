@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.alphaomardiallo.parisforkids.common.data.repository.parisWeather.ParisWeatherRepository
 import com.alphaomardiallo.parisforkids.common.data.repository.queFaireAParis.QueFaireAParisRepository
 import com.alphaomardiallo.parisforkids.common.data.repository.weather.WeatherRepository
-import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Events
+import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Event
 import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.RecordsItem
 import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.ResponseQueFaireAParis
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.ResponseWeather
@@ -95,7 +95,7 @@ class MainViewModel @Inject constructor(
 
     private suspend fun insertEvent(recordItem: RecordsItem) {
         insertEventUseCase.insertEvent(
-            Events(
+            Event(
                 id = recordItem.recordid!!,
                 date = dateUtil.createDate(),
                 data = recordItem
@@ -105,7 +105,7 @@ class MainViewModel @Inject constructor(
 
     private suspend fun updateEvent(recordItem: RecordsItem?) {
         updateEventUseCase.updateEvent(
-            Events(
+            Event(
                 id = recordItem!!.recordid!!,
                 date = dateUtil.createDate(),
                 data = recordItem
