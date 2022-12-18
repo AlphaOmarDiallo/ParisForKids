@@ -8,10 +8,10 @@ import com.alphaomardiallo.parisforkids.common.data.local.converters.ConverterLi
 import com.alphaomardiallo.parisforkids.common.data.local.converters.ConverterWeather
 import com.alphaomardiallo.parisforkids.common.data.local.dao.EventsDAO
 import com.alphaomardiallo.parisforkids.common.data.local.dao.WeatherDAO
-import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Events
+import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Event
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.Weather
 
-@Database(entities = [Events::class, Weather::class], version = 1, exportSchema = true)
+@Database(entities = [Event::class, Weather::class], version = 1, exportSchema = true)
 @TypeConverters(
     ConverterListString::class,
     ConverterEvents::class,
