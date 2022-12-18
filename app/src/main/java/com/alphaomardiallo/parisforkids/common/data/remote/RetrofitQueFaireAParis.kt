@@ -1,6 +1,6 @@
 package com.alphaomardiallo.parisforkids.common.data.remote
 
-import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.ResponseQueFaireAParis
+import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.ResponseQueFaireAParis
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -25,7 +25,6 @@ interface RetrofitQueFaireAParis {
         @Query("facet") accessType: String,
         @Query("facet") updatedAt: String,
         @Query("facet") programs: String,
-        @Query("refine.tags") refineTags: String,
         @Query("timezone") timezone: String
     ): Response<ResponseQueFaireAParis>
 
