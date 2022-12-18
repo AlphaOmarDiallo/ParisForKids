@@ -1,8 +1,8 @@
 package com.alphaomardiallo.parisforkids.common.data.local.converters
 
 import androidx.room.TypeConverter
-import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.RecordsItem
-import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.ResponseQueFaireAParis
+import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.RecordsItem
+import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.ResponseQueFaireAParis
 import com.google.gson.Gson
 
 class ConverterEvents {

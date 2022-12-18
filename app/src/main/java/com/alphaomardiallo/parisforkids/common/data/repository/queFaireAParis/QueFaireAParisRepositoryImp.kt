@@ -1,7 +1,7 @@
 package com.alphaomardiallo.parisforkids.common.data.repository.queFaireAParis
 
 import com.alphaomardiallo.parisforkids.common.data.remote.RetrofitQueFaireAParis
-import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.ResponseQueFaireAParis
+import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.ResponseQueFaireAParis
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -28,7 +28,6 @@ class QueFaireAParisRepositoryImp @Inject constructor(
             accessType = "access_type",
             updatedAt = "updated_at",
             programs = "programs",
-            refineTags = "Enfants",
             timezone = "Europe/Paris"
         )
     }

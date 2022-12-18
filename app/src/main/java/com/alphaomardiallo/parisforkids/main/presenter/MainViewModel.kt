@@ -8,14 +8,17 @@ import com.alphaomardiallo.parisforkids.common.data.repository.parisWeather.Pari
 import com.alphaomardiallo.parisforkids.common.data.repository.queFaireAParis.QueFaireAParisRepository
 import com.alphaomardiallo.parisforkids.common.data.repository.weather.WeatherRepository
 import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Events
-import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.RecordsItem
-import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.ResponseQueFaireAParis
+import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.RecordsItem
+import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.ResponseQueFaireAParis
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.ResponseWeather
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.Weather
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetEventsUseCase
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.InsertEventUseCase
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.IsEventExistUseCase
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.UpdateEventUseCase
+import com.alphaomardiallo.parisforkids.common.domain.util.AUDIENCE_ALL
+import com.alphaomardiallo.parisforkids.common.domain.util.AUDIENCE_KIDS
+import com.alphaomardiallo.parisforkids.common.domain.util.AUDIENCE_KIDS_AND_TEENS
 import com.alphaomardiallo.parisforkids.common.domain.util.connectivity.Connectivity
 import com.alphaomardiallo.parisforkids.common.domain.util.connectivity.ConnectivityImp
 import com.alphaomardiallo.parisforkids.common.domain.util.date.DateUtilImp
@@ -64,12 +67,11 @@ class MainViewModel @Inject constructor(
      */
     private fun insertOrUpdateListEventsInDataBase(responseQueFaireAParis: ResponseQueFaireAParis) {
         viewModelScope.launch {
-            Log.i(TAG, "insertOrUpdateListEventsInDataBase: here")
             if (getEventsUseCase.getAllEvents().first().isEmpty()) {
                 responseQueFaireAParis.let { response ->
                     response.records?.map { recordItem ->
-                        recordItem.let {
-                            insertEvent(it!!)
+                        recordItem.let { event ->
+                            if (isCorrectAudience(event)) event?.let { insertEvent(it) }
                         }
                     }
                 }
@@ -77,11 +79,12 @@ class MainViewModel @Inject constructor(
             } else {
                 responseQueFaireAParis.let { response ->
                     response.records?.map { recordItem ->
-                        recordItem.let {
-                            if (isEventExistUseCase.eventExist(it!!.recordid!!).first()) {
-                                updateEvent(it)
-                            } else {
-                                insertEvent(it)
+                        recordItem.let { event ->
+                            if (isCorrectAudience(event)) event?.let {
+                                when (isEventExistUseCase.eventExist(it.recordid!!).first()) {
+                                    true -> updateEvent(it)
+                                    else -> insertEvent(it)
+                                }
                             }
                         }
                     }
@@ -108,6 +111,16 @@ class MainViewModel @Inject constructor(
                 data = recordItem
             )
         )
+    }
+
+    private fun isCorrectAudience(event: RecordsItem?): Boolean {
+        return if (event != null) {
+            (event.fields!!.audience!!.contains(AUDIENCE_KIDS)
+                    || event.fields.audience!!.contains(AUDIENCE_KIDS_AND_TEENS)
+                    || event.fields.audience!!.contains(AUDIENCE_ALL))
+        } else {
+            false
+        }
     }
 
     // Que Faire A Paris repository

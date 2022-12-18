@@ -3,6 +3,7 @@ package com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.RecordsItem
 
 @Entity(tableName = "EventsAndActivities_table")
 data class Events(
