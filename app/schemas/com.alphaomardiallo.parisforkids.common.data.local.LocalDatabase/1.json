@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c677955475266a82da0e75c5c42a5529",
+    "identityHash": "842f619cadb5c96cd6af1274a1cb5d38",
     "entities": [
       {
         "tableName": "EventsAndActivities_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`events_and_activities_id` TEXT NOT NULL, `events_and_activities_creation_date` TEXT NOT NULL, `events_and_response_data` TEXT NOT NULL, PRIMARY KEY(`events_and_activities_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`events_and_activities_id` TEXT NOT NULL, `events_and_activities_creation_date` TEXT NOT NULL, `events_and_response_title_event` TEXT, `events_and_response_lead_text` TEXT, `events_and_response_tags` TEXT, `events_and_response_description` TEXT, `events_and_response_url` TEXT, `events_and_response_access_link` TEXT, `events_and_response_contact_url` TEXT, `events_and_response_contact_phone` TEXT, `events_and_response_contact_Facebook` TEXT, `events_and_response_contact_Twitter` TEXT, `events_and_response_access_type` TEXT, `events_and_response_price_type` TEXT, `events_and_response_price_detail` TEXT, `events_and_response_cover_url` TEXT, `events_and_response_cover_alt` TEXT, `events_and_response_cover_credit` TEXT, `events_and_response_latLong` TEXT, `events_and_response_address_name` TEXT, `events_and_response_address_street` TEXT, `events_and_response_address_city` TEXT, `events_and_response_prm` INTEGER NOT NULL, `events_and_response_blind` INTEGER NOT NULL, `events_and_response_deaf` INTEGER NOT NULL, `events_and_response_audience` TEXT, `events_and_response_date_start` TEXT, `events_and_response_date_end` TEXT, `events_and_response_date_description` TEXT, `events_and_response_date_occurrences` TEXT, PRIMARY KEY(`events_and_activities_id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -15,16 +15,178 @@
             "notNull": true
           },
           {
-            "fieldPath": "date",
+            "fieldPath": "creationDate",
             "columnName": "events_and_activities_creation_date",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "data",
-            "columnName": "events_and_response_data",
+            "fieldPath": "titleEvent",
+            "columnName": "events_and_response_title_event",
             "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "leadText",
+            "columnName": "events_and_response_lead_text",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tags",
+            "columnName": "events_and_response_tags",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "events_and_response_description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "url",
+            "columnName": "events_and_response_url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "accessLink",
+            "columnName": "events_and_response_access_link",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "contactUrl",
+            "columnName": "events_and_response_contact_url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "contactPhone",
+            "columnName": "events_and_response_contact_phone",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "contactFacebook",
+            "columnName": "events_and_response_contact_Facebook",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "contactTwitter",
+            "columnName": "events_and_response_contact_Twitter",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "accessType",
+            "columnName": "events_and_response_access_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "priceType",
+            "columnName": "events_and_response_price_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "priceDetail",
+            "columnName": "events_and_response_price_detail",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "coverUrl",
+            "columnName": "events_and_response_cover_url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "coverAlt",
+            "columnName": "events_and_response_cover_alt",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "coverCredit",
+            "columnName": "events_and_response_cover_credit",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "latLong",
+            "columnName": "events_and_response_latLong",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "addressName",
+            "columnName": "events_and_response_address_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "addressStreet",
+            "columnName": "events_and_response_address_street",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "addressCity",
+            "columnName": "events_and_response_address_city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "prm",
+            "columnName": "events_and_response_prm",
+            "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "blind",
+            "columnName": "events_and_response_blind",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deaf",
+            "columnName": "events_and_response_deaf",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "audience",
+            "columnName": "events_and_response_audience",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dateStart",
+            "columnName": "events_and_response_date_start",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dateEnd",
+            "columnName": "events_and_response_date_end",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dateDescription",
+            "columnName": "events_and_response_date_description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "occurrences",
+            "columnName": "events_and_response_date_occurrences",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -72,7 +234,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c677955475266a82da0e75c5c42a5529')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '842f619cadb5c96cd6af1274a1cb5d38')"
     ]
   }
 }

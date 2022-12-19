@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.alphaomardiallo.parisforkids.common.data.local.converters.ConverterEvents
+import com.alphaomardiallo.parisforkids.common.data.local.converters.ConverterListDouble
 import com.alphaomardiallo.parisforkids.common.data.local.converters.ConverterListString
 import com.alphaomardiallo.parisforkids.common.data.local.converters.ConverterWeather
 import com.alphaomardiallo.parisforkids.common.data.local.dao.EventsDAO
@@ -15,7 +16,8 @@ import com.alphaomardiallo.parisforkids.common.domain.model.weather.Weather
 @TypeConverters(
     ConverterListString::class,
     ConverterEvents::class,
-    ConverterWeather::class
+    ConverterWeather::class,
+    ConverterListDouble::class
 )
 abstract class LocalDatabase : RoomDatabase() {
 

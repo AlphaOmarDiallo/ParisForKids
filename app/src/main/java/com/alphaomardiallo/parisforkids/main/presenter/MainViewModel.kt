@@ -4,12 +4,12 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.Record
+import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.ResponseQueFaireAParis
 import com.alphaomardiallo.parisforkids.common.data.repository.parisWeather.ParisWeatherRepository
 import com.alphaomardiallo.parisforkids.common.data.repository.queFaireAParis.QueFaireAParisRepository
 import com.alphaomardiallo.parisforkids.common.data.repository.weather.WeatherRepository
-import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Event
-import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.RecordsItem
-import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.ResponseQueFaireAParis
+import com.alphaomardiallo.parisforkids.common.domain.mapper.ResponseEventsToEvent
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.ResponseWeather
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.Weather
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetEventsUseCase
@@ -41,7 +41,8 @@ class MainViewModel @Inject constructor(
     private val getEventsUseCase: GetEventsUseCase,
 
     private val dateUtil: DateUtilImp,
-    private val connectivity: ConnectivityImp
+    private val connectivity: ConnectivityImp,
+    private val responseEventsToEvent: ResponseEventsToEvent
 ) : ViewModel() {
 
     //Events repository
@@ -54,7 +55,7 @@ class MainViewModel @Inject constructor(
             if (getEventsUseCase.getAllEvents().first().isEmpty()) {
                 fetchListEventsAndActivities()
             } else {
-                val date1 = getEventsUseCase.getAllEvents().first()[0].date
+                val date1 = getEventsUseCase.getAllEvents().first()[0].creationDate
                 val date2 = dateUtil.createDate()
                 if (!dateUtil.isItSameDay(date1, date2)) fetchListEventsAndActivities()
             }
@@ -69,19 +70,19 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             if (getEventsUseCase.getAllEvents().first().isEmpty()) {
                 responseQueFaireAParis.let { response ->
-                    response.records?.map { recordItem ->
+                    response.records.map { recordItem ->
                         recordItem.let { event ->
-                            if (isCorrectAudience(event)) event?.let { insertEvent(it) }
+                            if (isCorrectAudience(event)) event.let { insertEvent(it) }
                         }
                     }
                 }
 
             } else {
                 responseQueFaireAParis.let { response ->
-                    response.records?.map { recordItem ->
+                    response.records.map { recordItem ->
                         recordItem.let { event ->
-                            if (isCorrectAudience(event)) event?.let {
-                                when (isEventExistUseCase.eventExist(it.recordid!!).first()) {
+                            if (isCorrectAudience(event)) event.let {
+                                when (isEventExistUseCase.eventExist(it.recordid).first()) {
                                     true -> updateEvent(it)
                                     else -> insertEvent(it)
                                 }
@@ -93,31 +94,24 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private suspend fun insertEvent(recordItem: RecordsItem) {
+    private suspend fun insertEvent(recordItem: Record) {
         insertEventUseCase.insertEvent(
-            Event(
-                id = recordItem.recordid!!,
-                date = dateUtil.createDate(),
-                data = recordItem
-            )
+            responseEventsToEvent.responseEventsToEvent(recordItem)
         )
     }
 
-    private suspend fun updateEvent(recordItem: RecordsItem?) {
+    private suspend fun updateEvent(recordItem: Record) {
         updateEventUseCase.updateEvent(
-            Event(
-                id = recordItem!!.recordid!!,
-                date = dateUtil.createDate(),
-                data = recordItem
-            )
+            responseEventsToEvent.responseEventsToEvent(recordItem)
         )
     }
 
-    private fun isCorrectAudience(event: RecordsItem?): Boolean {
+    private fun isCorrectAudience(event: Record?): Boolean {
         return if (event != null) {
-            (event.fields!!.audience!!.contains(AUDIENCE_KIDS)
-                    || event.fields.audience!!.contains(AUDIENCE_KIDS_AND_TEENS)
-                    || event.fields.audience!!.contains(AUDIENCE_ALL))
+            (event.fields.audience.contains(AUDIENCE_KIDS)
+                    || event.fields.audience.contains(AUDIENCE_KIDS_AND_TEENS)
+                    || event.fields.audience.contains(AUDIENCE_ALL)
+                     )
         } else {
             false
         }
@@ -143,10 +137,10 @@ class MainViewModel @Inject constructor(
                     return@launch
                 }
 
-                if (response.body()?.records != null) {
+                if (response.body()!!.nhits > 1) {
                     insertOrUpdateListEventsInDataBase(response.body()!!)
                 } else {
-                    Log.w(TAG, "getListEventsAndActivities: events and activity list in null", null)
+                    Log.w(TAG, "getListEventsAndActivities: events and activity list is null", null)
                 }
             } catch (exception: IOException) {
                 Log.e(TAG, "getListEventsAndActivities: IOException = ${exception.message}", null)
