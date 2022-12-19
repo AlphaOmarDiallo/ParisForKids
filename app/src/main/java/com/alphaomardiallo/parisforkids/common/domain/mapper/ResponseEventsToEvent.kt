@@ -30,6 +30,7 @@ class ResponseEventsToEvent @Inject constructor(
             addressName = record.fields.address_name,
             addressStreet = record.fields.address_street,
             addressCity = record.fields.address_city,
+            addressZipcode = record.fields.address_zipcode,
             audience = record.fields.audience,
             prm = checkForAccessibility(record.fields.pmr),
             blind = checkForAccessibility(record.fields.blind),

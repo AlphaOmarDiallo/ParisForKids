@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "842f619cadb5c96cd6af1274a1cb5d38",
+    "identityHash": "1d212612da9c9826bee678742e4e385a",
     "entities": [
       {
         "tableName": "EventsAndActivities_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`events_and_activities_id` TEXT NOT NULL, `events_and_activities_creation_date` TEXT NOT NULL, `events_and_response_title_event` TEXT, `events_and_response_lead_text` TEXT, `events_and_response_tags` TEXT, `events_and_response_description` TEXT, `events_and_response_url` TEXT, `events_and_response_access_link` TEXT, `events_and_response_contact_url` TEXT, `events_and_response_contact_phone` TEXT, `events_and_response_contact_Facebook` TEXT, `events_and_response_contact_Twitter` TEXT, `events_and_response_access_type` TEXT, `events_and_response_price_type` TEXT, `events_and_response_price_detail` TEXT, `events_and_response_cover_url` TEXT, `events_and_response_cover_alt` TEXT, `events_and_response_cover_credit` TEXT, `events_and_response_latLong` TEXT, `events_and_response_address_name` TEXT, `events_and_response_address_street` TEXT, `events_and_response_address_city` TEXT, `events_and_response_prm` INTEGER NOT NULL, `events_and_response_blind` INTEGER NOT NULL, `events_and_response_deaf` INTEGER NOT NULL, `events_and_response_audience` TEXT, `events_and_response_date_start` TEXT, `events_and_response_date_end` TEXT, `events_and_response_date_description` TEXT, `events_and_response_date_occurrences` TEXT, PRIMARY KEY(`events_and_activities_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`events_and_activities_id` TEXT NOT NULL, `events_and_activities_creation_date` TEXT NOT NULL, `events_and_response_title_event` TEXT, `events_and_response_lead_text` TEXT, `events_and_response_tags` TEXT, `events_and_response_description` TEXT, `events_and_response_url` TEXT, `events_and_response_access_link` TEXT, `events_and_response_contact_url` TEXT, `events_and_response_contact_phone` TEXT, `events_and_response_contact_Facebook` TEXT, `events_and_response_contact_Twitter` TEXT, `events_and_response_access_type` TEXT, `events_and_response_price_type` TEXT, `events_and_response_price_detail` TEXT, `events_and_response_cover_url` TEXT, `events_and_response_cover_alt` TEXT, `events_and_response_cover_credit` TEXT, `events_and_response_latLong` TEXT, `events_and_response_address_name` TEXT, `events_and_response_address_street` TEXT, `events_and_response_address_city` TEXT, `events_and_response_address_zipcode` TEXT, `events_and_response_prm` INTEGER NOT NULL, `events_and_response_blind` INTEGER NOT NULL, `events_and_response_deaf` INTEGER NOT NULL, `events_and_response_audience` TEXT, `events_and_response_date_start` TEXT, `events_and_response_date_end` TEXT, `events_and_response_date_description` TEXT, `events_and_response_date_occurrences` TEXT, PRIMARY KEY(`events_and_activities_id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -141,6 +141,12 @@
             "notNull": false
           },
           {
+            "fieldPath": "addressZipcode",
+            "columnName": "events_and_response_address_zipcode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
             "fieldPath": "prm",
             "columnName": "events_and_response_prm",
             "affinity": "INTEGER",
@@ -234,7 +240,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '842f619cadb5c96cd6af1274a1cb5d38')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1d212612da9c9826bee678742e4e385a')"
     ]
   }
 }
