@@ -13,7 +13,7 @@ class QueFaireAParisRepositoryImp @Inject constructor(
         return retrofitQueFaireAParis.queFaireAParisEventsAndActivity(
             dataSet = "que-faire-a-paris-",
             quantities = "",
-            rows = 1000,
+            rows = 3000,
             dateStart = "date_start",
             dateEnd = "date_end",
             tags = "enfant",
