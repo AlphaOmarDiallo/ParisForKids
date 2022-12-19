@@ -33,6 +33,7 @@ data class Event(
     @ColumnInfo(name = "events_and_response_address_name") var addressName: String?,
     @ColumnInfo(name = "events_and_response_address_street") var addressStreet: String?,
     @ColumnInfo(name = "events_and_response_address_city") var addressCity: String?,
+    @ColumnInfo(name = "events_and_response_address_zipcode") var addressZipcode: String?,
 
     /** api returns 1 accessibility when condition exists**/
     @ColumnInfo(name = "events_and_response_prm") var prm: Boolean = false,

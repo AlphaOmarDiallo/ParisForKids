@@ -75,8 +75,8 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
                             .fillMaxWidth(0.9f),
                         horizontalArrangement = Arrangement.Start
                     ) {
-                        event.tags.map {
-                            EventTagChip(tag = it, modifier = modifier)
+                        event.tags?.map {
+                            EventTagChip(tag = it!!, modifier = modifier)
                             Spacer(modifier = modifier.size(4.dp))
                         }
                     }
@@ -87,17 +87,17 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
                     verticalArrangement = Arrangement.Bottom,
                     modifier = modifier.fillMaxSize()
                 ) {
-                    Text(text = event.title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text(text = event.title!!, fontSize = 20.sp, fontWeight = FontWeight.Bold)
                     Spacer(modifier.size(2.dp))
                     Text(
-                        text = event.leadText,
+                        text = event.leadText!!,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                         maxLines = 3,
                         overflow = TextOverflow.Ellipsis
                     )
                     Spacer(modifier.size(2.dp))
-                    Text(text = event.audience, fontSize = 14.sp)
+                    Text(text = event.audience!!, fontSize = 14.sp)
                     Spacer(modifier.size(2.dp))
                     Text(
                         text = "${event.dateDescription}  -  ${event.zipcode}  -  ${event.priceType}",
@@ -134,5 +134,5 @@ fun getMockEvent() = UiEventCard(
     audience = "Public enfants adolescents. A partir de 3 ans.",
     dateDescription = "Le samedi 17 décembre 2022 de 15h30 à 17h00",
     tags = listOf("Literature", "Bibliotheque"),
-    coverCredit = "Pixabay"
+    coverCredit = "Pixabay", addressName = null, prm = false, blind = false, deaf = false
 )
