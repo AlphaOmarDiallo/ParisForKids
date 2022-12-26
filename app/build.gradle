@@ -104,6 +104,8 @@ dependencies {
     // For local unit tests
     testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
+    // Hilt for compose
+    implementation "androidx.hilt:hilt-navigation-compose:$hilt_compose_version"
 
     //LIFECYCLE
     // ViewModel

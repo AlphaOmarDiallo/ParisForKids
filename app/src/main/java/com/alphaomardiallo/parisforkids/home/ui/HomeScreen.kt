@@ -1,41 +1,71 @@
 package com.alphaomardiallo.parisforkids.home.ui
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
+import com.alphaomardiallo.parisforkids.home.presenter.HomeViewModel
+import com.alphaomardiallo.parisforkids.main.presenter.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import okhttp3.internal.wait
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    homeViewModel: HomeViewModel = hiltViewModel()
+) {
+
+    val allEvents: List<UiEventCard> = remember {homeViewModel.allEventsAsUIEventCard.value}
+    Log.e(TAG, "HomeScreen: ${allEvents.size}", )
+
     ParisForKidsTheme {
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = Color.Transparent)
                 .wrapContentSize(Alignment.Center)
         ) {
-            EventCard(modifier = Modifier, event = getMockEvent())
+            HorizontalListOfEvents(list = allEvents)
+        }
+    }
+}
+
+@Composable
+fun HorizontalListOfEvents(list: List<UiEventCard>){
+    Box(modifier = Modifier.fillMaxWidth()){
+        LazyRow(){
+            items(list) { event ->
+                EventCard(modifier = Modifier, event = event)
+            }
         }
     }
 }
@@ -55,10 +85,10 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
         val gradient = Brush.verticalGradient(
             colors = listOf(Color.Transparent, Color.Black),
             startY = 0f,
-            endY = 500f
+            endY = 450f
         )
 
-            AsyncImage(
+        AsyncImage(
             model = event.coverImage,
             contentDescription = event.coverCredit,
             contentScale = ContentScale.Crop,
@@ -67,7 +97,7 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
         Box(
             modifier = modifier
                 .fillMaxSize()
-                .background(brush  = gradient)
+                .background(brush = gradient)
         ) {
             Column(
                 modifier = modifier
@@ -87,18 +117,18 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
                     ) {
                         event.tags?.map {
                             EventTagChip(tag = it!!, modifier = modifier)
-                            Spacer(modifier = modifier.size(4.dp))
+                            Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
                         }
                     }
                     Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Icon heart")
                 }
-                Spacer(modifier.size(20.dp))
+                Spacer(modifier.size(dimensionResource(id = R.dimen.margin_large)))
                 Column(
                     verticalArrangement = Arrangement.Bottom,
                     modifier = modifier.fillMaxSize()
                 ) {
                     Text(text = event.title!!, fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                    Spacer(modifier.size(2.dp))
+                    Spacer(modifier.size(dimensionResource(id = R.dimen.margin_medium)))
                     Text(
                         text = event.leadText!!,
                         fontSize = 14.sp,
@@ -106,9 +136,9 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
                         maxLines = 3,
                         overflow = TextOverflow.Ellipsis
                     )
-                    Spacer(modifier.size(2.dp))
+                    Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
                     Text(text = event.audience!!, fontSize = 14.sp)
-                    Spacer(modifier.size(2.dp))
+                    Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
                     Text(
                         text = "${event.dateDescription}  -  ${event.zipcode}  -  ${event.priceType}",
                         fontSize = 10.sp
