@@ -1,5 +1,6 @@
 package com.alphaomardiallo.parisforkids.main.ui
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -14,23 +15,29 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.common.domain.util.snackBar.createSnackBar
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.main.presenter.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
+    @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
 
             getData()
+
+            lifecycleScope.launch { delay(2000L) }
 
             ParisForKidsTheme {
                 // A surface container using the 'background' color from the theme
@@ -39,7 +46,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background,
 
                     ) {
-                    MainScreen()
+                    MainScreen(viewModel)
                 }
             }
         }
@@ -56,7 +63,7 @@ class MainActivity : ComponentActivity() {
 // Composable
 
 @Composable
-fun MainScreen() {
+fun MainScreen(viewModel: MainViewModel) {
 
     val navController = rememberNavController()
     val scaffoldState = rememberScaffoldState()
