@@ -2,7 +2,6 @@ package com.alphaomardiallo.parisforkids.main.presenter
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alphaomardiallo.parisforkids.common.data.model.responseQueFaireAParis.Record
@@ -11,7 +10,6 @@ import com.alphaomardiallo.parisforkids.common.data.repository.parisWeather.Pari
 import com.alphaomardiallo.parisforkids.common.data.repository.queFaireAParis.QueFaireAParisRepository
 import com.alphaomardiallo.parisforkids.common.data.repository.weather.WeatherRepository
 import com.alphaomardiallo.parisforkids.common.domain.mapper.ResponseEventsToEvent
-import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Event
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.ResponseWeather
 import com.alphaomardiallo.parisforkids.common.domain.model.weather.Weather
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetEventsUseCase
@@ -24,11 +22,7 @@ import com.alphaomardiallo.parisforkids.common.domain.util.AUDIENCE_KIDS_AND_TEE
 import com.alphaomardiallo.parisforkids.common.domain.util.connectivity.Connectivity
 import com.alphaomardiallo.parisforkids.common.domain.util.connectivity.ConnectivityImp
 import com.alphaomardiallo.parisforkids.common.domain.util.date.DateUtilImp
-import com.alphaomardiallo.parisforkids.home.domain.EventToUiEventCard
-import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -50,8 +44,7 @@ class MainViewModel @Inject constructor(
     private val connectivity: ConnectivityImp,
     private val responseEventsToEvent: ResponseEventsToEvent,
 
-    private val eventToUiEventCard: EventToUiEventCard
-) : ViewModel() {
+    ) : ViewModel() {
 
     //Events repository
     /**
@@ -119,7 +112,7 @@ class MainViewModel @Inject constructor(
             (event.fields.audience.contains(AUDIENCE_KIDS)
                     || event.fields.audience.contains(AUDIENCE_KIDS_AND_TEENS)
                     || event.fields.audience.contains(AUDIENCE_ALL)
-                     )
+                    )
         } else {
             false
         }

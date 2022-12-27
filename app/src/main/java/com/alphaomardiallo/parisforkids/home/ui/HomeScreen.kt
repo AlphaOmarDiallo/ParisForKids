@@ -12,8 +12,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -26,16 +24,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 import com.alphaomardiallo.parisforkids.home.presenter.HomeViewModel
-import com.alphaomardiallo.parisforkids.main.presenter.MainViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import okhttp3.internal.wait
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
@@ -43,11 +36,8 @@ fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
 
-    val allEvents: List<UiEventCard> = remember {homeViewModel.allEventsAsUIEventCard.value}
-    Log.e(TAG, "HomeScreen: ${allEvents.size}", )
-
     ParisForKidsTheme {
-
+        val allEvents = homeViewModel.allEventsAsUIEventCard.value
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -60,9 +50,9 @@ fun HomeScreen(
 }
 
 @Composable
-fun HorizontalListOfEvents(list: List<UiEventCard>){
-    Box(modifier = Modifier.fillMaxWidth()){
-        LazyRow(){
+fun HorizontalListOfEvents(list: List<UiEventCard>) {
+    Box(modifier = Modifier.fillMaxWidth()) {
+        LazyRow() {
             items(list) { event ->
                 EventCard(modifier = Modifier, event = event)
             }
