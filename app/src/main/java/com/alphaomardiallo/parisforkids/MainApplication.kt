@@ -7,7 +7,7 @@ import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class MainApplication : Application(){
+class MainApplication : Application() {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
