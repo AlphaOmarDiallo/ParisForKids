@@ -8,16 +8,16 @@ import androidx.compose.ui.res.dimensionResource
 import com.alphaomardiallo.parisforkids.R
 
 @Composable
-fun SmallSpacer(modifier: Modifier = Modifier){
+fun SmallSpacer(modifier: Modifier = Modifier) {
     Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
 }
 
 @Composable
-fun MediumSpacer(modifier: Modifier = Modifier){
+fun MediumSpacer(modifier: Modifier = Modifier) {
     Spacer(modifier.size(dimensionResource(id = R.dimen.margin_medium)))
 }
 
 @Composable
-fun LargeSpacer(modifier: Modifier = Modifier){
+fun LargeSpacer(modifier: Modifier = Modifier) {
     Spacer(modifier.size(dimensionResource(id = R.dimen.margin_large)))
 }
