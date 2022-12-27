@@ -46,4 +46,70 @@
     <string name="connectivity_losing">You are losing you internet connection</string>
     <string name="connectivity_lost">You are not connected to internet</string>
 
+    <!-- Tags -->
+    <string name="tags_contemporary_art">Contemporary art</string>
+    <string name="tags_contemporary_art_value" translatable="false">Art contemporain</string>
+    <string name="tags_workshop">Workshop</string>
+    <string name="tags_workshop_value" translatable="false">Atelier</string>
+    <string name="tags_comics">Comics</string>
+    <string name="tags_comics_value" translatable="false">BD</string>
+    <string name="tags_stroll">Stroll</string>
+    <string name="tags_stroll_value" translatable="false">Balade</string>
+    <string name="tags_cinema">Cinema</string>
+    <string name="tags_cinema_value" translatable="false">Cinéma</string>
+    <string name="tags_circus">Circus</string>
+    <string name="tags_circus_value" translatable="false">Art contemporain</string>
+    <string name="tags_concert">Concert</string>
+    <string name="tags_concert_value" translatable="false">Concert</string>
+    <string name="tags_dance">Dance</string>
+    <string name="tags_dance_value" translatable="false">Danse</string>
+    <string name="tags_kids">Kids</string>
+    <string name="tags_kids_value" translatable="false">Enfants</string>
+    <string name="tags_exhibition">Exhibition</string>
+    <string name="tags_exhibition_value" translatable="false">Expo</string>
+    <string name="tags_gourmand">Gourmand</string>
+    <string name="tags_gourmand_value" translatable="false">Gourmand</string>
+    <string name="tags_history">History</string>
+    <string name="tags_history_value" translatable="false">Histoire</string>
+    <string name="tags_humor">Humor</string>
+    <string name="tags_humor_value" translatable="false">Humour</string>
+    <string name="tags_innovation">Innovation</string>
+    <string name="tags_innovation_value" translatable="false">Innovation</string>
+    <string name="tags_lgbt">LGBT</string>
+    <string name="tags_lgbt_value" translatable="false">LGBT</string>
+    <string name="tags_literature">Literature</string>
+    <string name="tags_literature_value" translatable="false">Littérature</string>
+    <string name="tags_leisure">Leisure</string>
+    <string name="tags_leisure_value" translatable="false">Loisirs</string>
+    <string name="tags_music">Music</string>
+    <string name="tags_music_value" translatable="false">Musique</string>
+    <string name="tags_nature">Nature</string>
+    <string name="tags_nature_value" translatable="false">Nature</string>
+    <string name="tags_painting">Painting</string>
+    <string name="tags_painting_value" translatable="false">Peinture</string>
+    <string name="tags_photo">Photo</string>
+    <string name="tags_photo_value" translatable="false">Photo</string>
+    <string name="tags_show">Show</string>
+    <string name="tags_show_value" translatable="false">Salon</string>
+    <string name="tags_health">Health</string>
+    <string name="tags_health_value" translatable="false">Santé</string>
+    <string name="tags_science">Science</string>
+    <string name="tags_science_value" translatable="false">Sciences</string>
+    <string name="tags_solidarity">Solidarity</string>
+    <string name="tags_solidarity_value" translatable="false">Solidarité</string>
+    <string name="tags_musical">Musical</string>
+    <string name="tags_musical_value" translatable="false">Spectacle musical</string>
+    <string name="tags_sport">Sport</string>
+    <string name="tags_sport_value" translatable="false">Sport</string>
+    <string name="tags_street_art">Street art</string>
+    <string name="tags_street_art_value" translatable="false">Street art</string>
+    <string name="tags_theater">Theatre</string>
+    <string name="tags_theatre_value" translatable="false">Théâtre</string>
+
+    <!-- Home screen -->
+    <string name="home_title_section_to_do_today">To do today</string>
+    <string name="home_title_section_to_this_weekend">To do this weekend</string>
+    <string name="home_title_section_to_do_this_week">To do this week</string>
+    <string name="home_title_section_by_theme">By theme</string>
+
 </resources>
