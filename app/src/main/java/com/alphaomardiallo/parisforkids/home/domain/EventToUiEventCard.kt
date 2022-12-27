@@ -1,27 +1,22 @@
 package com.alphaomardiallo.parisforkids.home.domain
 
 import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Event
-import javax.inject.Inject
 
-class EventToUiEventCard @Inject constructor(){
-
-    fun eventToUIEventCard(event: Event): UiEventCard {
-        return UiEventCard(
-            id = event.id,
-            priceType = event.priceType,
-            coverImage = event.coverUrl,
-            coverCredit = event.coverCredit,
-            zipcode = event.addressZipcode,
-            leadText = event.leadText,
-            title = event.titleEvent,
-            audience = event.audience,
-            dateDescription = event.dateDescription,
-            tags = event.tags,
-            addressName = event.addressName,
-            prm = event.prm,
-            blind = event.blind,
-            deaf = event.deaf
-        )
-    }
-
+fun Event.toUIEventCard(): UiEventCard {
+    return UiEventCard(
+        id = this.id,
+        priceType = this.priceType,
+        coverImage = this.coverUrl,
+        coverCredit = this.coverCredit,
+        zipcode = this.addressZipcode,
+        leadText = this.leadText,
+        title = this.titleEvent,
+        audience = this.audience,
+        dateDescription = this.dateDescription,
+        tags = this.tags,
+        addressName = this.addressName,
+        prm = this.prm,
+        blind = this.blind,
+        deaf = this.deaf
+    )
 }
