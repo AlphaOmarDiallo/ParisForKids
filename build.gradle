@@ -7,7 +7,7 @@ buildscript {
         junit_version = '4.13.2'
         junitTest_version = '1.1.4'
         espressoCore_version = '3.5.0'
-        hilt_version = '2.44'
+        hilt_version = '2.44.2'
         hilt_compose_version = '1.1.0-alpha01'
         nav_version = '2.5.3'
         datastore_version = '1.0.0'
