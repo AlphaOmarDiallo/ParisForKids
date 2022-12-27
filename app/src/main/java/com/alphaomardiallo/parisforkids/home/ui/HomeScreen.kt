@@ -71,7 +71,7 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
         modifier = modifier
             .width(290.dp)
             .height(190.dp)
-            .clickable { Log.e(TAG, "EventCard: clicked ${event.title} id $event.id", null) },
+            .clickable { /*TODO*/ },
         shape = MaterialTheme.shapes.medium,
         backgroundColor = Color.Black,
         contentColor = Color.White,
@@ -148,7 +148,7 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun EventTagChip(tag: String, modifier: Modifier) {
-    Chip(onClick = { /*TODO*/ }, modifier = modifier.padding(2.dp)) {
+    Chip(onClick = { /*TODO*/ }, modifier = modifier.padding(2.dp), colors = ChipDefaults.chipColors(backgroundColor = Color.Black, contentColor = Color.White)) {
         Text(text = tag, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
     }
 }
