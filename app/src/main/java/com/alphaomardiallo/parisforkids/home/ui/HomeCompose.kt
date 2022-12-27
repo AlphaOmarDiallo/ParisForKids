@@ -8,11 +8,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.alphaomardiallo.parisforkids.common.ui.component.SmallSpacer
 import com.alphaomardiallo.parisforkids.common.ui.component.UIEventCard
+import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
+import com.alphaomardiallo.parisforkids.common.ui.theme.Typography
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
+
+
+@Composable
+fun SectionTitle(title: String){
+    Text(text = title, style = Typography.h2)
+}
 
 @Composable
 fun HorizontalListOfEvents(list: List<UiEventCard>) {
@@ -36,5 +45,13 @@ fun EventTagChip(tag: String, modifier: Modifier) {
         colors = ChipDefaults.chipColors(backgroundColor = Color.Black, contentColor = Color.White)
     ) {
         Text(text = tag, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
+@Preview
+@Composable
+fun preview(){
+    ParisForKidsTheme() {
+        SectionTitle(title = "A faire aujourd'hui")
     }
 }
