@@ -18,14 +18,17 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.text.parseAsHtml
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.alphaomardiallo.parisforkids.R
+import com.alphaomardiallo.parisforkids.common.ui.component.SmallSpacer
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 import com.alphaomardiallo.parisforkids.home.presenter.HomeViewModel
@@ -54,7 +57,9 @@ fun HorizontalListOfEvents(list: List<UiEventCard>) {
     Box(modifier = Modifier.fillMaxWidth()) {
         LazyRow() {
             items(list) { event ->
+                SmallSpacer()
                 EventCard(modifier = Modifier, event = event)
+                SmallSpacer()
             }
         }
     }
@@ -64,7 +69,7 @@ fun HorizontalListOfEvents(list: List<UiEventCard>) {
 fun EventCard(modifier: Modifier, event: UiEventCard) {
     Card(
         modifier = modifier
-            .fillMaxWidth(0.95f)
+            .width(290.dp)
             .height(190.dp)
             .clickable { Log.e(TAG, "EventCard: clicked ${event.title} id $event.id", null) },
         shape = MaterialTheme.shapes.medium,
@@ -112,25 +117,25 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
                     }
                     Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Icon heart")
                 }
-                Spacer(modifier.size(dimensionResource(id = R.dimen.margin_large)))
+                Spacer(modifier.size(dimensionResource(id = R.dimen.margin_medium)))
                 Column(
                     verticalArrangement = Arrangement.Bottom,
                     modifier = modifier.fillMaxSize()
                 ) {
-                    Text(text = event.title!!, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text(text = event.title!!, fontSize = 14.sp, fontWeight = FontWeight.Bold)
                     Spacer(modifier.size(dimensionResource(id = R.dimen.margin_medium)))
                     Text(
                         text = event.leadText!!,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
-                        maxLines = 3,
+                        maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
                     Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
-                    Text(text = event.audience!!, fontSize = 14.sp)
+                    Text(text = event.audience!!, fontSize = 12.sp)
                     Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
                     Text(
-                        text = "${event.dateDescription}  -  ${event.zipcode}  -  ${event.priceType}",
+                        text = "${event.dateDescription?.parseAsHtml()}  -  ${event.zipcode}  -  ${event.priceType}",
                         fontSize = 10.sp
                     )
                 }

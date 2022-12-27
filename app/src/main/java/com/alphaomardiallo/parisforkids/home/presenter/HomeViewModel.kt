@@ -8,6 +8,7 @@ import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetE
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 import com.alphaomardiallo.parisforkids.home.domain.toUIEventCard
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,11 +27,9 @@ class HomeViewModel @Inject constructor(
     private fun getAllEventsAsUiEventCard() {
         val temp = mutableListOf<UiEventCard>()
         viewModelScope.launch {
-            val allEvents = getEventsUseCase.getAllEvents()
-            allEvents.map { eventList ->
-                eventList.map { event ->
-                    temp.add(event.toUIEventCard())
-                }
+            val allEvents = getEventsUseCase.getAllEvents().first()
+            allEvents.map { event ->
+                temp.add(event.toUIEventCard())
             }
             allEventsAsUIEventCard.value = temp
         }
