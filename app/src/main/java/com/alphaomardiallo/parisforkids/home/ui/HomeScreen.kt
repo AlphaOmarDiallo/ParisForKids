@@ -1,8 +1,6 @@
 package com.alphaomardiallo.parisforkids.home.ui
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -18,7 +16,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,6 +27,7 @@ import coil.compose.AsyncImage
 import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.common.ui.component.SmallSpacer
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
+import com.alphaomardiallo.parisforkids.common.ui.theme.Typography
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 import com.alphaomardiallo.parisforkids.home.presenter.HomeViewModel
 
@@ -69,13 +67,12 @@ fun HorizontalListOfEvents(list: List<UiEventCard>) {
 fun EventCard(modifier: Modifier, event: UiEventCard) {
     Card(
         modifier = modifier
-            .width(290.dp)
-            .height(190.dp)
+            .width(dimensionResource(id = R.dimen.card_width_normal))
+            .height(dimensionResource(id = R.dimen.card_height_normal))
             .clickable { /*TODO*/ },
         shape = MaterialTheme.shapes.medium,
-        backgroundColor = Color.Black,
-        contentColor = Color.White,
-        elevation = 8.dp
+        contentColor = MaterialTheme.colors.onPrimary,
+        elevation = dimensionResource(id = R.dimen.elevation_normal)
     ) {
         val gradient = Brush.verticalGradient(
             colors = listOf(Color.Transparent, Color.Black),
@@ -97,7 +94,7 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
             Column(
                 modifier = modifier
                     .fillMaxSize()
-                    .padding(4.dp),
+                    .padding(dimensionResource(id = R.dimen.margin_small)),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Row(
@@ -122,21 +119,20 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
                     verticalArrangement = Arrangement.Bottom,
                     modifier = modifier.fillMaxSize()
                 ) {
-                    Text(text = event.title!!, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    Text(text = event.title!!, style = Typography.h3)
                     Spacer(modifier.size(dimensionResource(id = R.dimen.margin_medium)))
                     Text(
                         text = event.leadText!!,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold,
+                        style = Typography.h4,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
                     Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
-                    Text(text = event.audience!!, fontSize = 12.sp)
+                    Text(text = event.audience!!, style = Typography.body1)
                     Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
                     Text(
                         text = "${event.dateDescription?.parseAsHtml()}  -  ${event.zipcode}  -  ${event.priceType}",
-                        fontSize = 10.sp
+                        style = Typography.body2
                     )
                 }
             }
@@ -148,7 +144,11 @@ fun EventCard(modifier: Modifier, event: UiEventCard) {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun EventTagChip(tag: String, modifier: Modifier) {
-    Chip(onClick = { /*TODO*/ }, modifier = modifier.padding(2.dp), colors = ChipDefaults.chipColors(backgroundColor = Color.Black, contentColor = Color.White)) {
+    Chip(
+        onClick = { /*TODO*/ },
+        modifier = modifier.padding(2.dp),
+        colors = ChipDefaults.chipColors(backgroundColor = Color.Black, contentColor = Color.White)
+    ) {
         Text(text = tag, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
     }
 }

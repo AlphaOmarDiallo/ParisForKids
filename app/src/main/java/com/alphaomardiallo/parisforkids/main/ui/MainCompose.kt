@@ -78,7 +78,7 @@ fun BottomNavigationBar(modifier: Modifier = Modifier, navController: NavControl
     )
     BottomAppBar(
         modifier = modifier,
-        elevation = dimensionResource(id = R.dimen.elevation_app_bar),
+        elevation = dimensionResource(id = R.dimen.elevation_normal),
         backgroundColor = MaterialTheme.colors.primaryVariant,
         contentColor = Color.White
     ) {
