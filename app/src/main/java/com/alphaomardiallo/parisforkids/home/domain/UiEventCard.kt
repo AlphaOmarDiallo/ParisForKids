@@ -1,5 +1,7 @@
 package com.alphaomardiallo.parisforkids.home.domain
 
+import com.alphaomardiallo.parisforkids.common.domain.util.tags.TagsItem
+
 data class UiEventCard(
     val id: String,
     var priceType: String?,
@@ -10,7 +12,7 @@ data class UiEventCard(
     var title: String?,
     var audience: String?,
     var dateDescription: String?,
-    var tags: List<String?>?,
+    var tags: List<TagsItem?>?,
     var addressName: String?,
     var prm: Boolean,
     var blind: Boolean,
