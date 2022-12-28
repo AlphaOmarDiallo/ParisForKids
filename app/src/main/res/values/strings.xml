@@ -58,7 +58,7 @@
     <string name="tags_cinema">Cinema</string>
     <string name="tags_cinema_value" translatable="false">Cinéma</string>
     <string name="tags_circus">Circus</string>
-    <string name="tags_circus_value" translatable="false">Art contemporain</string>
+    <string name="tags_circus_value" translatable="false">Cirque</string>
     <string name="tags_concert">Concert</string>
     <string name="tags_concert_value" translatable="false">Concert</string>
     <string name="tags_dance">Dance</string>

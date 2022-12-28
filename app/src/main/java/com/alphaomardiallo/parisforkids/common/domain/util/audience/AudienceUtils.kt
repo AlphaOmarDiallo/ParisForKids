@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.common.domain.util.events
+package com.alphaomardiallo.parisforkids.common.domain.util.audience
 
 const val AUDIENCE_ALL = "Tout public"
 const val AUDIENCE_KIDS = "Public enfants"

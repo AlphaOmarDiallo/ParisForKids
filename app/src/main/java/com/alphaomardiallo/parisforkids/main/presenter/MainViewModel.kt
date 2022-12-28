@@ -16,9 +16,9 @@ import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetE
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.InsertEventUseCase
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.IsEventExistUseCase
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.UpdateEventUseCase
-import com.alphaomardiallo.parisforkids.common.domain.util.events.AUDIENCE_ALL
-import com.alphaomardiallo.parisforkids.common.domain.util.events.AUDIENCE_KIDS
-import com.alphaomardiallo.parisforkids.common.domain.util.events.AUDIENCE_KIDS_AND_TEENS
+import com.alphaomardiallo.parisforkids.common.domain.util.audience.AUDIENCE_ALL
+import com.alphaomardiallo.parisforkids.common.domain.util.audience.AUDIENCE_KIDS
+import com.alphaomardiallo.parisforkids.common.domain.util.audience.AUDIENCE_KIDS_AND_TEENS
 import com.alphaomardiallo.parisforkids.common.domain.util.connectivity.Connectivity
 import com.alphaomardiallo.parisforkids.common.domain.util.connectivity.ConnectivityImp
 import com.alphaomardiallo.parisforkids.common.domain.util.date.DateUtilImp
