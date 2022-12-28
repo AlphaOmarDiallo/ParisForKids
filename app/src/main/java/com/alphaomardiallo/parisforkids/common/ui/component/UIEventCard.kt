@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.core.text.parseAsHtml
 import coil.compose.AsyncImage
@@ -69,7 +70,7 @@ fun UIEventCard(modifier: Modifier, event: UiEventCard) {
                         horizontalArrangement = Arrangement.Start
                     ) {
                         event.tags?.map {
-                            EventTagChip(tag = it!!, modifier = modifier)
+                            EventTagChip(tag = stringResource(id = it!!.name), modifier = modifier, backgroundColor = it!!.backgroundColor, contentColor = it!!.contentColor)
                             Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
                         }
                     }

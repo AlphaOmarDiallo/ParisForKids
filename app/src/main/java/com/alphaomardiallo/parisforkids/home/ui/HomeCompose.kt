@@ -38,11 +38,11 @@ fun HorizontalListOfEvents(list: List<UiEventCard>) {
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun EventTagChip(tag: String, modifier: Modifier) {
+fun EventTagChip(tag: String, modifier: Modifier, backgroundColor: Color, contentColor: Color) {
     Chip(
         onClick = { /*TODO*/ },
         modifier = modifier.padding(2.dp),
-        colors = ChipDefaults.chipColors(backgroundColor = Color.Black, contentColor = Color.White)
+        colors = ChipDefaults.chipColors(backgroundColor = backgroundColor, contentColor = contentColor)
     ) {
         Text(text = tag, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
     }
