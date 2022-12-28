@@ -1,7 +1,44 @@
 package com.alphaomardiallo.parisforkids.common.domain.util.tags
 
+import android.content.Context
+import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
 import com.alphaomardiallo.parisforkids.R
+
+fun formatToTag(tags: String?, context: Context) : TagsItem?{
+    when (tags) {
+        context.getString(TagsItem.ContemporaryArt.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Workshop.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Comics.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Stroll.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Cinema.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Circus.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Concert.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Dance.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Kids.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Exhibition.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Gourmand.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.History.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Humor.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Innovation.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.LGBT.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Literature.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Music.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Nature.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Leisure.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Painting.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Photo.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Show.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Health.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Science.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Solidarity.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Musical.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Sport.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.StreetArt.value) -> return TagsItem.ContemporaryArt
+        context.getString(TagsItem.Theatre.value) -> return TagsItem.ContemporaryArt
+        else -> return null
+    }
+}
 
 sealed class TagsItem(
     var name: Int,
@@ -22,6 +59,7 @@ sealed class TagsItem(
         backgroundColor = Color.Cyan,
         contentColor = Color.White
     )
+
     object Comics : TagsItem(
         name = R.string.tags_comics,
         value = R.string.tags_comics_value,
