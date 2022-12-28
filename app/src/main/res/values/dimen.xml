@@ -13,7 +13,7 @@
     <dimen name="margin_xxx_large">40dp</dimen>
 
     //Cards
-    <dimen name="card_width_normal">330dp</dimen>
+    <dimen name="card_width_normal">340dp</dimen>
     <dimen name="card_height_normal">190dp</dimen>
 
 </resources>
