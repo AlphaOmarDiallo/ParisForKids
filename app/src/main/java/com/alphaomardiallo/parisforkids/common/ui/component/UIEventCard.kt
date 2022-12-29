@@ -9,7 +9,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -124,26 +124,101 @@ private fun EventCardTopPart(
             }
             Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Icon heart")
         }
-        Row(content = {
+        Row(verticalAlignment = Alignment.CenterVertically,
+            content = {
             SmallSpacer()
-            if (event.zipcode != null) {
-                val zipcode = formatDistrict(event.zipcode, context)
-                if (zipcode != null) {
-                    Text(
-                        text = stringResource(id = zipcode.displayName),
-                        style = Typography.body2
-                    )
-                }
-            }
-            SmallSpacer()
-            if (event.priceType != null) {
-                Text(
-                    text = "${event.priceType}",
-                    style = Typography.body2
-                )
-            }
+
+            PriceType(event)
+
+            IsPrm(event)
+
+            IsDeaf(event)
+
+            IsBlind(event)
+
+            District(event, context)
         })
     })
+}
+
+@Composable
+private fun District(
+    event: UiEventCard,
+    context: Context
+) {
+    LargeSpacer()
+    if (event.zipcode != null) {
+        val zipcode = formatDistrict(event.zipcode, context)
+        if (zipcode != null) {
+            Text(
+                text = stringResource(id = zipcode.displayName),
+                style = Typography.h4
+            )
+        }
+    }
+}
+
+@Composable
+private fun IsBlind(event: UiEventCard) {
+    val iconBlind = if (event.blind) {
+        Icons.Filled.Visibility
+    } else {
+        Icons.Filled.VisibilityOff
+    }
+
+    Icon(
+        imageVector = iconBlind,
+        contentDescription = null
+    )
+}
+
+@Composable
+private fun IsDeaf(event: UiEventCard) {
+    val iconDeaf = if (event.deaf) {
+        Icons.Filled.Hearing
+    } else {
+        Icons.Filled.HearingDisabled
+    }
+
+    Icon(
+        imageVector = iconDeaf,
+        contentDescription = null
+    )
+
+    MediumSpacer()
+}
+
+@Composable
+private fun IsPrm(event: UiEventCard) {
+    val iconPrm = if (event.prm) {
+        Icons.Filled.Accessible
+    } else {
+        Icons.Filled.NotAccessible
+    }
+
+    Icon(
+        imageVector = iconPrm,
+        contentDescription = null
+    )
+    MediumSpacer()
+}
+
+@Composable
+private fun PriceType(event: UiEventCard) {
+    if (event.priceType != null) {
+
+        val icon = if (event.priceType.equals("payant")) {
+            Icons.Filled.AttachMoney
+        } else {
+            Icons.Filled.MoneyOff
+        }
+
+        Icon(
+            imageVector = icon,
+            contentDescription = null
+        )
+    }
+    MediumSpacer()
 }
 
 @Composable
