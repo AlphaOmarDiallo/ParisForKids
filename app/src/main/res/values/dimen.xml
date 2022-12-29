@@ -14,6 +14,6 @@
 
     //Cards
     <dimen name="card_width_normal">340dp</dimen>
-    <dimen name="card_height_normal">190dp</dimen>
+    <dimen name="card_height_normal">200dp</dimen>
 
 </resources>
