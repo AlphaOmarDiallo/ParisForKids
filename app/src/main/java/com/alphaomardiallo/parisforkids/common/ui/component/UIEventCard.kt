@@ -48,57 +48,96 @@ fun UIEventCard(modifier: Modifier, event: UiEventCard) {
             contentScale = ContentScale.Crop,
             modifier = modifier.fillMaxSize()
         )
-        Box(
+        CardContent(modifier, gradient, event)
+    }
+}
+
+@Composable
+private fun CardContent(
+    modifier: Modifier,
+    gradient: Brush,
+    event: UiEventCard
+) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(brush = gradient)
+    ) {
+        Column(
             modifier = modifier
                 .fillMaxSize()
-                .background(brush = gradient)
+                .padding(dimensionResource(id = R.dimen.margin_small)),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
-            Column(
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(dimensionResource(id = R.dimen.margin_small)),
-                verticalArrangement = Arrangement.SpaceBetween
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceAround,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = modifier.fillMaxWidth()
-                ) {
-                    Row(
-                        modifier = modifier
-                            .fillMaxWidth(0.9f),
-                        horizontalArrangement = Arrangement.Start
-                    ) {
-                        event.tags?.map {
-                            EventTagChip(tag = stringResource(id = it!!.name), modifier = modifier, backgroundColor = it!!.backgroundColor, contentColor = it!!.contentColor)
-                            Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
-                        }
+            EventCardTopPart(modifier, event)
+            Spacer(modifier.size(dimensionResource(id = R.dimen.margin_medium)))
+            EventCardBottomPart(modifier, event)
+        }
+    }
+}
+
+@Composable
+private fun EventCardTopPart(
+    modifier: Modifier,
+    event: UiEventCard
+) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.fillMaxWidth()
+    ) {
+        Row(
+            modifier = modifier
+                .fillMaxWidth(0.9f),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            if (!event.tags.isNullOrEmpty()) {
+                event.tags!!.map {
+                    if (it != null) {
+                        EventTagChip(
+                            tag = stringResource(id = it.name),
+                            modifier = modifier,
+                            backgroundColor = it.backgroundColor,
+                            contentColor = it.contentColor
+                        )
+                        Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
                     }
-                    Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Icon heart")
-                }
-                Spacer(modifier.size(dimensionResource(id = R.dimen.margin_medium)))
-                Column(
-                    verticalArrangement = Arrangement.Bottom,
-                    modifier = modifier.fillMaxSize()
-                ) {
-                    Text(text = event.title!!, style = Typography.h3)
-                    Spacer(modifier.size(dimensionResource(id = R.dimen.margin_medium)))
-                    Text(
-                        text = event.leadText!!,
-                        style = Typography.h4,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
-                    Text(text = event.audience!!, style = Typography.body1)
-                    Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
-                    Text(
-                        text = "${event.dateDescription?.parseAsHtml()}  -  ${event.zipcode}  -  ${event.priceType}",
-                        style = Typography.body2
-                    )
                 }
             }
         }
+        Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Icon heart")
+    }
+}
 
+@Composable
+private fun EventCardBottomPart(
+    modifier: Modifier,
+    event: UiEventCard
+) {
+    Column(
+        verticalArrangement = Arrangement.Bottom,
+        modifier = modifier.fillMaxSize()
+    ) {
+        Text(text = event.title!!, style = Typography.h3)
+        Spacer(modifier.size(dimensionResource(id = R.dimen.margin_medium)))
+        if (event.leadText != null){
+            Text(
+                text = event.leadText!!,
+                style = Typography.h4,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+            Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
+        }
+        if (event.audience != null) {
+            Text(text = event.audience!!, style = Typography.body1)
+            Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
+        }
+        if (event.dateDescription != null){
+            Text(
+                text = "${event.dateDescription?.parseAsHtml()}  -  ${event.zipcode}  -  ${event.priceType}",
+                style = Typography.body2
+            )
+        }
     }
 }
