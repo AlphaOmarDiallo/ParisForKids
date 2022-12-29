@@ -31,27 +31,27 @@ fun HomeScreen(
                 .fillMaxSize()
                 .background(color = blackOverlay)
                 .wrapContentSize(Alignment.Center)
-                .padding(vertical = dimensionResource(id = R.dimen.margin_small))
+                .padding(horizontal = dimensionResource(id = R.dimen.margin_small))
                 .verticalScroll(rememberScrollState()),
             content = {
-                HomeContent(eventState)
+                HomeContent(eventState, modifier = Modifier)
             }
         )
     }
 }
 
 @Composable
-private fun HomeContent(eventState: List<UiEventCard>) {
-    SectionTitle(title = stringResource(id = R.string.home_title_section_to_do_today))
+private fun HomeContent(eventState: List<UiEventCard>, modifier: Modifier) {
+    SectionTitle(title = stringResource(id = R.string.home_title_section_to_do_today), modifier = modifier)
     MediumSpacer()
     HorizontalListOfEvents(list = eventState)
-    SectionTitle(title = stringResource(id = R.string.home_title_section_to_this_weekend))
+    SectionTitle(title = stringResource(id = R.string.home_title_section_to_this_weekend), modifier = modifier)
     MediumSpacer()
     HorizontalListOfEvents(list = eventState)
-    SectionTitle(title = stringResource(id = R.string.home_title_section_to_do_this_week))
+    SectionTitle(title = stringResource(id = R.string.home_title_section_to_do_this_week), modifier = modifier)
     MediumSpacer()
     HorizontalListOfEvents(list = eventState)
-    SectionTitle(title = stringResource(id = R.string.home_title_section_by_theme))
+    SectionTitle(title = stringResource(id = R.string.home_title_section_by_theme), modifier = modifier)
     MediumSpacer()
     HorizontalListOfEvents(list = eventState)
 }
