@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -122,7 +123,10 @@ private fun EventCardTopPart(
                     }
                 }
             }
-            Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Icon heart")
+            Icon(
+                imageVector = Icons.Filled.Favorite,
+                contentDescription = stringResource(id = R.string.icon_content_description_heart)
+            )
         }
         Row(verticalAlignment = Alignment.CenterVertically,
             content = {
@@ -177,7 +181,7 @@ private fun District(
     event: UiEventCard,
     context: Context
 ) {
-    LargeSpacer()
+    MediumSpacer()
     if (event.zipcode != null) {
         val zipcode = formatDistrict(event.zipcode, context)
         if (zipcode != null) {
@@ -187,51 +191,6 @@ private fun District(
             )
         }
     }
-}
-
-@Composable
-private fun IsBlind(blind: Boolean) {
-    val iconBlind = if (blind) {
-        Icons.Filled.Visibility
-    } else {
-        Icons.Filled.VisibilityOff
-    }
-
-    Icon(
-        imageVector = iconBlind,
-        contentDescription = null
-    )
-}
-
-@Composable
-private fun IsDeaf(deaf: Boolean) {
-    val iconDeaf = if (deaf) {
-        Icons.Filled.Hearing
-    } else {
-        Icons.Filled.HearingDisabled
-    }
-
-    Icon(
-        imageVector = iconDeaf,
-        contentDescription = null
-    )
-
-    MediumSpacer()
-}
-
-@Composable
-private fun IsPrm(prm: Boolean) {
-    val iconPrm = if (prm) {
-        Icons.Filled.Accessible
-    } else {
-        Icons.Filled.NotAccessible
-    }
-
-    Icon(
-        imageVector = iconPrm,
-        contentDescription = null
-    )
-    MediumSpacer()
 }
 
 @Composable
@@ -248,6 +207,46 @@ private fun PriceType(priceType: String?) {
             imageVector = icon,
             contentDescription = null
         )
+        MediumSpacer()
     }
-    MediumSpacer()
+}
+
+@Composable
+private fun IsPrm(prm: Boolean) {
+    if (prm) {
+        showIcon(
+            icon = Icons.Filled.Accessible,
+            contentDescription = R.string.icon_content_description_prm
+        )
+        MediumSpacer()
+    }
+}
+
+@Composable
+private fun IsDeaf(deaf: Boolean) {
+    if (deaf) {
+        showIcon(
+            icon = Icons.Filled.Hearing,
+            contentDescription = R.string.icon_content_description_deaf
+        )
+        MediumSpacer()
+    }
+}
+
+@Composable
+private fun IsBlind(blind: Boolean) {
+    if (blind) {
+        showIcon(
+            icon = Icons.Filled.Visibility,
+            contentDescription = R.string.icon_content_description_blind
+        )
+    }
+}
+
+@Composable
+private fun showIcon(icon: ImageVector, contentDescription: Int) {
+    Icon(
+        imageVector = icon,
+        contentDescription = stringResource(id = R.string.icon_content_description_heart)
+    )
 }

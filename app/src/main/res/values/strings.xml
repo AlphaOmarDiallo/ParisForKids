@@ -178,6 +178,13 @@
     <string name="district_20_value">Paris 20th</string>
     <!-- endregion -->
 
+    <!-- region UI Event Card -->
+    <string name="icon_content_description_heart">Icon representing a heart to add as favourite</string>
+    <string name="icon_content_description_blind">Icon representing an eye to signal accessible to impaired visually</string>
+    <string name="icon_content_description_deaf">Icon representing an eye to signal accessible to deaf</string>
+    <string name="icon_content_description_prm">Icon representing an eye to signal accessible to PRM</string>
+    <!-- endregion -->
+
     <!-- region Home screen -->
     <string name="home_title_section_to_do_today">To do today</string>
     <string name="home_title_section_to_this_weekend">To do this weekend</string>
