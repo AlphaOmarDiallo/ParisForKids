@@ -2,6 +2,7 @@ package com.alphaomardiallo.parisforkids.main.ui
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -18,7 +19,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.alphaomardiallo.parisforkids.R
-import com.alphaomardiallo.parisforkids.common.domain.util.snackBar.createSnackBar
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.main.presenter.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background,
 
                     ) {
-                    MainScreen(viewModel)
+                    MainScreen(this)
                 }
             }
         }
@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
 // Composable
 
 @Composable
-fun MainScreen(viewModel: MainViewModel) {
+fun MainScreen(context: Context) {
 
     val navController = rememberNavController()
     val scaffoldState = rememberScaffoldState()
@@ -83,7 +83,7 @@ fun MainScreen(viewModel: MainViewModel) {
             modifier = Modifier.padding(innerPadding)
         ) {
             MainContent()
-            Navigation(navController)
+            Navigation(navController, context)
         }
     }
 }
@@ -93,7 +93,11 @@ private fun handleSnackBarResult(
 ) {
     when (snackBarResult) {
         SnackbarResult.Dismissed -> Log.e(TAG, "handleSnackBarResult: ${snackBarResult.name}", null)
-        SnackbarResult.ActionPerformed -> Log.e(TAG, "handleSnackBarResult: ${snackBarResult.name}", null)
+        SnackbarResult.ActionPerformed -> Log.e(
+            TAG,
+            "handleSnackBarResult: ${snackBarResult.name}",
+            null
+        )
         else -> {}
     }
 }

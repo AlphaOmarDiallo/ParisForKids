@@ -1,5 +1,6 @@
 package com.alphaomardiallo.parisforkids.main.ui
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -132,10 +133,10 @@ fun MainContent() {
 }
 
 @Composable
-fun Navigation(navController: NavHostController) {
+fun Navigation(navController: NavHostController, context: Context) {
     NavHost(navController = navController, startDestination = NavigationItem.Home.route) {
         composable(route = NavigationItem.Home.route) {
-            HomeScreen()
+            HomeScreen(context = context)
         }
 
         composable(route = NavigationItem.Events.route) {
