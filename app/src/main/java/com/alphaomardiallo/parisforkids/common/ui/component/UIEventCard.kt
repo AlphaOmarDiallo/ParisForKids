@@ -36,20 +36,32 @@ fun UIEventCard(modifier: Modifier, event: UiEventCard) {
         contentColor = MaterialTheme.colors.onPrimary,
         elevation = dimensionResource(id = R.dimen.elevation_normal)
     ) {
-        val gradient = Brush.verticalGradient(
-            colors = listOf(Color.Transparent, Color.Black),
-            startY = 0f,
-            endY = 450f
-        )
-
-        AsyncImage(
-            model = event.coverImage,
-            contentDescription = event.coverCredit,
-            contentScale = ContentScale.Crop,
-            modifier = modifier.fillMaxSize()
-        )
+        val gradient = overlay()
+        EventImage(event, modifier)
         CardContent(modifier, gradient, event)
     }
+}
+
+@Composable
+private fun overlay(): Brush {
+    return Brush.verticalGradient(
+        colors = listOf(Color.Transparent, Color.Black),
+        startY = 0f,
+        endY = 450f
+    )
+}
+
+@Composable
+private fun EventImage(
+    event: UiEventCard,
+    modifier: Modifier
+) {
+    AsyncImage(
+        model = event.coverImage,
+        contentDescription = event.coverCredit,
+        contentScale = ContentScale.Crop,
+        modifier = modifier.fillMaxSize()
+    )
 }
 
 @Composable
