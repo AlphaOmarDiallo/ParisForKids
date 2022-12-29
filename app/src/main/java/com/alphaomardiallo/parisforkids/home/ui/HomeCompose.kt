@@ -20,7 +20,7 @@ import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 
 @Composable
 fun SectionTitle(title: String){
-    Text(text = title, style = Typography.h2)
+    Text(text = title, style = Typography.h1)
 }
 
 @Composable
@@ -28,7 +28,6 @@ fun HorizontalListOfEvents(list: List<UiEventCard>) {
     Box(modifier = Modifier.fillMaxWidth()) {
         LazyRow {
             items(list) { event ->
-                SmallSpacer()
                 UIEventCard(modifier = Modifier, event = event)
                 SmallSpacer()
             }
