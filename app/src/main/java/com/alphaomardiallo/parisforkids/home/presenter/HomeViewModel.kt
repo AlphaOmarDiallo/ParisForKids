@@ -2,6 +2,7 @@ package com.alphaomardiallo.parisforkids.home.presenter
 
 import android.app.Application
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,9 +21,13 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     val allEventsAsUIEventCard: MutableState<List<UiEventCard>> = mutableStateOf(ArrayList())
+    
+    private val _eventState = mutableStateListOf<UiEventCard>()
+    val eventState: List<UiEventCard> = _eventState
 
     init {
         getAllEventsAsUiEventCard()
+        getAllEventsAsState()
     }
 
     private fun getAllEventsAsUiEventCard() {
@@ -33,6 +38,15 @@ class HomeViewModel @Inject constructor(
                 temp.add(event.toUIEventCard(context))
             }
             allEventsAsUIEventCard.value = temp
+        }
+    }
+
+    private fun getAllEventsAsState(){
+        viewModelScope.launch {
+            val allEvents = getEventsUseCase.getAllEvents().first()
+            allEvents.map { event ->
+                _eventState.add(event.toUIEventCard(context))
+            }
         }
     }
 }

@@ -18,14 +18,14 @@ fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
     ParisForKidsTheme {
-        val allEvents = homeViewModel.allEventsAsUIEventCard.value
+        val eventState = homeViewModel.eventState
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = Color.Transparent)
                 .wrapContentSize(Alignment.Center)
         ) {
-            HorizontalListOfEvents(list = allEvents)
+            HorizontalListOfEvents(list = eventState)
         }
     }
 }
