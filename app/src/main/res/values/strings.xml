@@ -2,7 +2,7 @@
     <string name="app_name">ParisForKids</string>
     <string name="app_name_formatted"> Paris for Kids</string>
 
-    <!-- Main activity -->
+    <!-- region Main activity -->
     <string name="background_image_content_description">Vector image of Paris monuments designed by upklyak / Freepik</string>
 
     <string name="top_app_bar_icon_content_description">Icon representing a menu</string>
@@ -29,24 +29,28 @@
     <string name="bottom_navigation_label_settings_activities">Settings</string>
 
     <string name="top_app_bar_icon_wifi_content_description">Icon representing wifi signal</string>
+    <!-- endregion -->
 
-    <!-- Settings activity -->
+    <!-- region Settings activity -->
     <string name="title_activity_settings">SettingsActivity</string>
+    <!-- endregion -->
 
-    <!-- Navigation -->
+    <!-- region Navigation -->
     <string name="home_screen">Home Screen</string>
     <string name="events_screen">Events Screen</string>
     <string name="search_screen">Search Screen</string>
     <string name="favorite_screen">Favorite Screen</string>
     <string name="settings_screen">Settings Screen</string>
+    <!-- endregion -->
 
-    <!-- Connectivity util -->
+    <!-- region Connectivity util -->
     <string name="connectivity_available">You are connected to internet</string>
     <string name="connectivity_unavailable">Your internet connection in unavailable</string>
     <string name="connectivity_losing">You are losing you internet connection</string>
     <string name="connectivity_lost">You are not connected to internet</string>
+    <!-- endregion -->
 
-    <!-- Tags -->
+    <!-- region Tags -->
     <string name="tags_contemporary_art">Contemporary art</string>
     <string name="tags_contemporary_art_value" translatable="false">Art contemporain</string>
     <string name="tags_workshop">Workshop</string>
@@ -105,11 +109,75 @@
     <string name="tags_street_art_value" translatable="false">Street art</string>
     <string name="tags_theater">Theatre</string>
     <string name="tags_theatre_value" translatable="false">Théâtre</string>
+    <!-- endregion -->
 
-    <!-- Home screen -->
+    <!-- region District -->
+    <string name="district_1">75001</string>
+    <string name="district_1_value">Paris 1st</string>
+
+    <string name="district_2">75002</string>
+    <string name="district_2_value">Paris 2nd</string>
+
+    <string name="district_3">75003</string>
+    <string name="district_3_value">Paris 3rd</string>
+
+    <string name="district_4">75004</string>
+    <string name="district_4_value">Paris 4th</string>
+
+    <string name="district_5">75005</string>
+    <string name="district_5_value">Paris 5th</string>
+
+    <string name="district_6">75006</string>
+    <string name="district_6_value">Paris 6th</string>
+
+    <string name="district_7">75007</string>
+    <string name="district_7_value">Paris 7th</string>
+
+    <string name="district_8">75008</string>
+    <string name="district_8_value">Paris 8th</string>
+
+    <string name="district_9">75009</string>
+    <string name="district_9_value">Paris 9th</string>
+
+    <string name="district_10">75010</string>
+    <string name="district_10_value">Paris 10th</string>
+
+    <string name="district_11">750011</string>
+    <string name="district_11_value">Paris 11th</string>
+
+    <string name="district_12">750012</string>
+    <string name="district_12_value">Paris 12th</string>
+
+    <string name="district_13">75013</string>
+    <string name="district_13_value">Paris 13th</string>
+
+    <string name="district_14">75014</string>
+    <string name="district_14_value">Paris 14th</string>
+
+    <string name="district_15">75015</string>
+    <string name="district_15_value">Paris 15th</string>
+
+    <string name="district_16">75016</string>
+    <string name="district_16_value">Paris 16th</string>
+
+    <string name="district_17">75017</string>
+    <string name="district_17_value">Paris 17th</string>
+
+    <string name="district_18">75018</string>
+    <string name="district_18_value">Paris 18th</string>
+
+    <string name="district_19">75019</string>
+    <string name="district_19_value">Paris 19th</string>
+
+    <string name="district_20">75020</string>
+    <string name="district_20_value">Paris 20th</string>
+    <!-- endregion -->
+
+    <!-- region Home screen -->
     <string name="home_title_section_to_do_today">To do today</string>
     <string name="home_title_section_to_this_weekend">To do this weekend</string>
     <string name="home_title_section_to_do_this_week">To do this week</string>
     <string name="home_title_section_by_theme">By theme</string>
+    <!-- endregion -->
 
 </resources>
