@@ -1,9 +1,7 @@
 package com.alphaomardiallo.parisforkids.home.presenter
 
 import android.app.Application
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetEventsUseCase
@@ -20,28 +18,14 @@ class HomeViewModel @Inject constructor(
     private val getEventsUseCase: GetEventsUseCase,
 ) : ViewModel() {
 
-    val allEventsAsUIEventCard: MutableState<List<UiEventCard>> = mutableStateOf(ArrayList())
-    
-    private val _eventState = mutableStateListOf<UiEventCard>()
-    val eventState: List<UiEventCard> = _eventState
-
     init {
-        getAllEventsAsUiEventCard()
         getAllEventsAsState()
     }
 
-    private fun getAllEventsAsUiEventCard() {
-        val temp = mutableListOf<UiEventCard>()
-        viewModelScope.launch {
-            val allEvents = getEventsUseCase.getAllEvents().first()
-            allEvents.map { event ->
-                temp.add(event.toUIEventCard(context))
-            }
-            allEventsAsUIEventCard.value = temp
-        }
-    }
+    private val _eventState = mutableStateListOf<UiEventCard>()
+    val eventState: List<UiEventCard> = _eventState
 
-    private fun getAllEventsAsState(){
+    private fun getAllEventsAsState() {
         viewModelScope.launch {
             val allEvents = getEventsUseCase.getAllEvents().first()
             allEvents.map { event ->
