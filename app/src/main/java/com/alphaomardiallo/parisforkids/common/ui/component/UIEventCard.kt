@@ -1,5 +1,6 @@
 package com.alphaomardiallo.parisforkids.common.ui.component
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,12 +22,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.core.text.parseAsHtml
 import coil.compose.AsyncImage
 import com.alphaomardiallo.parisforkids.R
+import com.alphaomardiallo.parisforkids.common.domain.util.district.formatDistrict
 import com.alphaomardiallo.parisforkids.common.ui.theme.Typography
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 import com.alphaomardiallo.parisforkids.home.ui.EventTagChip
 
 @Composable
-fun UIEventCard(modifier: Modifier, event: UiEventCard) {
+fun UIEventCard(modifier: Modifier, event: UiEventCard, context: Context) {
     Card(
         modifier = modifier
             .width(dimensionResource(id = R.dimen.card_width_normal))
@@ -38,7 +40,7 @@ fun UIEventCard(modifier: Modifier, event: UiEventCard) {
     ) {
         val gradient = overlay()
         EventImage(event, modifier)
-        CardContent(modifier, gradient, event)
+        CardContent(modifier, gradient, event, context)
     }
 }
 
@@ -68,7 +70,8 @@ private fun EventImage(
 private fun CardContent(
     modifier: Modifier,
     gradient: Brush,
-    event: UiEventCard
+    event: UiEventCard,
+    context: Context
 ) {
     Box(
         modifier = modifier
@@ -81,7 +84,7 @@ private fun CardContent(
                 .padding(dimensionResource(id = R.dimen.margin_small)),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            EventCardTopPart(modifier, event)
+            EventCardTopPart(modifier, event, context)
             Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
             EventCardBottomPart(modifier, event)
         }
@@ -91,7 +94,8 @@ private fun CardContent(
 @Composable
 private fun EventCardTopPart(
     modifier: Modifier,
-    event: UiEventCard
+    event: UiEventCard,
+    context: Context
 ) {
     Column(content = {
         Row(
@@ -123,10 +127,13 @@ private fun EventCardTopPart(
         Row(content = {
             SmallSpacer()
             if (event.zipcode != null) {
-                Text(
-                    text = "${event.zipcode}",
-                    style = Typography.body2
-                )
+                val zipcode = formatDistrict(event.zipcode, context)
+                if (zipcode != null) {
+                    Text(
+                        text = stringResource(id = zipcode.displayName),
+                        style = Typography.body2
+                    )
+                }
             }
             SmallSpacer()
             if (event.priceType != null) {

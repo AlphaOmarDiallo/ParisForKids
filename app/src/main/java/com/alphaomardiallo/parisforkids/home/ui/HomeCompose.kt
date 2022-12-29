@@ -1,5 +1,6 @@
 package com.alphaomardiallo.parisforkids.home.ui
 
+import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -21,7 +22,7 @@ import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 
 
 @Composable
-fun SectionTitle(title: String, modifier: Modifier){
+fun SectionTitle(title: String, modifier: Modifier) {
     Row(modifier.padding(vertical = dimensionResource(id = R.dimen.margin_medium)),
         horizontalArrangement = Arrangement.SpaceBetween,
         content = {
@@ -31,11 +32,11 @@ fun SectionTitle(title: String, modifier: Modifier){
 }
 
 @Composable
-fun HorizontalListOfEvents(list: List<UiEventCard>) {
+fun HorizontalListOfEvents(list: List<UiEventCard>, context: Context) {
     Box(modifier = Modifier.fillMaxWidth()) {
         LazyRow {
             items(list) { event ->
-                UIEventCard(modifier = Modifier, event = event)
+                UIEventCard(modifier = Modifier, event = event, context = context)
                 SmallSpacer()
             }
         }
@@ -48,7 +49,10 @@ fun EventTagChip(tag: String, modifier: Modifier, backgroundColor: Color, conten
     Chip(
         onClick = { /*TODO*/ },
         modifier = modifier.padding(2.dp),
-        colors = ChipDefaults.chipColors(backgroundColor = backgroundColor, contentColor = contentColor)
+        colors = ChipDefaults.chipColors(
+            backgroundColor = backgroundColor,
+            contentColor = contentColor
+        )
     ) {
         Text(text = tag, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
     }
@@ -56,7 +60,7 @@ fun EventTagChip(tag: String, modifier: Modifier, backgroundColor: Color, conten
 
 @Preview
 @Composable
-fun Preview(){
+fun Preview() {
     ParisForKidsTheme() {
         SectionTitle(title = "A faire aujourd'hui", modifier = Modifier)
     }

@@ -1,6 +1,7 @@
 package com.alphaomardiallo.parisforkids.home.ui
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -22,7 +23,8 @@ import com.alphaomardiallo.parisforkids.home.presenter.HomeViewModel
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun HomeScreen(
-    homeViewModel: HomeViewModel = hiltViewModel()
+    homeViewModel: HomeViewModel = hiltViewModel(),
+    context: Context
 ) {
     ParisForKidsTheme {
         val eventState = homeViewModel.eventState
@@ -34,24 +36,24 @@ fun HomeScreen(
                 .padding(horizontal = dimensionResource(id = R.dimen.margin_small))
                 .verticalScroll(rememberScrollState()),
             content = {
-                HomeContent(eventState, modifier = Modifier)
+                HomeContent(eventState, modifier = Modifier, context = context)
             }
         )
     }
 }
 
 @Composable
-private fun HomeContent(eventState: List<UiEventCard>, modifier: Modifier) {
+private fun HomeContent(eventState: List<UiEventCard>, modifier: Modifier, context: Context) {
     SectionTitle(title = stringResource(id = R.string.home_title_section_to_do_today), modifier = modifier)
     MediumSpacer()
-    HorizontalListOfEvents(list = eventState)
+    HorizontalListOfEvents(list = eventState, context = context)
     SectionTitle(title = stringResource(id = R.string.home_title_section_to_this_weekend), modifier = modifier)
     MediumSpacer()
-    HorizontalListOfEvents(list = eventState)
+    HorizontalListOfEvents(list = eventState, context = context)
     SectionTitle(title = stringResource(id = R.string.home_title_section_to_do_this_week), modifier = modifier)
     MediumSpacer()
-    HorizontalListOfEvents(list = eventState)
+    HorizontalListOfEvents(list = eventState, context = context)
     SectionTitle(title = stringResource(id = R.string.home_title_section_by_theme), modifier = modifier)
     MediumSpacer()
-    HorizontalListOfEvents(list = eventState)
+    HorizontalListOfEvents(list = eventState, context = context)
 }
