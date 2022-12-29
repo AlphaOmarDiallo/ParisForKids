@@ -214,7 +214,7 @@ private fun PriceType(priceType: String?) {
 @Composable
 private fun IsPrm(prm: Boolean) {
     if (prm) {
-        showIcon(
+        ShowIcon(
             icon = Icons.Filled.Accessible,
             contentDescription = R.string.icon_content_description_prm
         )
@@ -225,7 +225,7 @@ private fun IsPrm(prm: Boolean) {
 @Composable
 private fun IsDeaf(deaf: Boolean) {
     if (deaf) {
-        showIcon(
+        ShowIcon(
             icon = Icons.Filled.Hearing,
             contentDescription = R.string.icon_content_description_deaf
         )
@@ -236,7 +236,7 @@ private fun IsDeaf(deaf: Boolean) {
 @Composable
 private fun IsBlind(blind: Boolean) {
     if (blind) {
-        showIcon(
+        ShowIcon(
             icon = Icons.Filled.Visibility,
             contentDescription = R.string.icon_content_description_blind
         )
@@ -244,9 +244,9 @@ private fun IsBlind(blind: Boolean) {
 }
 
 @Composable
-private fun showIcon(icon: ImageVector, contentDescription: Int) {
+private fun ShowIcon(icon: ImageVector, contentDescription: Int) {
     Icon(
         imageVector = icon,
-        contentDescription = stringResource(id = R.string.icon_content_description_heart)
+        contentDescription = stringResource(id = contentDescription)
     )
 }
