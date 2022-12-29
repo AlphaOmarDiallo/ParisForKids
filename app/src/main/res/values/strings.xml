@@ -2,6 +2,11 @@
     <string name="app_name">ParisForKids</string>
     <string name="app_name_formatted"> Paris for Kids</string>
 
+    <!-- region Constant -->
+    <string name="not_free">payant</string>
+    <string name="free">gratuit</string>
+    <!-- endregion -->
+
     <!-- region Main activity -->
     <string name="background_image_content_description">Vector image of Paris monuments designed by upklyak / Freepik</string>
 

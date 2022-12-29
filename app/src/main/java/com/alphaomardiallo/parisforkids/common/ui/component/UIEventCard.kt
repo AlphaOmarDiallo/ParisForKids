@@ -126,99 +126,19 @@ private fun EventCardTopPart(
         }
         Row(verticalAlignment = Alignment.CenterVertically,
             content = {
-            SmallSpacer()
+                SmallSpacer()
 
-            PriceType(event)
+                PriceType(event.priceType)
 
-            IsPrm(event)
+                IsPrm(event.prm)
 
-            IsDeaf(event)
+                IsDeaf(event.deaf)
 
-            IsBlind(event)
+                IsBlind(event.blind)
 
-            District(event, context)
-        })
+                District(event, context)
+            })
     })
-}
-
-@Composable
-private fun District(
-    event: UiEventCard,
-    context: Context
-) {
-    LargeSpacer()
-    if (event.zipcode != null) {
-        val zipcode = formatDistrict(event.zipcode, context)
-        if (zipcode != null) {
-            Text(
-                text = stringResource(id = zipcode.displayName),
-                style = Typography.h4
-            )
-        }
-    }
-}
-
-@Composable
-private fun IsBlind(event: UiEventCard) {
-    val iconBlind = if (event.blind) {
-        Icons.Filled.Visibility
-    } else {
-        Icons.Filled.VisibilityOff
-    }
-
-    Icon(
-        imageVector = iconBlind,
-        contentDescription = null
-    )
-}
-
-@Composable
-private fun IsDeaf(event: UiEventCard) {
-    val iconDeaf = if (event.deaf) {
-        Icons.Filled.Hearing
-    } else {
-        Icons.Filled.HearingDisabled
-    }
-
-    Icon(
-        imageVector = iconDeaf,
-        contentDescription = null
-    )
-
-    MediumSpacer()
-}
-
-@Composable
-private fun IsPrm(event: UiEventCard) {
-    val iconPrm = if (event.prm) {
-        Icons.Filled.Accessible
-    } else {
-        Icons.Filled.NotAccessible
-    }
-
-    Icon(
-        imageVector = iconPrm,
-        contentDescription = null
-    )
-    MediumSpacer()
-}
-
-@Composable
-private fun PriceType(event: UiEventCard) {
-    if (event.priceType != null) {
-
-        val icon = if (event.priceType.equals("payant")) {
-            Icons.Filled.AttachMoney
-        } else {
-            Icons.Filled.MoneyOff
-        }
-
-        Icon(
-            imageVector = icon,
-            contentDescription = null
-        )
-    }
-    MediumSpacer()
 }
 
 @Composable
@@ -250,4 +170,84 @@ private fun EventCardBottomPart(
             )
         }
     }
+}
+
+@Composable
+private fun District(
+    event: UiEventCard,
+    context: Context
+) {
+    LargeSpacer()
+    if (event.zipcode != null) {
+        val zipcode = formatDistrict(event.zipcode, context)
+        if (zipcode != null) {
+            Text(
+                text = stringResource(id = zipcode.displayName),
+                style = Typography.h4
+            )
+        }
+    }
+}
+
+@Composable
+private fun IsBlind(blind: Boolean) {
+    val iconBlind = if (blind) {
+        Icons.Filled.Visibility
+    } else {
+        Icons.Filled.VisibilityOff
+    }
+
+    Icon(
+        imageVector = iconBlind,
+        contentDescription = null
+    )
+}
+
+@Composable
+private fun IsDeaf(deaf: Boolean) {
+    val iconDeaf = if (deaf) {
+        Icons.Filled.Hearing
+    } else {
+        Icons.Filled.HearingDisabled
+    }
+
+    Icon(
+        imageVector = iconDeaf,
+        contentDescription = null
+    )
+
+    MediumSpacer()
+}
+
+@Composable
+private fun IsPrm(prm: Boolean) {
+    val iconPrm = if (prm) {
+        Icons.Filled.Accessible
+    } else {
+        Icons.Filled.NotAccessible
+    }
+
+    Icon(
+        imageVector = iconPrm,
+        contentDescription = null
+    )
+    MediumSpacer()
+}
+
+@Composable
+private fun PriceType(priceType: String?) {
+    if (priceType != null) {
+
+        val icon = if (priceType == stringResource(id = R.string.not_free)) {
+            Icons.Filled.AttachMoney
+        } else {
+            Icons.Filled.MoneyOff
+        }
+
+        Icon(
+            imageVector = icon,
+            contentDescription = null
+        )
+    }
+    MediumSpacer()
 }
