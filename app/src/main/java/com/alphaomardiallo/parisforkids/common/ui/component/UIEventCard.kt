@@ -82,7 +82,7 @@ private fun CardContent(
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             EventCardTopPart(modifier, event)
-            Spacer(modifier.size(dimensionResource(id = R.dimen.margin_medium)))
+            Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
             EventCardBottomPart(modifier, event)
         }
     }
@@ -93,32 +93,50 @@ private fun EventCardTopPart(
     modifier: Modifier,
     event: UiEventCard
 ) {
-    Row(
-        horizontalArrangement = Arrangement.SpaceAround,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.fillMaxWidth()
-    ) {
+    Column(content = {
         Row(
-            modifier = modifier
-                .fillMaxWidth(0.9f),
-            horizontalArrangement = Arrangement.Start
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier.fillMaxWidth()
         ) {
-            if (!event.tags.isNullOrEmpty()) {
-                event.tags!!.map {
-                    if (it != null) {
-                        EventTagChip(
-                            tag = stringResource(id = it.name),
-                            modifier = modifier,
-                            backgroundColor = it.backgroundColor,
-                            contentColor = it.contentColor
-                        )
-                        Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
+            Row(
+                modifier = modifier
+                    .fillMaxWidth(0.9f),
+                horizontalArrangement = Arrangement.Start
+            ) {
+                if (!event.tags.isNullOrEmpty()) {
+                    event.tags!!.map {
+                        if (it != null) {
+                            EventTagChip(
+                                tag = stringResource(id = it.name),
+                                modifier = modifier,
+                                backgroundColor = it.backgroundColor,
+                                contentColor = it.contentColor
+                            )
+                            Spacer(modifier.size(dimensionResource(id = R.dimen.margin_x_small)))
+                        }
                     }
                 }
             }
+            Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Icon heart")
         }
-        Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Icon heart")
-    }
+        Row(content = {
+            SmallSpacer()
+            if (event.zipcode != null) {
+                Text(
+                    text = "${event.zipcode}",
+                    style = Typography.body2
+                )
+            }
+            SmallSpacer()
+            if (event.priceType != null) {
+                Text(
+                    text = "${event.priceType}",
+                    style = Typography.body2
+                )
+            }
+        })
+    })
 }
 
 @Composable
@@ -131,24 +149,22 @@ private fun EventCardBottomPart(
         modifier = modifier.fillMaxSize()
     ) {
         Text(text = event.title!!, style = Typography.h3)
-        Spacer(modifier.size(dimensionResource(id = R.dimen.margin_medium)))
-        if (event.leadText != null){
+        Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
+        if (event.leadText != null) {
             Text(
                 text = event.leadText!!,
-                style = Typography.h4,
+                style = Typography.body1,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
             Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
         }
-        if (event.audience != null) {
-            Text(text = event.audience!!, style = Typography.body1)
-            Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
-        }
-        if (event.dateDescription != null){
+        if (event.dateDescription != null) {
             Text(
-                text = "${event.dateDescription?.parseAsHtml()}  -  ${event.zipcode}  -  ${event.priceType}",
-                style = Typography.body2
+                text = "${event.dateDescription?.parseAsHtml()}",
+                style = Typography.body2,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
