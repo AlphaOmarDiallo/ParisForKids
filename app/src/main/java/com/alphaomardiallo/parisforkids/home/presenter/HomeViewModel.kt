@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val context: Application,
-    private val getEventsUseCase: GetEventsUseCase,
+    private val getEventsUseCase: GetEventsUseCase
 ) : ViewModel() {
 
     init {

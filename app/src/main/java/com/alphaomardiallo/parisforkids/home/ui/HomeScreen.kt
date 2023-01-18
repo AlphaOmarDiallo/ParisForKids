@@ -44,14 +44,14 @@ fun HomeScreen(
 private fun HomeContent(eventState: List<UiEventCard>, modifier: Modifier) {
     SectionTitle(title = stringResource(id = R.string.home_title_section_to_do_today), modifier = modifier)
     MediumSpacer()
-    HorizontalListOfEvents(list = eventState)
+    HorizontalListOfEvents(list = eventState )
     SectionTitle(title = stringResource(id = R.string.home_title_section_to_this_weekend), modifier = modifier)
     MediumSpacer()
-    HorizontalListOfEvents(list = eventState)
+    /*HorizontalListOfEvents(list = eventState)
     SectionTitle(title = stringResource(id = R.string.home_title_section_to_do_this_week), modifier = modifier)
     MediumSpacer()
     HorizontalListOfEvents(list = eventState)
     SectionTitle(title = stringResource(id = R.string.home_title_section_by_theme), modifier = modifier)
     MediumSpacer()
-    HorizontalListOfEvents(list = eventState)
+    HorizontalListOfEvents(list = eventState)*/
 }

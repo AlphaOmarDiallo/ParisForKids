@@ -2,6 +2,7 @@ package com.alphaomardiallo.parisforkids.main.ui
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -39,17 +40,26 @@ class MainActivity : ComponentActivity() {
 
             lifecycleScope.launch { delay(2000L) }
 
-            ParisForKidsTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background,
+            MyApp {
+                startActivity(Intent(this, EventDetailActivity::class.java))
+            }
 
-                    ) {
-                    MainScreen(viewModel)
-                }
+
+        }
+    }
+    @Composable
+    fun MyApp(navigateToDetail: (String) -> Unit) {
+        ParisForKidsTheme {
+            // A surface container using the 'background' color from the theme
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colors.background,
+
+                ) {
+                MainScreen(viewModel, navigateToDetail)
             }
         }
+
     }
 
     private fun getData() {
@@ -63,7 +73,7 @@ class MainActivity : ComponentActivity() {
 // Composable
 
 @Composable
-fun MainScreen(viewModel: MainViewModel) {
+fun MainScreen(viewModel: MainViewModel, navigateToDetail: (String) -> Unit) {
 
     val navController = rememberNavController()
     val scaffoldState = rememberScaffoldState()

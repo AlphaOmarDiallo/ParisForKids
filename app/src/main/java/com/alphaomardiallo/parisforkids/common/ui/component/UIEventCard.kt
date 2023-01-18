@@ -1,5 +1,6 @@
 package com.alphaomardiallo.parisforkids.common.ui.component
 
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,23 +16,31 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.text.parseAsHtml
 import coil.compose.AsyncImage
 import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.common.ui.theme.Typography
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
+import com.alphaomardiallo.parisforkids.home.presenter.HomeViewModel
 import com.alphaomardiallo.parisforkids.home.ui.EventTagChip
+import com.alphaomardiallo.parisforkids.main.ui.EventDetailActivity
 
 @Composable
 fun UIEventCard(modifier: Modifier, event: UiEventCard) {
+
+    val context = LocalContext.current
+    val intent = Intent(context, EventDetailActivity::class.java)
+
     Card(
         modifier = modifier
             .width(dimensionResource(id = R.dimen.card_width_normal))
             .height(dimensionResource(id = R.dimen.card_height_normal))
-            .clickable { /*TODO*/ },
+            .clickable { context.startActivity(intent) },
         shape = MaterialTheme.shapes.medium,
         contentColor = MaterialTheme.colors.onPrimary,
         elevation = dimensionResource(id = R.dimen.elevation_normal)

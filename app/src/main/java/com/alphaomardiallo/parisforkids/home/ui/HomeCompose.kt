@@ -18,6 +18,7 @@ import com.alphaomardiallo.parisforkids.common.ui.component.UIEventCard
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.common.ui.theme.Typography
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
+import com.alphaomardiallo.parisforkids.home.presenter.HomeViewModel
 
 
 @Composable
