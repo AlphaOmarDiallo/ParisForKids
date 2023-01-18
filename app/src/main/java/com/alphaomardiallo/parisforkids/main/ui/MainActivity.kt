@@ -2,7 +2,6 @@ package com.alphaomardiallo.parisforkids.main.ui
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -16,15 +15,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.alphaomardiallo.parisforkids.R
-import com.alphaomardiallo.parisforkids.common.domain.util.snackBar.createSnackBar
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.main.presenter.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -38,28 +33,18 @@ class MainActivity : ComponentActivity() {
 
             getData()
 
-            lifecycleScope.launch { delay(2000L) }
+            ParisForKidsTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background,
 
-            MyApp {
-                startActivity(Intent(this, EventDetailActivity::class.java))
+                    ) {
+                    MainScreen(viewModel)
+                }
             }
 
-
         }
-    }
-    @Composable
-    fun MyApp(navigateToDetail: (String) -> Unit) {
-        ParisForKidsTheme {
-            // A surface container using the 'background' color from the theme
-            Surface(
-                modifier = Modifier.fillMaxSize(),
-                color = MaterialTheme.colors.background,
-
-                ) {
-                MainScreen(viewModel, navigateToDetail)
-            }
-        }
-
     }
 
     private fun getData() {
@@ -73,7 +58,7 @@ class MainActivity : ComponentActivity() {
 // Composable
 
 @Composable
-fun MainScreen(viewModel: MainViewModel, navigateToDetail: (String) -> Unit) {
+fun MainScreen(viewModel: MainViewModel) {
 
     val navController = rememberNavController()
     val scaffoldState = rememberScaffoldState()
@@ -103,7 +88,11 @@ private fun handleSnackBarResult(
 ) {
     when (snackBarResult) {
         SnackbarResult.Dismissed -> Log.e(TAG, "handleSnackBarResult: ${snackBarResult.name}", null)
-        SnackbarResult.ActionPerformed -> Log.e(TAG, "handleSnackBarResult: ${snackBarResult.name}", null)
+        SnackbarResult.ActionPerformed -> Log.e(
+            TAG,
+            "handleSnackBarResult: ${snackBarResult.name}",
+            null
+        )
         else -> {}
     }
 }
