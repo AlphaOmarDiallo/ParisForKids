@@ -2,7 +2,6 @@ package com.alphaomardiallo.parisforkids.main.ui
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -46,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background,
 
                     ) {
-                    MainScreen(this)
+                    MainScreen()
                 }
             }
         }
@@ -63,11 +62,11 @@ class MainActivity : ComponentActivity() {
 // Composable
 
 @Composable
-fun MainScreen(context: Context) {
+fun MainScreen() {
 
     val navController = rememberNavController()
     val scaffoldState = rememberScaffoldState()
-    val coroutineScope = rememberCoroutineScope()
+    //val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -83,7 +82,7 @@ fun MainScreen(context: Context) {
             modifier = Modifier.padding(innerPadding)
         ) {
             MainContent()
-            Navigation(navController, context)
+            Navigation(navController)
         }
     }
 }
