@@ -16,7 +16,6 @@ import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetE
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.InsertEventUseCase
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.IsEventExistUseCase
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.UpdateEventUseCase
-import com.alphaomardiallo.parisforkids.common.domain.util.audience.AUDIENCE_ALL
 import com.alphaomardiallo.parisforkids.common.domain.util.audience.AUDIENCE_KIDS
 import com.alphaomardiallo.parisforkids.common.domain.util.audience.AUDIENCE_KIDS_AND_TEENS
 import com.alphaomardiallo.parisforkids.common.domain.util.connectivity.Connectivity
@@ -73,7 +72,7 @@ class MainViewModel @Inject constructor(
                 responseQueFaireAParis.let { response ->
                     response.records.map { recordItem ->
                         recordItem.let { event ->
-                            if (isCorrectAudience(event)) event.let { insertEvent(it) }
+                            if (isCorrectAudience(event)) insertEvent(event)
                         }
                     }
                 }
@@ -111,7 +110,6 @@ class MainViewModel @Inject constructor(
         return if (event != null) {
             (event.fields.audience.contains(AUDIENCE_KIDS)
                     || event.fields.audience.contains(AUDIENCE_KIDS_AND_TEENS)
-                    || event.fields.audience.contains(AUDIENCE_ALL)
                     )
         } else {
             false
