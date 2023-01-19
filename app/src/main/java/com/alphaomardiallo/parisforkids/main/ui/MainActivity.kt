@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
@@ -60,7 +61,7 @@ fun MainScreen() {
 
     val navController = rememberNavController()
     val scaffoldState = rememberScaffoldState()
-    //val coroutineScope = rememberCoroutineScope()
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -76,7 +77,7 @@ fun MainScreen() {
             modifier = Modifier.padding(innerPadding)
         ) {
             MainContent()
-            Navigation(navController)
+            Navigation(navController, coroutineScope)
         }
     }
 }

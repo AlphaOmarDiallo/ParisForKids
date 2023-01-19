@@ -19,11 +19,13 @@ import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.common.ui.theme.blackOverlay
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 import com.alphaomardiallo.parisforkids.home.presenter.HomeViewModel
+import kotlinx.coroutines.CoroutineScope
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun HomeScreen(
-    homeViewModel: HomeViewModel = hiltViewModel()
+    homeViewModel: HomeViewModel = hiltViewModel(),
+    coroutineScope: CoroutineScope
 ) {
     ParisForKidsTheme {
         val eventState = homeViewModel.eventState
