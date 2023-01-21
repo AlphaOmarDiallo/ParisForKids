@@ -3,6 +3,7 @@ package com.alphaomardiallo.parisforkids.home.presenter
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetDistinctEventTagsUseCase
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetEventsUseCase
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 import com.alphaomardiallo.parisforkids.home.domain.toUIEventCard
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val context: Application,
     private val getEventsUseCase: GetEventsUseCase,
+    private val getDistinctEventTagsUseCase: GetDistinctEventTagsUseCase
 ) : ViewModel() {
 
     init {
@@ -39,4 +41,28 @@ class HomeViewModel @Inject constructor(
             _eventStateFlow.emit(eventsList)
         }
     }
+
+    private val _distinctTagsStateFlow = MutableStateFlow(listOf<String>())
+    val distinctTagsStateFlow: StateFlow<List<String>> get() = _distinctTagsStateFlow
+
+    private fun getDistinctTags() {
+        viewModelScope.launch {
+            val distinctTags = getDistinctEventTagsUseCase.invoke().first()
+
+            val temp = mutableListOf<String>()
+
+            distinctTags.let {
+                it.map { tagString ->
+                    val tagStringToArray = tagString.split(",").toMutableList()
+
+                    tagStringToArray.map { value ->
+                        if (!temp.contains(value)) temp.add(value)
+                    }
+                }
+            }
+
+            _distinctTagsStateFlow.emit(temp)
+        }
+    }
+
 }
