@@ -7,28 +7,28 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.common.ui.component.MediumSpacer
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.common.ui.theme.blackOverlay
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 import com.alphaomardiallo.parisforkids.home.presenter.HomeViewModel
-import kotlinx.coroutines.CoroutineScope
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun HomeScreen(
-    homeViewModel: HomeViewModel = hiltViewModel(),
-    coroutineScope: CoroutineScope
+    homeViewModel: HomeViewModel = hiltViewModel()
 ) {
     ParisForKidsTheme {
-        val eventState = homeViewModel.eventState
+        val eventStateFlow by homeViewModel.eventStateFlow.collectAsStateWithLifecycle()
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -37,7 +37,7 @@ fun HomeScreen(
                 .padding(horizontal = dimensionResource(id = R.dimen.margin_small))
                 .verticalScroll(rememberScrollState()),
             content = {
-                HomeContent(eventState, modifier = Modifier)
+                HomeContent(eventStateFlow, modifier = Modifier)
             }
         )
     }

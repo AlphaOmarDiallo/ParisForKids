@@ -27,7 +27,6 @@ import com.alphaomardiallo.parisforkids.main.domain.NavigationItem
 import com.alphaomardiallo.parisforkids.main.domain.TopAppBarActions
 import com.alphaomardiallo.parisforkids.search.ui.SearchScreen
 import com.alphaomardiallo.parisforkids.settings.ui.SettingsScreen
-import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun TopBar(modifier: Modifier = Modifier, text: String) {
@@ -133,10 +132,10 @@ fun MainContent() {
 }
 
 @Composable
-fun Navigation(navController: NavHostController, coroutineScope: CoroutineScope) {
+fun Navigation(navController: NavHostController) {
     NavHost(navController = navController, startDestination = NavigationItem.Home.route) {
         composable(route = NavigationItem.Home.route) {
-            HomeScreen(coroutineScope = coroutineScope)
+            HomeScreen()
         }
 
         composable(route = NavigationItem.Events.route) {

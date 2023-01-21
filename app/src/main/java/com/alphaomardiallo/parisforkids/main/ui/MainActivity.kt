@@ -77,7 +77,7 @@ fun MainScreen() {
             modifier = Modifier.padding(innerPadding)
         ) {
             MainContent()
-            Navigation(navController, coroutineScope)
+            Navigation(navController)
         }
     }
 }
