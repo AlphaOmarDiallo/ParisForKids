@@ -18,7 +18,6 @@ fun formatToTag(tags: String?, context: Context): TagsItem? {
             context.getString(TagsItem.Circus.value) -> return TagsItem.Circus
             context.getString(TagsItem.Concert.value) -> return TagsItem.Concert
             context.getString(TagsItem.Dance.value) -> return TagsItem.Dance
-            context.getString(TagsItem.Kids.value) -> return TagsItem.Kids
             context.getString(TagsItem.Exhibition.value) -> return TagsItem.Exhibition
             context.getString(TagsItem.Gourmand.value) -> return TagsItem.Gourmand
             context.getString(TagsItem.History.value) -> return TagsItem.History
@@ -104,13 +103,6 @@ sealed class TagsItem(
         value = R.string.tags_dance_value,
         backgroundColor = Color.Magenta,
         contentColor = Color.White
-    )
-
-    object Kids : TagsItem(
-        name = R.string.tags_kids,
-        value = R.string.tags_kids_value,
-        backgroundColor = Color.White,
-        contentColor = Color.Black
     )
 
     object Exhibition : TagsItem(
