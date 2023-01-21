@@ -3,6 +3,7 @@ package com.alphaomardiallo.parisforkids.common.domain.util.tags
 import android.content.Context
 import androidx.compose.ui.graphics.Color
 import com.alphaomardiallo.parisforkids.R
+import com.alphaomardiallo.parisforkids.common.ui.theme.*
 
 fun formatToTag(tags: String?, context: Context): TagsItem? {
     if (tags.isNullOrBlank()) {
@@ -59,8 +60,8 @@ sealed class TagsItem(
     object Workshop : TagsItem(
         name = R.string.tags_workshop,
         value = R.string.tags_workshop_value,
-        backgroundColor = Color.Cyan,
-        contentColor = Color.White
+        backgroundColor = Color.Gray,
+        contentColor = Color.Black
     )
 
     object Comics : TagsItem(
@@ -74,13 +75,13 @@ sealed class TagsItem(
         name = R.string.tags_stroll,
         value = R.string.tags_stroll_value,
         backgroundColor = Color.Green,
-        contentColor = Color.White
+        contentColor = Color.Black
     )
 
     object Cinema : TagsItem(
         name = R.string.tags_cinema,
         value = R.string.tags_cinema_value,
-        backgroundColor = Color.Cyan,
+        backgroundColor = Color.DarkGray,
         contentColor = Color.White
     )
 
@@ -88,14 +89,14 @@ sealed class TagsItem(
         name = R.string.tags_circus,
         value = R.string.tags_circus_value,
         backgroundColor = Color.Red,
-        contentColor = Color.White
+        contentColor = Color.Black
     )
 
     object Concert : TagsItem(
         name = R.string.tags_concert,
         value = R.string.tags_concert_value,
         backgroundColor = Color.Yellow,
-        contentColor = Color.White
+        contentColor = Color.Black
     )
 
     object Dance : TagsItem(
@@ -115,141 +116,141 @@ sealed class TagsItem(
     object Exhibition : TagsItem(
         name = R.string.tags_exhibition,
         value = R.string.tags_exhibition_value,
-        backgroundColor = Color.DarkGray,
-        contentColor = Color.White
+        backgroundColor = Color.White,
+        contentColor = Color.Black
     )
 
     object Gourmand : TagsItem(
         name = R.string.tags_gourmand,
         value = R.string.tags_gourmand_value,
-        backgroundColor = Color.Gray,
+        backgroundColor = colorBrown,
         contentColor = Color.White
     )
 
     object History : TagsItem(
         name = R.string.tags_history,
         value = R.string.tags_history_value,
-        backgroundColor = Color.Magenta,
+        backgroundColor = colorBlueGrey,
         contentColor = Color.White
     )
 
     object Humor : TagsItem(
         name = R.string.tags_humor,
         value = R.string.tags_humor_value,
-        backgroundColor = Color.Magenta,
+        backgroundColor = colorDeepOrange,
         contentColor = Color.White
     )
 
     object Innovation : TagsItem(
         name = R.string.tags_innovation,
         value = R.string.tags_innovation_value,
-        backgroundColor = Color.Magenta,
-        contentColor = Color.White
+        backgroundColor = colorLimeLight,
+        contentColor = Color.Black
     )
 
     object LGBT : TagsItem(
         name = R.string.tags_lgbt,
         value = R.string.tags_lgbt_value,
-        backgroundColor = Color.Magenta,
+        backgroundColor = colorDeepPurple,
         contentColor = Color.White
     )
 
     object Literature : TagsItem(
         name = R.string.tags_literature,
         value = R.string.tags_literature_value,
-        backgroundColor = Color.Magenta,
-        contentColor = Color.White
+        backgroundColor = colorLightBlue,
+        contentColor = Color.Black
     )
 
     object Leisure : TagsItem(
         name = R.string.tags_leisure,
         value = R.string.tags_leisure_value,
-        backgroundColor = Color.Magenta,
-        contentColor = Color.White
+        backgroundColor = colorAmber,
+        contentColor = Color.Black
     )
 
     object Music : TagsItem(
         name = R.string.tags_music,
         value = R.string.tags_music_value,
-        backgroundColor = Color.Magenta,
-        contentColor = Color.White
+        backgroundColor = secondaryLightColor,
+        contentColor = Color.Black
     )
 
     object Nature : TagsItem(
         name = R.string.tags_nature,
         value = R.string.tags_nature_value,
         backgroundColor = Color.Green,
-        contentColor = Color.White
+        contentColor = Color.Black
     )
 
     object Painting : TagsItem(
         name = R.string.tags_painting,
         value = R.string.tags_painting_value,
-        backgroundColor = Color.Magenta,
-        contentColor = Color.White
+        backgroundColor = secondaryDarkColor,
+        contentColor = Color.Black
     )
 
     object Photo : TagsItem(
         name = R.string.tags_photo,
         value = R.string.tags_photo_value,
-        backgroundColor = Color.Magenta,
-        contentColor = Color.White
+        backgroundColor = bottomBarItems,
+        contentColor = Color.Black
     )
 
     object Show : TagsItem(
         name = R.string.tags_show,
         value = R.string.tags_show_value,
-        backgroundColor = Color.Magenta,
+        backgroundColor = bottomBar,
         contentColor = Color.White
     )
 
     object Health : TagsItem(
         name = R.string.tags_health,
         value = R.string.tags_health_value,
-        backgroundColor = Color.Magenta,
+        backgroundColor = appBar,
         contentColor = Color.White
     )
 
     object Science : TagsItem(
         name = R.string.tags_science,
         value = R.string.tags_science_value,
-        backgroundColor = Color.Magenta,
+        backgroundColor = colorDarkDeepPurple,
         contentColor = Color.White
     )
 
     object Solidarity : TagsItem(
         name = R.string.tags_solidarity,
         value = R.string.tags_solidarity_value,
-        backgroundColor = Color.Magenta,
-        contentColor = Color.White
+        backgroundColor = colorPurple,
+        contentColor = Color.Black
     )
 
     object Musical : TagsItem(
         name = R.string.tags_musical,
         value = R.string.tags_musical_value,
-        backgroundColor = Color.Magenta,
-        contentColor = Color.White
+        backgroundColor = colorYellow,
+        contentColor = Color.Black
     )
 
     object Sport : TagsItem(
         name = R.string.tags_sport,
         value = R.string.tags_sport_value,
-        backgroundColor = Color.Magenta,
-        contentColor = Color.White
+        backgroundColor = colorGreen,
+        contentColor = Color.Black
     )
 
     object StreetArt : TagsItem(
         name = R.string.tags_street_art,
         value = R.string.tags_street_art_value,
-        backgroundColor = Color.Magenta,
+        backgroundColor = colorDarkGrey,
         contentColor = Color.White
     )
 
     object Theatre : TagsItem(
         name = R.string.tags_theater,
         value = R.string.tags_theatre_value,
-        backgroundColor = Color.Magenta,
-        contentColor = Color.White
+        backgroundColor = colorPink,
+        contentColor = Color.Black
     )
 
 }
