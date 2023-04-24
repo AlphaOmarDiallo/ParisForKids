@@ -15,5 +15,7 @@ class MainApplication : Application() {
         super.onCreate()
 
         firebaseAnalytics = Firebase.analytics
+
+        //TODO add timber factory and replace all logs
     }
 }
