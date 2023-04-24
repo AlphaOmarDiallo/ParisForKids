@@ -33,17 +33,14 @@ class MainViewModel @Inject constructor(
     private val queFaireAParisRepository: QueFaireAParisRepository,
     private val parisWeatherRepository: ParisWeatherRepository,
     private val weatherRepository: WeatherRepository,
-
     private val insertEventUseCase: InsertEventUseCase,
     private val updateEventUseCase: UpdateEventUseCase,
     private val isEventExistUseCase: IsEventExistUseCase,
     private val getEventsUseCase: GetEventsUseCase,
-
     private val dateUtil: DateUtilImp,
     private val connectivity: ConnectivityImp,
     private val responseEventsToEvent: ResponseEventsToEvent,
-
-    ) : ViewModel() {
+) : ViewModel() {
 
     //Events repository
     /**
@@ -52,12 +49,17 @@ class MainViewModel @Inject constructor(
      */
     fun checkIfListEventsWasUpdatedToday() {
         viewModelScope.launch {
-            if (getEventsUseCase.getAllEvents().first().isEmpty()) {
-                fetchListEventsAndActivities()
-            } else {
-                val date1 = getEventsUseCase.getAllEvents().first()[0].creationDate
-                val date2 = dateUtil.createDate()
-                if (!dateUtil.isItSameDay(date1, date2)) fetchListEventsAndActivities()
+            getEventsUseCase.getAllEvents().collect { eventList ->
+                if (eventList.isEmpty()) {
+                    fetchListEventsAndActivities()
+                } else {
+                    val date1 = getEventsUseCase.getAllEvents().first()[0].creationDate
+                    if (!dateUtil.isItSameDay(
+                            date1,
+                            dateUtil.createDate()
+                        )
+                    ) fetchListEventsAndActivities()
+                }
             }
         }
     }
@@ -68,23 +70,24 @@ class MainViewModel @Inject constructor(
      */
     private fun insertOrUpdateListEventsInDataBase(responseQueFaireAParis: ResponseQueFaireAParis) {
         viewModelScope.launch {
-            if (getEventsUseCase.getAllEvents().first().isEmpty()) {
-                responseQueFaireAParis.let { response ->
-                    response.records.map { recordItem ->
-                        recordItem.let { event ->
-                            if (isCorrectAudience(event)) insertEvent(event)
+            getEventsUseCase.getAllEvents().collect { eventList ->
+                if (eventList.isEmpty()) {
+                    responseQueFaireAParis.let { response ->
+                        response.records.map { recordItem ->
+                            recordItem.let { event ->
+                                if (isCorrectAudience(event)) insertEvent(event)
+                            }
                         }
                     }
-                }
-
-            } else {
-                responseQueFaireAParis.let { response ->
-                    response.records.map { recordItem ->
-                        recordItem.let { event ->
-                            if (isCorrectAudience(event)) event.let {
-                                when (isEventExistUseCase.eventExist(it.recordid).first()) {
-                                    true -> updateEvent(it)
-                                    else -> insertEvent(it)
+                } else {
+                    responseQueFaireAParis.let { response ->
+                        response.records.map { recordItem ->
+                            recordItem.let { event ->
+                                if (isCorrectAudience(event)) event.let {
+                                    when (isEventExistUseCase.eventExist(it.recordid).first()) {
+                                        true -> updateEvent(it)
+                                        else -> insertEvent(it)
+                                    }
                                 }
                             }
                         }
@@ -191,8 +194,7 @@ class MainViewModel @Inject constructor(
                 fetchParisWeather()
             } else {
                 val date1 = weatherRepository.getWeather().first()[0].date
-                val date2 = dateUtil.createDate()
-                if (!dateUtil.isItSameDay(date1, date2)) fetchParisWeather()
+                if (!dateUtil.isItSameDay(date1, dateUtil.createDate())) fetchParisWeather()
             }
         }
     }
@@ -211,6 +213,7 @@ class MainViewModel @Inject constructor(
                 )
                 weatherRepository.insertWeather(newWeather)
             } else {
+                // FIXME : Use case needs to be implemented
                 val oldWeather = weatherRepository.getWeather().first()[0]
                 oldWeather.date = dateUtil.createDate()
                 oldWeather.data = responseWeather
@@ -238,20 +241,15 @@ class MainViewModel @Inject constructor(
             Connectivity.Status.Available -> {
                 Log.i(TAG, "updateConnectivityStatus: $status")
             }
-
             Connectivity.Status.Losing -> {
                 Log.i(TAG, "updateConnectivityStatus: $status")
             }
-
             Connectivity.Status.Lost -> {
                 Log.i(TAG, "updateConnectivityStatus: $status")
             }
-
             Connectivity.Status.Unavailable -> {
                 Log.i(TAG, "updateConnectivityStatus: $status")
             }
-
         }
     }
-
 }
