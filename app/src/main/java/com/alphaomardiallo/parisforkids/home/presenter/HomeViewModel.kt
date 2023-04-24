@@ -10,10 +10,10 @@ import com.alphaomardiallo.parisforkids.home.domain.toUIEventCard
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+// TODO: Put comments on ViewModel
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val context: Application,
@@ -22,47 +22,38 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        getAllEventsAsState()
+        getAllEvents()
     }
 
-    private val _eventStateFlow = MutableStateFlow(listOf<UiEventCard>())
-    val eventStateFlow: StateFlow<List<UiEventCard>> get() = _eventStateFlow
+    private val _eventViewState = MutableStateFlow(HomeViewState())
+    val eventViewState: StateFlow<HomeViewState> get() = _eventViewState
 
-    private fun getAllEventsAsState() {
+    private fun getAllEvents() {
         viewModelScope.launch {
-
-            val allEventsList = getEventsUseCase.getAllEvents().first()
-
-            val eventsList = mutableListOf<UiEventCard>()
-
-            allEventsList.map { event ->
-                eventsList.add(event.toUIEventCard(context))
+            getEventsUseCase.getAllEvents().collect { eventsList ->
+                val uiEventsList = mutableListOf<UiEventCard>()
+                eventsList.map { event ->
+                    // FIXME: remove context, find another solution. Leaks
+                    uiEventsList.add(event.toUIEventCard(context))
+                }
+                _eventViewState.value = _eventViewState.value.copy(eventsOfTheDay = uiEventsList)
             }
-            _eventStateFlow.emit(eventsList)
         }
     }
 
-    private val _distinctTagsStateFlow = MutableStateFlow(listOf<String>())
-    val distinctTagsStateFlow: StateFlow<List<String>> get() = _distinctTagsStateFlow
-
+    // FIXME: Bad method, must be done straight via SQL query
     private fun getDistinctTags() {
         viewModelScope.launch {
-            val distinctTags = getDistinctEventTagsUseCase.invoke().first()
-
-            val temp = mutableListOf<String>()
-
-            distinctTags.let {
-                it.map { tagString ->
-                    val tagStringToArray = tagString.split(",").toMutableList()
-
+            getDistinctEventTagsUseCase.invoke().collect { tagList ->
+                val uiTagList = mutableListOf<String>()
+                tagList.map { tag ->
+                    val tagStringToArray = tag.split(",").toMutableList()
                     tagStringToArray.map { value ->
-                        if (!temp.contains(value)) temp.add(value)
+                        if (!uiTagList.contains(value)) uiTagList.add(value)
                     }
                 }
+                _eventViewState.value = _eventViewState.value.copy(eventsByTheme = uiTagList)
             }
-
-            _distinctTagsStateFlow.emit(temp)
         }
     }
-
 }
