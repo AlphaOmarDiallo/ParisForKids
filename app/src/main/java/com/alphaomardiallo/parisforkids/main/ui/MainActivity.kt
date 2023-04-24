@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
@@ -30,16 +29,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
             getData()
-
             ParisForKidsTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background,
-
-                    ) {
+                ) {
                     MainScreen()
                 }
             }
@@ -51,17 +47,14 @@ class MainActivity : ComponentActivity() {
         viewModel.checkIfWeatherWasUpdatedToday()
         viewModel.monitorNetworkStatus()
     }
-
 }
 
 // Composable
 
 @Composable
 fun MainScreen() {
-
     val navController = rememberNavController()
     val scaffoldState = rememberScaffoldState()
-    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
