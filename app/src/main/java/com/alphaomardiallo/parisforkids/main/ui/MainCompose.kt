@@ -14,6 +14,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -44,7 +45,7 @@ fun TopBar(modifier: Modifier = Modifier, text: String) {
         actions = {
             actions.forEach { action ->
                 TopAppBarActionButton(
-                    imageVector = action.icon,
+                    imageVector = ImageVector.vectorResource(id = action.icon),
                     description = stringResource(id = action.description)
                 ) {
                     /*TODO*/
@@ -89,7 +90,7 @@ fun BottomNavigationBar(modifier: Modifier = Modifier, navController: NavControl
             BottomNavigationItem(
                 icon = {
                     Icon(
-                        imageVector = navItem.icon,
+                        imageVector = ImageVector.vectorResource(id = navItem.icon),
                         contentDescription = stringResource(id = navItem.contentDescription)
                     )
                 },
