@@ -14,7 +14,6 @@ class ConverterListDouble {
 
     @TypeConverter
     fun fromList(list: List<Double?>?): String? {
-        val gson = Gson()
-        return gson.toJson(list)
+        return Gson().toJson(list)
     }
 }
