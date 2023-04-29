@@ -20,9 +20,6 @@ import com.alphaomardiallo.parisforkids.common.domain.model.weather.Weather
     ConverterListDouble::class
 )
 abstract class LocalDatabase : RoomDatabase() {
-
     abstract fun eventsAndActivitiesDAO(): EventsDAO
-
     abstract fun weatherDao(): WeatherDAO
-
 }
