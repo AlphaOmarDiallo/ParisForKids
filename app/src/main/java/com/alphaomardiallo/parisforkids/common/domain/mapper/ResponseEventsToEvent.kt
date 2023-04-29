@@ -8,7 +8,6 @@ import javax.inject.Inject
 class ResponseEventsToEvent @Inject constructor(
     private val dateUtil: DateUtil
 ) {
-
     fun responseEventsToEvent(record: Record): Event {
         return Event(
             id = record.recordid,
