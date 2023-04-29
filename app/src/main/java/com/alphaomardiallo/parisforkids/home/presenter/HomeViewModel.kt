@@ -30,7 +30,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getAllEvents() {
         viewModelScope.launch {
-            getEventsUseCase.getAllEvents().collect { eventsList ->
+            getEventsUseCase.execute().collect { eventsList ->
                 val uiEventsList = mutableListOf<UiEventCard>()
                 eventsList.map { event ->
                     // FIXME: remove context, find another solution. Leaks
@@ -44,7 +44,7 @@ class HomeViewModel @Inject constructor(
     // FIXME: Bad method, must be done straight via SQL query
     private fun getDistinctTags() {
         viewModelScope.launch {
-            getDistinctEventTagsUseCase.invoke().collect { tagList ->
+            getDistinctEventTagsUseCase.execute().collect { tagList ->
                 val uiTagList = mutableListOf<String>()
                 tagList.map { tag ->
                     val tagStringToArray = tag.split(",").toMutableList()

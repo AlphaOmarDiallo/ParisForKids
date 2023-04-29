@@ -49,11 +49,11 @@ class MainViewModel @Inject constructor(
      */
     fun checkIfListEventsWasUpdatedToday() {
         viewModelScope.launch {
-            getEventsUseCase.getAllEvents().collect { eventList ->
+            getEventsUseCase.execute().collect { eventList ->
                 if (eventList.isEmpty()) {
                     fetchListEventsAndActivities()
                 } else {
-                    val date1 = getEventsUseCase.getAllEvents().first()[0].creationDate
+                    val date1 = getEventsUseCase.execute().first()[0].creationDate
                     if (!dateUtil.isItSameDay(
                             date1,
                             dateUtil.createDate()
@@ -70,7 +70,7 @@ class MainViewModel @Inject constructor(
      */
     private fun insertOrUpdateListEventsInDataBase(responseQueFaireAParis: ResponseQueFaireAParis) {
         viewModelScope.launch {
-            getEventsUseCase.getAllEvents().collect { eventList ->
+            getEventsUseCase.execute().collect { eventList ->
                 if (eventList.isEmpty()) {
                     responseQueFaireAParis.let { response ->
                         response.records.map { recordItem ->
@@ -84,7 +84,7 @@ class MainViewModel @Inject constructor(
                         response.records.map { recordItem ->
                             recordItem.let { event ->
                                 if (isCorrectAudience(event)) event.let {
-                                    when (isEventExistUseCase.eventExist(it.recordid).first()) {
+                                    when (isEventExistUseCase.execute(it.recordid).first()) {
                                         true -> updateEvent(it)
                                         else -> insertEvent(it)
                                     }
@@ -98,13 +98,13 @@ class MainViewModel @Inject constructor(
     }
 
     private suspend fun insertEvent(recordItem: Record) {
-        insertEventUseCase.insertEvent(
+        insertEventUseCase.execute(
             responseEventsToEvent.responseEventsToEvent(recordItem)
         )
     }
 
     private suspend fun updateEvent(recordItem: Record) {
-        updateEventUseCase.updateEvent(
+        updateEventUseCase.execute(
             responseEventsToEvent.responseEventsToEvent(recordItem)
         )
     }
