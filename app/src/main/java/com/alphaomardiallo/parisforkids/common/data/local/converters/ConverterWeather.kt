@@ -12,7 +12,6 @@ class ConverterWeather {
 
     @TypeConverter
     fun stringToWeather(responseWeather: ResponseWeather): String? {
-        val gson = Gson()
-        return gson.toJson(responseWeather)
+        return Gson().toJson(responseWeather)
     }
 }
