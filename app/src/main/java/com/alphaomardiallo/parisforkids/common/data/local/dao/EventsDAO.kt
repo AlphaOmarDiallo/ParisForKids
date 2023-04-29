@@ -46,4 +46,22 @@ interface EventsDAO {
     @Query("SELECT DISTINCT events_and_response_tags FROM EventsAndActivities_table")
     fun selectDistinctTags(): Flow<List<String>>
 
+    // TODO: test all the new methods
+    /**
+     * Fetch all the events available on the day
+     */
+    @Query("SELECT * FROM EventsAndActivities_table WHERE strftime('%Y-%m-%d', events_and_response_date_start) = date('now')")
+    fun getEventsToday(): Flow<List<Event>>
+
+    /**
+     * Fetch all the events by theme
+     */
+    @Query("SELECT * FROM EventsAndActivities_table WHERE events_and_response_tags LIKE '%' || :theme || '%'")
+    fun getEventsByTheme(theme: String): Flow<List<Event>>
+
+    /**
+     * Select all the events of the current week
+     */
+    @Query("SELECT * FROM EventsAndActivities_table WHERE strftime('%W', events_and_response_date_start) = strftime('%W', 'now')")
+    fun getEventsOfTheWeek(): Flow<List<Event>>
 }
