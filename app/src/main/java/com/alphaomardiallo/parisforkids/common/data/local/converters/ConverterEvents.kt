@@ -13,8 +13,7 @@ class ConverterEvents {
 
     @TypeConverter
     fun stringFromEventsResponse(responseQueFaireAParis: ResponseQueFaireAParis): String? {
-        val gson = Gson()
-        return gson.toJson(responseQueFaireAParis)
+        return Gson().toJson(responseQueFaireAParis)
     }
 
     @TypeConverter
@@ -24,7 +23,6 @@ class ConverterEvents {
 
     @TypeConverter
     fun stringFromEventsItem(record: Record): String? {
-        val gson = Gson()
-        return gson.toJson(record)
+        return Gson().toJson(record)
     }
 }
