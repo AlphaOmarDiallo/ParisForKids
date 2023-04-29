@@ -31,5 +31,4 @@ class QueFaireAParisRepositoryImp @Inject constructor(
             timezone = "Europe/Paris"
         )
     }
-
 }
