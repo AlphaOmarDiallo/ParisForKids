@@ -1,6 +1,6 @@
 package com.alphaomardiallo.parisforkids.home.presenter
 
-import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
+import com.alphaomardiallo.parisforkids.home.domain.model.UiEventCard
 
 data class HomeViewState(
     val eventsOfTheDay: List<UiEventCard> = emptyList(),

@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.main.domain
+package com.alphaomardiallo.parisforkids.common.main.domain
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

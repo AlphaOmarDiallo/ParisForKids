@@ -1,9 +1,10 @@
-package com.alphaomardiallo.parisforkids.home.domain
+package com.alphaomardiallo.parisforkids.home.domain.mappers
 
 import android.content.Context
 import com.alphaomardiallo.parisforkids.common.domain.model.queFaireAParis.Event
 import com.alphaomardiallo.parisforkids.common.domain.util.tags.TagsItem
 import com.alphaomardiallo.parisforkids.common.domain.util.tags.formatToTag
+import com.alphaomardiallo.parisforkids.home.domain.model.UiEventCard
 
 fun Event.toUIEventCard(context: Context): UiEventCard {
     return UiEventCard(

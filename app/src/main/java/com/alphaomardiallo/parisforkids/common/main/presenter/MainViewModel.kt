@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.main.presenter
+package com.alphaomardiallo.parisforkids.common.main.presenter
 
 import android.content.ContentValues.TAG
 import android.util.Log

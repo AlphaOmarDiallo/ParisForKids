@@ -26,7 +26,7 @@ import coil.compose.AsyncImage
 import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.common.domain.util.district.formatDistrict
 import com.alphaomardiallo.parisforkids.common.ui.theme.Typography
-import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
+import com.alphaomardiallo.parisforkids.home.domain.model.UiEventCard
 import com.alphaomardiallo.parisforkids.home.ui.EventTagChip
 
 @Composable
