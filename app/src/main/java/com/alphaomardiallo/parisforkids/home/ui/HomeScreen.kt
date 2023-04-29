@@ -38,7 +38,7 @@ fun HomeScreen(
                 .padding(horizontal = dimensionResource(id = R.dimen.margin_small))
                 .verticalScroll(rememberScrollState()),
             content = {
-                HomeContent(eventStateFlow, modifier = Modifier)
+                HomeContent(eventStateFlow.eventsOfTheDay, modifier = Modifier)
             }
         )
     }
