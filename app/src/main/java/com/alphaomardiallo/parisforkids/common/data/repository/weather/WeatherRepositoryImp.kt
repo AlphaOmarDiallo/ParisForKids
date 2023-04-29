@@ -23,5 +23,4 @@ class WeatherRepositoryImp @Inject constructor(
     override fun getWeather(): Flow<List<Weather>> {
         return weatherDAO.getWeather()
     }
-
 }

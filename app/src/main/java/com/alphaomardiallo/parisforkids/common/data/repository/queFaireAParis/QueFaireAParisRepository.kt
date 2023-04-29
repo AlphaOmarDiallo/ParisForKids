@@ -6,5 +6,4 @@ import retrofit2.Response
 interface QueFaireAParisRepository {
 
     suspend fun getListEventsAndActivities(): Response<ResponseQueFaireAParis>
-
 }

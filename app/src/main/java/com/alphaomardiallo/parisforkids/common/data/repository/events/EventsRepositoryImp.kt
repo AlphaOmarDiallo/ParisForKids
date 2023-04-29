@@ -39,5 +39,4 @@ class EventsRepositoryImp @Inject constructor(
     override fun selectDistinctTags(): Flow<List<String>> {
         return eventsDAO.selectDistinctTags()
     }
-
 }
