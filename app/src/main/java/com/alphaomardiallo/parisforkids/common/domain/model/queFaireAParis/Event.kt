@@ -46,5 +46,4 @@ data class Event(
     @ColumnInfo(name = "events_and_response_date_end") var dateEnd: String?,
     @ColumnInfo(name = "events_and_response_date_description") var dateDescription: String?,
     @ColumnInfo(name = "events_and_response_date_occurrences") var occurrences: List<String?>?
-
 )

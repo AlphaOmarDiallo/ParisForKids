@@ -18,4 +18,6 @@ interface EventsRepository {
     fun isEventExist(id: String): Flow<Boolean>
 
     fun loadSingleEvent(id: String): Flow<Event>
+
+    fun selectDistinctTags(): Flow<List<String>>
 }

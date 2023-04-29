@@ -20,7 +20,6 @@ import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.common.ui.theme.Typography
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 
-
 @Composable
 fun SectionTitle(title: String, modifier: Modifier) {
     Row(modifier.padding(vertical = dimensionResource(id = R.dimen.margin_medium)),

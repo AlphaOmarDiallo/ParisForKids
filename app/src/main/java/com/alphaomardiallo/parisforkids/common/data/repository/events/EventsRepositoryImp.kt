@@ -16,8 +16,8 @@ class EventsRepositoryImp @Inject constructor(
         eventsDAO.updateEvents(events)
     }
 
-    override suspend fun deleteEvents(event: Event) {
-        eventsDAO.deleteEventsAndActivities(event)
+    override suspend fun deleteEvents(events: Event) {
+        eventsDAO.deleteEventsAndActivities(events)
     }
 
     override fun getEventsCount(): Flow<Int> {
@@ -34,6 +34,10 @@ class EventsRepositoryImp @Inject constructor(
 
     override fun loadSingleEvent(id: String): Flow<Event> {
         return eventsDAO.loadSingleEvent(id)
+    }
+
+    override fun selectDistinctTags(): Flow<List<String>> {
+        return eventsDAO.selectDistinctTags()
     }
 
 }

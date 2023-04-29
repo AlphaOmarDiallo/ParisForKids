@@ -1,11 +1,12 @@
 package com.alphaomardiallo.parisforkids.home.ui
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -22,13 +23,13 @@ import com.alphaomardiallo.parisforkids.common.ui.theme.blackOverlay
 import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
 import com.alphaomardiallo.parisforkids.home.presenter.HomeViewModel
 
-@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
+    // FIXME: collect state 
     ParisForKidsTheme {
-        val eventStateFlow by homeViewModel.eventStateFlow.collectAsStateWithLifecycle()
+        val eventStateFlow by homeViewModel.eventViewState.collectAsStateWithLifecycle()
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -37,7 +38,7 @@ fun HomeScreen(
                 .padding(horizontal = dimensionResource(id = R.dimen.margin_small))
                 .verticalScroll(rememberScrollState()),
             content = {
-                HomeContent(eventStateFlow, modifier = Modifier)
+                HomeContent(eventStateFlow.eventsOfTheDay, modifier = Modifier)
             }
         )
     }
