@@ -18,5 +18,4 @@ interface RetrofitSanisette {
         @Query("facet") acces_pmr: String,
         @Query("facet") relais_bebe: String
     ): Response<ResponseQueFaireAParis>
-
 }
