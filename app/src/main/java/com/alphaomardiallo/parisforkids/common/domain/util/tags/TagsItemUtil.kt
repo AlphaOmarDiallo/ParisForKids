@@ -244,5 +244,4 @@ sealed class TagsItem(
         backgroundColor = colorPink,
         contentColor = Color.Black
     )
-
 }

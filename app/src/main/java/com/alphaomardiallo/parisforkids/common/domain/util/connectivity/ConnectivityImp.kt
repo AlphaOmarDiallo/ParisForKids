@@ -89,5 +89,4 @@ class ConnectivityImp @Inject constructor(@ApplicationContext val context: Conte
     override fun connectivityErrorMessage(): String = connectivityMessage
 
     override fun isConnexionUnmetered(): Boolean = connectivityUnmetered
-
 }
