@@ -136,7 +136,6 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:$datastore_version"
 
     //WORK MANAGER
-    def work_version = "2.7.1"
     implementation "androidx.work:work-runtime-ktx:$work_version"
 
     //COROUTINES
