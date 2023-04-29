@@ -27,5 +27,4 @@ interface RetrofitQueFaireAParis {
         @Query("facet") programs: String,
         @Query("timezone") timezone: String
     ): Response<ResponseQueFaireAParis>
-
 }
