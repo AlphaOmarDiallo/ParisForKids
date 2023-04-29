@@ -7,7 +7,7 @@ import javax.inject.Inject
 class UpdateEventUseCase @Inject constructor(
     private val eventsRepository: EventsRepository
 ) {
-    suspend fun updateEvent(events: Event) {
+    suspend fun execute(events: Event) {
         eventsRepository.updateEvents(events)
     }
 }

@@ -7,7 +7,7 @@ import javax.inject.Inject
 class InsertEventUseCase @Inject constructor(
     private val eventsRepository: EventsRepository
 ) {
-    suspend fun insertEvent(events: Event) {
+    suspend fun execute(events: Event) {
         eventsRepository.insertEvents(events)
     }
 }
