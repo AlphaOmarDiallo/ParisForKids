@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.home.domain
+package com.alphaomardiallo.parisforkids.home.domain.model
 
 import com.alphaomardiallo.parisforkids.common.domain.util.tags.TagsItem
 

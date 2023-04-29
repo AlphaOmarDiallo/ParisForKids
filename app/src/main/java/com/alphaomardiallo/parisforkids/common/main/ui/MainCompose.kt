@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.main.ui
+package com.alphaomardiallo.parisforkids.common.main.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -24,8 +24,8 @@ import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.events.ui.EventsScreen
 import com.alphaomardiallo.parisforkids.favorite.ui.FavoriteScreen
 import com.alphaomardiallo.parisforkids.home.ui.HomeScreen
-import com.alphaomardiallo.parisforkids.main.domain.NavigationItem
-import com.alphaomardiallo.parisforkids.main.domain.TopAppBarActions
+import com.alphaomardiallo.parisforkids.common.main.domain.NavigationItem
+import com.alphaomardiallo.parisforkids.common.main.domain.TopAppBarActions
 import com.alphaomardiallo.parisforkids.search.ui.SearchScreen
 import com.alphaomardiallo.parisforkids.settings.ui.SettingsScreen
 

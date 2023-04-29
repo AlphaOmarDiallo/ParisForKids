@@ -1,4 +1,4 @@
-package com.alphaomardiallo.parisforkids.main.ui
+package com.alphaomardiallo.parisforkids.common.main.ui
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
 import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
-import com.alphaomardiallo.parisforkids.main.presenter.MainViewModel
+import com.alphaomardiallo.parisforkids.common.main.presenter.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

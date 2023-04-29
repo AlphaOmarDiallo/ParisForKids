@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetDistinctEventTagsUseCase
-import com.alphaomardiallo.parisforkids.common.domain.usecase.eventsUsecase.GetEventsUseCase
-import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
-import com.alphaomardiallo.parisforkids.home.domain.toUIEventCard
+import com.alphaomardiallo.parisforkids.home.domain.model.UiEventCard
+import com.alphaomardiallo.parisforkids.home.domain.mappers.toUIEventCard
+import com.alphaomardiallo.parisforkids.home.domain.useCase.HomeGetEventsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val context: Application,
-    private val getEventsUseCase: GetEventsUseCase,
+    private val homeGetEventsUseCase: HomeGetEventsUseCase,
     private val getDistinctEventTagsUseCase: GetDistinctEventTagsUseCase
 ) : ViewModel() {
 
@@ -30,7 +30,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getAllEvents() {
         viewModelScope.launch {
-            getEventsUseCase.execute().collect { eventsList ->
+            homeGetEventsUseCase.execute().collect { eventsList ->
                 val uiEventsList = mutableListOf<UiEventCard>()
                 eventsList.map { event ->
                     // FIXME: remove context, find another solution. Leaks

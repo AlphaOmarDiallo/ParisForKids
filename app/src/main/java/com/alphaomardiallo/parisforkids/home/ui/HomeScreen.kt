@@ -20,7 +20,7 @@ import com.alphaomardiallo.parisforkids.R
 import com.alphaomardiallo.parisforkids.common.ui.component.MediumSpacer
 import com.alphaomardiallo.parisforkids.common.ui.theme.ParisForKidsTheme
 import com.alphaomardiallo.parisforkids.common.ui.theme.blackOverlay
-import com.alphaomardiallo.parisforkids.home.domain.UiEventCard
+import com.alphaomardiallo.parisforkids.home.domain.model.UiEventCard
 import com.alphaomardiallo.parisforkids.home.presenter.HomeViewModel
 
 @Composable
