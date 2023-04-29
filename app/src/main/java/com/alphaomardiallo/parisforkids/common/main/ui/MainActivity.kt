@@ -10,7 +10,9 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -32,9 +34,9 @@ class MainActivity : ComponentActivity() {
             getData()
             ParisForKidsTheme {
                 // A surface container using the 'background' color from the theme
+
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background,
+                    modifier = Modifier.fillMaxSize()
                 ) {
                     MainScreen()
                 }
@@ -54,11 +56,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    val scaffoldState = rememberScaffoldState()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        scaffoldState = scaffoldState,
         topBar = {
             TopBar(text = stringResource(id = R.string.app_name_formatted))
         },
@@ -69,7 +69,6 @@ fun MainScreen() {
         Box(
             modifier = Modifier.padding(innerPadding)
         ) {
-            MainContent()
             Navigation(navController)
         }
     }
@@ -85,6 +84,7 @@ private fun handleSnackBarResult(
             "handleSnackBarResult: ${snackBarResult.name}",
             null
         )
+
         else -> {}
     }
 }

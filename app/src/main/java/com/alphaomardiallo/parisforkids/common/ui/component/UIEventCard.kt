@@ -4,12 +4,13 @@ import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,8 +38,7 @@ fun UIEventCard(modifier: Modifier, event: UiEventCard, context: Context) {
             .height(dimensionResource(id = R.dimen.card_height_normal))
             .clickable { /*TODO*/ },
         shape = MaterialTheme.shapes.medium,
-        contentColor = MaterialTheme.colors.onPrimary,
-        elevation = dimensionResource(id = R.dimen.elevation_normal)
+        colors = CardDefaults.cardColors(contentColor = MaterialTheme.colorScheme.onPrimary),
     ) {
         val gradient = overlay()
         EventImage(event, modifier)
@@ -155,12 +155,12 @@ private fun EventCardBottomPart(
         verticalArrangement = Arrangement.Bottom,
         modifier = modifier.fillMaxSize()
     ) {
-        Text(text = event.title!!, style = Typography.h3)
+        Text(text = event.title!!, style = Typography.titleMedium)
         Spacer(modifier.size(dimensionResource(id = R.dimen.margin_small)))
         if (event.leadText != null) {
             Text(
                 text = event.leadText!!,
-                style = Typography.body1,
+                style = Typography.bodyMedium,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
@@ -169,7 +169,7 @@ private fun EventCardBottomPart(
         if (event.dateDescription != null) {
             Text(
                 text = "${event.dateDescription?.parseAsHtml()}",
-                style = Typography.body2,
+                style = Typography.bodySmall,
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis
             )
@@ -188,7 +188,7 @@ private fun District(
         if (zipcode != null) {
             Text(
                 text = stringResource(id = zipcode.displayName),
-                style = Typography.h4
+                style = Typography.titleSmall
             )
         }
     }

@@ -47,6 +47,9 @@ fun HomeScreen(
 @Composable
 private fun HomeContent(eventState: List<UiEventCard>, modifier: Modifier) {
     val context = LocalContext.current
+
+    MeteoCard()
+
     SectionTitle(
         title = stringResource(id = R.string.home_title_section_to_do_today),
         modifier = modifier

@@ -5,6 +5,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.*
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -29,12 +36,12 @@ import com.alphaomardiallo.parisforkids.common.main.domain.TopAppBarActions
 import com.alphaomardiallo.parisforkids.search.ui.SearchScreen
 import com.alphaomardiallo.parisforkids.settings.ui.SettingsScreen
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(modifier: Modifier = Modifier, text: String) {
     val actions = listOf(TopAppBarActions.Wifi)
     TopAppBar(
         modifier = modifier,
-        backgroundColor = MaterialTheme.colors.primary,
         title = {
             Row(
                 horizontalArrangement = Arrangement.SpaceAround
@@ -79,15 +86,13 @@ fun BottomNavigationBar(modifier: Modifier = Modifier, navController: NavControl
     )
     BottomAppBar(
         modifier = modifier,
-        elevation = dimensionResource(id = R.dimen.elevation_normal),
-        backgroundColor = MaterialTheme.colors.primaryVariant,
-        contentColor = Color.White
+        containerColor = androidx.compose.material3.MaterialTheme.colorScheme.primary,
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 
         navigationItems.forEach { navItem ->
-            BottomNavigationItem(
+            NavigationBarItem(
                 icon = {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = navItem.icon),
@@ -95,8 +100,6 @@ fun BottomNavigationBar(modifier: Modifier = Modifier, navController: NavControl
                     )
                 },
                 label = { Text(stringResource(id = navItem.title)) },
-                selectedContentColor = Color.White,
-                unselectedContentColor = Color.White.copy(0.4f),
                 alwaysShowLabel = true,
                 selected = currentRoute == navItem.route,
                 onClick = {

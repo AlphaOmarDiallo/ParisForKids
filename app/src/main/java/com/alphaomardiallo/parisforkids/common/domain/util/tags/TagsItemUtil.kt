@@ -164,7 +164,7 @@ sealed class TagsItem(
     object Music : TagsItem(
         name = R.string.tags_music,
         value = R.string.tags_music_value,
-        backgroundColor = secondaryLightColor,
+        backgroundColor = Color.Cyan,
         contentColor = Color.Black
     )
 
@@ -178,28 +178,28 @@ sealed class TagsItem(
     object Painting : TagsItem(
         name = R.string.tags_painting,
         value = R.string.tags_painting_value,
-        backgroundColor = secondaryDarkColor,
+        backgroundColor = Color.Cyan,
         contentColor = Color.Black
     )
 
     object Photo : TagsItem(
         name = R.string.tags_photo,
         value = R.string.tags_photo_value,
-        backgroundColor = bottomBarItems,
+        backgroundColor = Color.Cyan,
         contentColor = Color.Black
     )
 
     object Show : TagsItem(
         name = R.string.tags_show,
         value = R.string.tags_show_value,
-        backgroundColor = bottomBar,
+        backgroundColor = Color.Cyan,
         contentColor = Color.White
     )
 
     object Health : TagsItem(
         name = R.string.tags_health,
         value = R.string.tags_health_value,
-        backgroundColor = appBar,
+        backgroundColor = Color.Cyan,
         contentColor = Color.White
     )
 
