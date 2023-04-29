@@ -15,9 +15,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.core.text.parseAsHtml
@@ -198,13 +199,13 @@ private fun PriceType(priceType: String?) {
     if (priceType != null) {
 
         val icon = if (priceType == stringResource(id = R.string.not_free)) {
-            Icons.Filled.AttachMoney
+            painterResource(id = R.drawable.ic_attach_money)
         } else {
-            Icons.Filled.MoneyOff
+            painterResource(id = R.drawable.baseline_money_off_24)
         }
 
         Icon(
-            imageVector = icon,
+            painter = icon,
             contentDescription = null
         )
         MediumSpacer()
@@ -215,7 +216,7 @@ private fun PriceType(priceType: String?) {
 private fun IsPrm(prm: Boolean) {
     if (prm) {
         ShowIcon(
-            icon = Icons.Filled.Accessible,
+            icon = painterResource(id = R.drawable.ic_accessible),
             contentDescription = R.string.icon_content_description_prm
         )
         MediumSpacer()
@@ -226,7 +227,7 @@ private fun IsPrm(prm: Boolean) {
 private fun IsDeaf(deaf: Boolean) {
     if (deaf) {
         ShowIcon(
-            icon = Icons.Filled.Hearing,
+            icon = painterResource(id = R.drawable.ic_hearing),
             contentDescription = R.string.icon_content_description_deaf
         )
         MediumSpacer()
@@ -237,16 +238,16 @@ private fun IsDeaf(deaf: Boolean) {
 private fun IsBlind(blind: Boolean) {
     if (blind) {
         ShowIcon(
-            icon = Icons.Filled.Visibility,
+            icon = painterResource(id = R.drawable.ic_visibility),
             contentDescription = R.string.icon_content_description_blind
         )
     }
 }
 
 @Composable
-private fun ShowIcon(icon: ImageVector, contentDescription: Int) {
+private fun ShowIcon(icon: Painter, contentDescription: Int) {
     Icon(
-        imageVector = icon,
+        painter = icon,
         contentDescription = stringResource(id = contentDescription)
     )
 }

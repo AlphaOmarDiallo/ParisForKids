@@ -163,23 +163,13 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
-    //Paging
-    implementation "androidx.room:room-paging:$room_version"
 
     //COIL
     implementation "io.coil-kt:coil:$coil_version"
     implementation "io.coil-kt:coil-compose:$coil_version"
 
-    //ICONS
-    implementation "androidx.compose.material:material-icons-extended:$compose_version"
-
-    //PAGING 3
-    implementation "androidx.paging:paging-runtime:$paging_version"
-    implementation "androidx.paging:paging-compose:$pagingCompose_version"
-    testImplementation "androidx.paging:paging-common:$paging_version"
-
     //FIREBASE
-    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.0'
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.3'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.2'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.6'
 
 }
